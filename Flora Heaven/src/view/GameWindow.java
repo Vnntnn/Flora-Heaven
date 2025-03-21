@@ -42,9 +42,11 @@ public class GameWindow extends JFrame {
         shoppanel = new ShopPanel();
         treesbookpanel = new TreesBookPanel();
 
+        // Initializing LayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1280, 720));
 
+        // setup components sizes
         treeholdershelfpanel.setBounds(0, 0, 1280,720);
         treeholderpanel.setBounds(0, 0, 1280, 720);
         counterpanel.setBounds(0, 0, 1280, 720);
@@ -57,6 +59,7 @@ public class GameWindow extends JFrame {
         shoppanel.setBounds(0, 0, 1280, 720);
         treesbookpanel.setBounds(0, 0, 1280, 720);
 
+        // Make components background not opacity
         treeholdershelfpanel.setOpaque(false);
         treeholderpanel.setOpaque(false);
         counterpanel.setOpaque(false);
