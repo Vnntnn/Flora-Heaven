@@ -22,8 +22,9 @@ import java.io.*;
 
 public class creditPage {
     private JFrame fr;
-    private JPanel pName, pTitle;
+    private JPanel pName, pTitle, pFootage;
     private JLabel n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, title;
+    private JButton btnBack;
 
     public creditPage() {
         int width = 1280;
@@ -40,8 +41,10 @@ public class creditPage {
             System.out.println("Font loaded successfully!");
 
             fr = new JFrame("Credit Page");
-            pTitle = new JPanel(); pName = new JPanel();
+            pTitle = new JPanel(); pName = new JPanel(); pFootage = new JPanel();
+            btnBack = new JButton("back");
             
+            pFootage.setPreferredSize(new Dimension(width, 50));
             title = new JLabel("Credit", SwingConstants.CENTER);
             title.setFont(customFont.deriveFont(80f));
             n1 = new JLabel("67070018 จรรยภัทร หิรัญรัตน์", SwingConstants.CENTER);
@@ -71,7 +74,7 @@ public class creditPage {
             pName.add(n6); pName.add(n7); pName.add(n8); pName.add(n9); pName.add(n10);
             
             fr.setLayout(new BorderLayout());
-            fr.add(pTitle, BorderLayout.NORTH); fr.add(pName);
+            fr.add(pTitle, BorderLayout.NORTH); fr.add(pName); fr.add(pFootage, BorderLayout.SOUTH);
             fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             fr.setSize(new Dimension(width, height));
             fr.setLocationRelativeTo(null);
