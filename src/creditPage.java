@@ -22,7 +22,8 @@ import java.io.*;
 
 public class creditPage {
     private JFrame fr;
-    private JPanel pName, pTitle, pFootage;
+    private JPanel pName, pTitle, pFootage, pTopage, pButton, pTop;
+    private JLayeredPane pLayer;
     private JLabel n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, title;
     private JButton btnBack;
 
@@ -41,12 +42,23 @@ public class creditPage {
             System.out.println("Font loaded successfully!");
 
             fr = new JFrame("Credit Page");
-            pTitle = new JPanel(); pName = new JPanel(); pFootage = new JPanel();
-            btnBack = new JButton("back");
+            pTitle = new JPanel(); pName = new JPanel(); pFootage = new JPanel(); pTopage = new JPanel(); pTop = new JPanel();
+            btnBack = new JButton("Back");
+            pButton = new JPanel();
+
             
-            pFootage.setPreferredSize(new Dimension(width, 50));
+            pButton.setOpaque(false); // ทำให้ pButton โปร่งใส
+            pButton.setLayout(new FlowLayout(FlowLayout.LEFT)); // จัดปุ่มไปทางซ้าย
+            pButton.add(btnBack);
+
+            
+            pTitle.setLayout(new BorderLayout());
             title = new JLabel("Credit", SwingConstants.CENTER);
-            title.setFont(customFont.deriveFont(80f));
+            title.setFont(customFont.deriveFont(100f));
+            pTitle.add(title, BorderLayout.CENTER);
+
+            
+            pName.setLayout(new GridLayout(10, 1));
             n1 = new JLabel("67070018 จรรยภัทร หิรัญรัตน์", SwingConstants.CENTER);
             n1.setFont(customFont.deriveFont(18f));
             n2 = new JLabel("67070023 จิรายุ มาระโภชน์", SwingConstants.CENTER);
@@ -67,14 +79,32 @@ public class creditPage {
             n9.setFont(customFont.deriveFont(18f));
             n10 = new JLabel("67070277 วรภา พุ่มฉัตร", SwingConstants.CENTER);
             n10.setFont(customFont.deriveFont(18f));
-            
-            pTitle.add(title);
-            pName.setLayout(new GridLayout(10, 1));
             pName.add(n1); pName.add(n2); pName.add(n3); pName.add(n4); pName.add(n5);
             pName.add(n6); pName.add(n7); pName.add(n8); pName.add(n9); pName.add(n10);
+
+            
+            pFootage.setPreferredSize(new Dimension(width, 50));
+            pTopage.setPreferredSize(new Dimension(width, 20));
+
+            
+            pLayer = new JLayeredPane();
+            pLayer.setPreferredSize(new Dimension(width, 120));
+
+            pTitle.setBounds(-10, 0, width, 100); 
+            pButton.setBounds(50, 10, 100, 30); 
+            pLayer.add(pTitle, JLayeredPane.DEFAULT_LAYER); 
+            pLayer.add(pButton, JLayeredPane.PALETTE_LAYER); 
+            
+            pTop.setLayout(new BorderLayout());
+            pTop.add(pTopage, BorderLayout.NORTH); pTop.add(pLayer);
+
             
             fr.setLayout(new BorderLayout());
-            fr.add(pTitle, BorderLayout.NORTH); fr.add(pName); fr.add(pFootage, BorderLayout.SOUTH);
+            fr.add(pTop, BorderLayout.NORTH); 
+            fr.add(pName, BorderLayout.CENTER); 
+            fr.add(pFootage, BorderLayout.SOUTH); 
+
+            
             fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             fr.setSize(new Dimension(width, height));
             fr.setLocationRelativeTo(null);
