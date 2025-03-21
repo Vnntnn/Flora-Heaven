@@ -1,13 +1,9 @@
 package view;
 
-// ***
-// Author: Vnntnn
-// ***
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AssetsLoader {
     public static BufferedImage treeholdershelf;
@@ -21,12 +17,10 @@ public class AssetsLoader {
     public static BufferedImage magictable;
     public static BufferedImage shop;
     public static BufferedImage treesbook;
+    private static AssetsLoader instance = new AssetsLoader();
 
-    static {
+    private AssetsLoader() {
         try {
-            // **
-            // Initializing images
-            // **
             treeholdershelf = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/shelf.png"));
             treeholder = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/treeholder.png"));
             counter = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/counter.png"));
@@ -38,8 +32,13 @@ public class AssetsLoader {
             magictable = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/plant_combine.png"));
             shop = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/shop.png"));
             treesbook = ImageIO.read(AssetsLoader.class.getResourceAsStream("/assets/plant_collection.png"));
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static AssetsLoader getInstance() {
+        return instance;
     }
 }

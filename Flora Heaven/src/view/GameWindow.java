@@ -8,7 +8,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameWindow extends JFrame {
+    private TreeHolderShelfPanel treeholdershelfpanel;
+    private TreeHolderPanel treeholderpanel;
+    private CounterPanel counterpanel;
+    private ShelfBackgroundPanel shelfbackgroundpanel;
+    private DeskBackgroundPanel deskbackgroundpanel;
+    private QuestsBoardPanel questsboardpanel;
+    private MainQuestPanel mainquestpanel;
+    private SubQuestPanel subquestpanel;
+    private MagicTablePanel magictablepanel;
+    private ShopPanel shoppanel;
+    private TreesBookPanel treesbookpanel;
+
     public GameWindow() {
+        AssetsLoader.getInstance();
+
         // Windows setup
         setTitle("Flora Heaven");
         setSize(1280, 720);
@@ -16,22 +30,44 @@ public class GameWindow extends JFrame {
         setResizable(false);
 
         // Initializing obj.
-        TreeHolderShelfPanel treeholdershelfpanel = new TreeHolderShelfPanel();
-        TreeHolderPanel treeholderpanel = new TreeHolderPanel();
-        CounterPanel counterpanel = new CounterPanel();
-        ShelfBackgroundPanel shelfbackgroundpanel = new ShelfBackgroundPanel();
-        DeskBackgroundPanel deskbackgroundpanel = new DeskBackgroundPanel();
-        QuestsBoardPanel questsboardpanel = new QuestsBoardPanel();
-        MainQuestPanel mainquestpanel = new MainQuestPanel();
-        SubQuestPanel subquestpanel = new SubQuestPanel();
-        MagicTablePanel magictablepanel = new MagicTablePanel();
-        ShopPanel shoppanel = new ShopPanel();
-        TreesBookPanel treesbookpanel = new TreesBookPanel();
+        treeholdershelfpanel = new TreeHolderShelfPanel();
+        treeholderpanel = new TreeHolderPanel();
+        counterpanel = new CounterPanel();
+        shelfbackgroundpanel = new ShelfBackgroundPanel();
+        deskbackgroundpanel = new DeskBackgroundPanel();
+        questsboardpanel = new QuestsBoardPanel();
+        mainquestpanel = new MainQuestPanel();
+        subquestpanel = new SubQuestPanel();
+        magictablepanel = new MagicTablePanel();
+        shoppanel = new ShopPanel();
+        treesbookpanel = new TreesBookPanel();
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1280, 720));
 
-        treeholdershelfpanel.setBounds(0, 0, 1280, 100);
+        treeholdershelfpanel.setBounds(0, 0, 1280,720);
+        treeholderpanel.setBounds(0, 0, 1280, 720);
+        counterpanel.setBounds(0, 0, 1280, 720);
+        shelfbackgroundpanel.setBounds(0, 0, 1280, 720);
+        deskbackgroundpanel.setBounds(0, 0, 1280, 720);
+        questsboardpanel.setBounds(0, 0, 1280, 720);
+        mainquestpanel.setBounds(0, 0, 1280, 720);
+        subquestpanel.setBounds(0, 0, 1280, 720);
+        magictablepanel.setBounds(0, 0, 1280, 720);
+        shoppanel.setBounds(0, 0, 1280, 720);
+        treesbookpanel.setBounds(0, 0, 1280, 720);
+
+        treeholdershelfpanel.setOpaque(false);
+        treeholderpanel.setOpaque(false);
+        counterpanel.setOpaque(false);
+        shelfbackgroundpanel.setOpaque(false);
+        deskbackgroundpanel.setOpaque(false);
+        questsboardpanel.setOpaque(false);
+        mainquestpanel.setOpaque(false);
+        subquestpanel.setOpaque(false);
+        magictablepanel.setOpaque(false);
+        shoppanel.setOpaque(false);
+        treesbookpanel.setOpaque(false);
 
         // Adding panels to layeredPane
         layeredPane.add(treeholdershelfpanel, Integer.valueOf(1));
@@ -46,7 +82,6 @@ public class GameWindow extends JFrame {
         layeredPane.add(shoppanel, Integer.valueOf(10));
         layeredPane.add(treesbookpanel, Integer.valueOf(11));
 
-        // Adding layeredPane to the frame
         add(layeredPane, BorderLayout.CENTER);
 
         setVisible(true);
