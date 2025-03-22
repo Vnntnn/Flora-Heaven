@@ -137,7 +137,7 @@ public class creditPage {
             pFootage = new JPanel(); pTopage = new JPanel();
             pFootage.setOpaque(false); pTopage.setOpaque(false);
             pFootage.setPreferredSize(new Dimension(width, 80));
-            pTopage.setPreferredSize(new Dimension(width, 20));
+            pTopage.setPreferredSize(new Dimension(width, 30));
             
             pTop = new JPanel(new BorderLayout());
             pTop.setOpaque(false);
