@@ -67,24 +67,24 @@ public class creditPage {
             title.setFont(customFont.deriveFont(100f));
             title.setForeground(Color.YELLOW);
             pTitle.add(title, BorderLayout.CENTER);
-            
-            URL btnURL = creditPage.class.getResource("/bg.png");
-            if (btnURL == null) {
-                throw new FileNotFoundException("Background image not found: /bg.png");
-            }
-            Image btn = new ImageIcon(btnURL).getImage();
-            Image btnImg = btn.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            ImageIcon btnBackImg = new ImageIcon(btnImg);
+         
+   
             pButton = new JPanel();
             pButton.setOpaque(false);
-            pButton.setLayout(new FlowLayout(FlowLayout.LEFT));
-            btnBack = new JButton("Back", btnBackImg); btnBack.setFont(customFont.deriveFont(24f)); btnBack.setForeground(Color.WHITE);
-            btnBack.setOpaque(false); // ทำให้ปุ่มโปร่งใส
-            btnBack.setContentAreaFilled(false); // ปิดพื้นหลังของปุ่ม
-            btnBack.setBorderPainted(false); // ปิดขอบของปุ่ม
-            btnBack.setPreferredSize(new Dimension(150, 50));
-            btnBack.setHorizontalTextPosition(SwingConstants.RIGHT); // ข้อความอยู่ด้านขวาของรูปภาพ
+            pButton.setLayout(new FlowLayout());
+            btnBack = new JButton("Back");
+            btnBack.setFont(customFont.deriveFont(30f)); 
+            btnBack.setForeground(Color.BLACK);
+            btnBack.setBackground(Color.YELLOW);
+            btnBack.setPreferredSize(new Dimension(150, 50));  // ข้อความอยู่ด้านขวาของรูปภาพ
+            btnBack.setHorizontalTextPosition(SwingConstants.CENTER); 
             btnBack.setVerticalTextPosition(SwingConstants.CENTER); // ข้อความอยู่กึ่งกลางแนวตั้ง
+            btnBack.setContentAreaFilled(false); // ปิดการเติมพื้นหลังเมื่อกด
+            btnBack.setBorderPainted(false); // ปิดการวาดขอบปุ่ม
+            btnBack.setFocusPainted(false); // ปิดการวาดเส้นขอบเมื่อปุ่มได้รับโฟกัส
+            btnBack.setOpaque(true);
+            btnBack.setMargin(new Insets(0, 0, 0, 0)); // ลดช่องว่างรอบข้อความ
+            btnBack.setBorder(null);
             pButton.add(btnBack);
             pButton.setBounds(50, 10, 100, 100);
             
@@ -165,7 +165,30 @@ public class creditPage {
             System.err.println("Error loading font or image!");
             e.printStackTrace();
         }
+        
+        btnBack.addActionListener(e -> {
+            btnBack.setBackground(Color.WHITE); // เปลี่ยนสีพื้นหลังเป็นสีขาวเมื่อกด
+
+            Timer timer1 = new Timer(500, ev -> {
+                btnBack.setBackground(Color.BLACK);
+                btnBack.setForeground(Color.WHITE);// เปลี่ยนสีพื้นหลังกลับเป็นสีดำหลังจาก 1 วินาที
+                 // ปิดหน้าต่างหลังจากเปลี่ยนสี
+            });
+            timer1.setRepeats(false); // ให้ Timer ทำงานเพียงครั้งเดียว
+            timer1.start();
+            
+            Timer timer2 = new Timer(2000, ev -> {
+                fr.dispose(); // เปลี่ยนสีพื้นหลังกลับเป็นสีดำหลังจาก 1 วินาที
+                 // ปิดหน้าต่างหลังจากเปลี่ยนสี
+            });
+            timer2.setRepeats(false); // ให้ Timer ทำงานเพียงครั้งเดียว
+            timer2.start();
+
+            
+        });
     }
+    
+    
 
     public static void main(String[] args) {
         new creditPage();
