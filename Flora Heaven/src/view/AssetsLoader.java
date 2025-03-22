@@ -3,7 +3,6 @@ package view;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class AssetsLoader {
     public static BufferedImage treeholdershelf;

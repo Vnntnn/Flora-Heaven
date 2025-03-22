@@ -47,9 +47,9 @@ public class GameWindow extends JFrame {
         layeredPane.setPreferredSize(new Dimension(1280, 720));
 
         // setup components sizes
-        treeholdershelfpanel.setBounds(0, 0, 1280,720);
-        treeholderpanel.setBounds(0, 0, 1280, 720);
-        counterpanel.setBounds(0, 0, 1280, 720);
+        treeholdershelfpanel.setBounds(0, 0, 1280,600);
+        treeholderpanel.setBounds(0, 0, 1280, 620);
+        counterpanel.setBounds(0, 0, 1280, 690);
         shelfbackgroundpanel.setBounds(0, 0, 1280, 720);
         deskbackgroundpanel.setBounds(0, 0, 1280, 720);
         questsboardpanel.setBounds(0, 0, 1280, 720);
@@ -73,9 +73,9 @@ public class GameWindow extends JFrame {
         treesbookpanel.setOpaque(false);
 
         // Adding panels to layeredPane
-        layeredPane.add(treeholdershelfpanel, Integer.valueOf(1));
-        layeredPane.add(treeholderpanel, Integer.valueOf(2));
-        layeredPane.add(counterpanel, Integer.valueOf(3));
+        layeredPane.add(treeholdershelfpanel, Integer.valueOf(4));
+        layeredPane.add(treeholderpanel, Integer.valueOf(4));
+        layeredPane.add(counterpanel, Integer.valueOf(4));
         layeredPane.add(shelfbackgroundpanel, Integer.valueOf(4));
         layeredPane.add(deskbackgroundpanel, Integer.valueOf(5));
         layeredPane.add(questsboardpanel, Integer.valueOf(6));
