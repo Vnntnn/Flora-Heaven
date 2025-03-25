@@ -4,5 +4,5 @@ package model;
 // Author: Vnntnn
 // ***
 
-public class gameData {
+public class TreesCollected {
 }
