@@ -1,4 +1,4 @@
-package Day_Opening;
+package Day_Ending;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Third_day extends JFrame {
     private Timer closeTimer;
-    // Timer 5 sec
+    // Timer 7 sec
     public Third_day() {
         setTitle("Flora Heaven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,11 +29,11 @@ public class Third_day extends JFrame {
     }
 
     private void setupCloseTimer() {
-        closeTimer = new Timer(5000, new ActionListener() {
+        closeTimer = new Timer(7000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 closeTimer.stop();
-                dispose(); // can change to story day 3
+                dispose();
             }
         });
         closeTimer.setRepeats(false);

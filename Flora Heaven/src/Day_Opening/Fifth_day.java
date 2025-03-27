@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Fifth_day extends JFrame {
     private Timer closeTimer;
-
+    // Timer 5 sec
     public Fifth_day() {
         setTitle("Flora Heaven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

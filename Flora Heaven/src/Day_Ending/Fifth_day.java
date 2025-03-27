@@ -1,4 +1,4 @@
-package Day_Opening;
+package Day_Ending;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,16 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Third_day extends JFrame {
+public class Fifth_day extends JFrame {
     private Timer closeTimer;
-    // Timer 5 sec
-    public Third_day() {
+    // Timer 7 sec
+    public Fifth_day() {
         setTitle("Flora Heaven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(1290, 755);
 
-        Third_day_img backgroundPanel = new Third_day_img();
+        Fifth_day_img backgroundPanel = new Fifth_day_img();
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1728, 960));
 
@@ -33,7 +33,7 @@ public class Third_day extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 closeTimer.stop();
-                dispose(); // can change to story day 3
+                dispose();
             }
         });
         closeTimer.setRepeats(false);
@@ -42,7 +42,7 @@ public class Third_day extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Third_day frame = new Third_day();
+            Fifth_day frame = new Fifth_day();
             frame.setVisible(true);
         });
     }

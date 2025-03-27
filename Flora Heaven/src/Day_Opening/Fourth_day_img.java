@@ -12,8 +12,7 @@ public class Fourth_day_img extends JPanel{
     public Fourth_day_img() {
         setPreferredSize(new Dimension(1728, 960));
         loadImage();
-        
-        // JLayeredPane requires manual layout management
+
         setLayout(null);
     }
 

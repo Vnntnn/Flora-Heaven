@@ -13,7 +13,6 @@ public class Third_day_img extends JPanel{
         setPreferredSize(new Dimension(1728, 960));
         loadImage();
         
-        // JLayeredPane requires manual layout management
         setLayout(null);
     }
 

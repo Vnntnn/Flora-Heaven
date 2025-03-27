@@ -1,4 +1,4 @@
-package Day_Opening;
+package Day_Ending;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,13 +12,13 @@ public class Second_day_img extends JPanel{
     public Second_day_img() {
         setPreferredSize(new Dimension(1728, 960));
         loadImage();
-        
+
         setLayout(null);
     }
 
     private void loadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/Images/Day_2_Op.png"));
+            image = ImageIO.read(getClass().getResource("/Images/Day_2_End.png"));
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
