@@ -19,7 +19,7 @@ public class Fourth_day_img extends JPanel{
 
     private void loadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/Images/IMG_4836.png"));
+            image = ImageIO.read(getClass().getResource("/Images/Day_4_Op.png"));
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
