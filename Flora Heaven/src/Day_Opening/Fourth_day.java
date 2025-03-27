@@ -15,35 +15,19 @@ public class Fourth_day extends JFrame {
         setResizable(false);
         setSize(1290, 755);
 
-        Start_day backgroundPanel = new Start_day();
+        Fourth_day_img backgroundPanel = new Fourth_day_img();
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1728, 960));
 
         backgroundPanel.setBounds(0, 0, 1280, 720);
         layeredPane.add(backgroundPanel, JLayeredPane.DEFAULT_LAYER);
 
-        addTextLabels(layeredPane);
-
         add(layeredPane,BorderLayout.CENTER);
         setLocationRelativeTo(null); 
 
-       setupCloseTimer();
+        setupCloseTimer();
     }
 
-    private void addTextLabels(JLayeredPane layeredPane) {
-        JLabel titleLabel = new JLabel("Day 4", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("TH Sarabun New", Font.BOLD, 96)); // can change font and size
-        titleLabel.setForeground(new Color(54, 32, 19));
-        titleLabel.setBounds(620, 280, 190, 60); 
-        
-        JLabel subtitleLabel = new JLabel("หัวใจที่เต้นโดยไร้ชีวิต", SwingConstants.CENTER);
-        subtitleLabel.setFont(new Font("TH Sarabun New", Font.PLAIN, 56)); // can change font and size
-        subtitleLabel.setForeground(new Color(54, 32, 19));
-        subtitleLabel.setBounds(525, 370, 370, 70);
-
-        layeredPane.add(titleLabel, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(subtitleLabel, JLayeredPane.PALETTE_LAYER);
-    }
 
     private void setupCloseTimer() {
         closeTimer = new Timer(5000, new ActionListener() {

@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Start_day extends JLayeredPane {
+public class First_day_img extends JPanel{
     private BufferedImage image;
 
-    public Start_day() {
+    public First_day_img() {
         setPreferredSize(new Dimension(1728, 960));
         loadImage();
         
@@ -19,22 +19,10 @@ public class Start_day extends JLayeredPane {
 
     private void loadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/Images/IMG_4719.png"));
-            
-            if (image == null) {
-                createFallbackImage();
-            }
+            image = ImageIO.read(getClass().getResource("/Images/IMG_4830.png"));
         } catch (IOException | IllegalArgumentException e) {
-            createFallbackImage();
+            e.printStackTrace();
         }
-    }
-
-    private void createFallbackImage() {
-        image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = image.createGraphics();
-        g.setColor(Color.PINK);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
-        g.dispose();
     }
 
     @Override
