@@ -1,0 +1,10 @@
+package model.Tree.BaseTrees;
+
+import model.Tree.Tree;
+import view.trees.HeartrootPanel;
+
+public class Heartroot extends Tree {
+    public Heartroot() {
+        super("Heartroot", 100.0, 1, new HeartrootPanel());
+    }
+}
