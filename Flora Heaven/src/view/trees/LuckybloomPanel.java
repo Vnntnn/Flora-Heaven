@@ -4,8 +4,6 @@ package view.trees;
 // Author: Vnntnn
 // ***
 
-import view.AssetsLoaderTrees;
-
 import javax.swing.*;
 import java.awt.*;
 

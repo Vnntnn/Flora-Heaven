@@ -1,4 +1,4 @@
-package view;
+package view.trees;
 
 // ***
 // Author: Vnntnn
@@ -25,18 +25,18 @@ public class AssetsLoaderTrees {
 
     private AssetsLoaderTrees() {
         try {
-            bloodvalorblossom = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Bloodvalor_blossom.png"));
-            chandra = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Chandra.png"));
-            eclipsara = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Eclipsara.png"));
-            everguard = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Everguard.png"));
-            heartroot = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Heartroot.png"));
-            huolu = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Huolu.png"));
-            illumissprout = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Illumis Sprout.png"));
-            luckybloom = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Lucky_bloom.png"));
-            lunacrypta = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Lunacrypta.png"));
-            mindspire = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Mindspire.png"));
-            silentisshade = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Trees/Tree Base/Silentis Shade.png"));
-            voxspire = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/assets/Trees/Tree Base/Voxspire.png"));
+            bloodvalorblossom = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Bloodvalor_blossom.png"));
+            chandra = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Chandra.png"));
+            eclipsara = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Eclipsara.png"));
+            everguard = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Everguard.png"));
+            heartroot = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Heartroot.png"));
+            huolu = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Huolu.png"));
+            illumissprout = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Illumis Sprout.png"));
+            luckybloom = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Lucky_bloom.png"));
+            lunacrypta = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Lunacrypta.png"));
+            mindspire = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Mindspire.png"));
+            silentisshade = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Silentis Shade.png"));
+            voxspire = ImageIO.read(AssetsLoaderTrees.class.getResourceAsStream("/Gameplay/Trees/BaseTrees/Voxspire.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

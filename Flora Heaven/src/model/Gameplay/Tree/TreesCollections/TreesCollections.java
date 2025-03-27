@@ -1,7 +1,6 @@
-package model;
+package model.Gameplay.Tree.TreesCollections;
 
-import model.Tree.Tree;
-import model.Tree.TreesCollections.BaseTreeCollection;
+import model.Gameplay.Tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ public class TreesCollections {
     private final List<Tree> trees;
 
     public TreesCollections() {
-        this(new BaseTreeCollection().getBaseTrees());
+        this(new BaseCollectionTrees().getBaseTrees());
     }
 
     public TreesCollections(List<Tree> listTrees) {

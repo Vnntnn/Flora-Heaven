@@ -1,4 +1,4 @@
-package view.gameplay;
+package view.gameplay.Arcanashop;
 
 // ***
 // Author: Vnntnn
@@ -8,44 +8,44 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class AssetsLoaderGameplay {
-    public static BufferedImage treeholdershelf;
-    public static BufferedImage[] treeholder;
-    public static BufferedImage counter;
-    public static BufferedImage shelfbackground;
-    public static BufferedImage deskbackground;
-    public static BufferedImage questboard;
-    public static BufferedImage mainquest;
-    public static BufferedImage subquest;
-    public static BufferedImage magictable;
-    public static BufferedImage shop;
-    public static BufferedImage treesbook;
-    public static BufferedImage mailsbox;
-    public static BufferedImage[] Dayscard;
-    public static BufferedImage Dayholder;
-    private static AssetsLoaderGameplay instance = new AssetsLoaderGameplay();
+public class AssetsLoaderArcanashop {
+    protected static BufferedImage[] treeholder;
+    protected static BufferedImage counter;
+    protected static BufferedImage shelfbackground;
+    protected static BufferedImage treeholdershelf;
+    protected static BufferedImage deskbackground;
+    protected static BufferedImage questboard;
+    protected static BufferedImage mainquest;
+    protected static BufferedImage subquest;
+    protected static BufferedImage magictable;
+    protected static BufferedImage shop;
+    protected static BufferedImage treesbook;
+    protected static BufferedImage mailsbox;
+    protected static BufferedImage[] Dayscard;
+    protected static BufferedImage Dayholder;
+    private static AssetsLoaderArcanashop instance = new AssetsLoaderArcanashop();
 
-    private AssetsLoaderGameplay() {
+    private AssetsLoaderArcanashop() {
         try {
-            treeholdershelf = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/shelf.png"));
-            counter = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/counter.png"));
-            shelfbackground = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/Background/shelfbackground.png"));
-            deskbackground = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/Background/maingameplay_bg.png"));
-            questboard = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/quest_board.png"));
-            mainquest = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/main_quest.png"));
-            subquest = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/side_quest.png"));
-            magictable = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/plant_combine.png"));
-            shop = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/shop.png"));
-            treesbook = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/plant_collection.png"));
-            mailsbox = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/mails_box.png"));
-            Dayholder = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/Daypapercard_holder.png"));
+            treeholdershelf = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/shelf.png"));
+            counter = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/counter.png"));
+            shelfbackground = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/shelfbackground.png"));
+            deskbackground = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/maingameplay_bg.png"));
+            questboard = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/quest_board.png"));
+            mainquest = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/main_quest.png"));
+            subquest = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/side_quest.png"));
+            magictable = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/plant_combine.png"));
+            shop = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/shop.png"));
+            treesbook = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/plant_collection.png"));
+            mailsbox = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/mails_box.png"));
+            Dayholder = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/Daypapercard_holder.png"));
             Dayscard = new BufferedImage[5];
             for (int i = 0; i < 5; i++) {
-                Dayscard[i] = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/Days/Day" + (i + 1) + ".png"));
+                Dayscard[i] = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/Gameplay/Arcanashop/Days/Day" + (i + 1) + ".png"));
             }
             treeholder = new BufferedImage[12];
             for (int i = 0; i < 12; i++) {
-                treeholder[i] = ImageIO.read(AssetsLoaderGameplay.class.getResourceAsStream("/assets/Gameplay/TreeHolders/" + (i + 1) + ".png"));
+                treeholder[i] = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/TreeHolders/" + (i + 1) + ".png"));
             }
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class AssetsLoaderGameplay {
 
     }
 
-    public static AssetsLoaderGameplay getInstance() {
+    public static AssetsLoaderArcanashop getInstance() {
         return instance;
     }
 }

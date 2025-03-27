@@ -1,10 +1,8 @@
-package model.Gameplay.Player;
+package model.Player;
 
 // ***
 // Author: Vnntnn
 // ***
-
-import model.Gameplay.Tree.TreesCollections.TreesCollections;
 
 import java.io.Serializable;
 
@@ -15,7 +13,7 @@ public class Player implements Serializable{
 
     public Player(){
         coins = 150;
-        day = 1;
+        day = 2;
         obtainTrees = new TreeObtains();
     }
 

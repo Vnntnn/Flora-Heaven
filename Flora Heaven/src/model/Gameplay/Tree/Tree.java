@@ -1,4 +1,4 @@
-package model.Tree;
+package model.Gameplay.Tree;
 
 // ***
 // Author: Vnntnn

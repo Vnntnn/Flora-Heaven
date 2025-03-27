@@ -1,5 +1,5 @@
 package view.Gamewindow;
-import model.Gameplay.Player.Player;
+import model.Player.Player;
 import view.gameplay.Arcanashop.*;
 
 // ***
@@ -9,7 +9,7 @@ import view.gameplay.Arcanashop.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class GameWindow extends JFrame {
+public class ArcanashopWindow extends JFrame {
     private Player player;
     private TreeHolderShelfPanel treeholdershelfpanel;
     private CounterPanel counterpanel;
@@ -26,7 +26,7 @@ public class GameWindow extends JFrame {
     private TreeholdersPanel treeholderspanel;
     private DaypapercardholderPanel daypapercardholderpanel;
 
-    public GameWindow() {
+    public ArcanashopWindow() {
         AssetsLoaderArcanashop.getInstance();
         this.player = new Player();
 
@@ -54,7 +54,7 @@ public class GameWindow extends JFrame {
 
         // Initializing LayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1728, 960));
+        layeredPane.setPreferredSize(new Dimension(1290, 755));
 
         // setup components sizes
         treeholdershelfpanel.setBounds(0, 0, 1280,720);
@@ -89,20 +89,20 @@ public class GameWindow extends JFrame {
         daypapercardholderpanel.setOpaque(false);
 
         // Adding panels to layeredPane
-        layeredPane.add(treeholdershelfpanel, Integer.valueOf(4));
-        layeredPane.add(counterpanel, Integer.valueOf(4));
-        layeredPane.add(shelfbackgroundpanel, Integer.valueOf(4));
-        layeredPane.add(daypapercardholderpanel, Integer.valueOf(5));
+        layeredPane.add(shelfbackgroundpanel, Integer.valueOf(1));
+        layeredPane.add(treeholdershelfpanel, Integer.valueOf(2));
+        layeredPane.add(counterpanel, Integer.valueOf(3));
+        layeredPane.add(daypapercardholderpanel, Integer.valueOf(4));
         layeredPane.add(mailboxpanel, Integer.valueOf(5));
-        layeredPane.add(deskbackgroundpanel, Integer.valueOf(5));
-        layeredPane.add(dayspanel, Integer.valueOf(5));
-        layeredPane.add(treeholderspanel, Integer.valueOf(5));
-        layeredPane.add(questsboardpanel, Integer.valueOf(6));
-        layeredPane.add(mainquestpanel, Integer.valueOf(7));
-        layeredPane.add(subquestpanel, Integer.valueOf(8));
-        layeredPane.add(magictablepanel, Integer.valueOf(9));
-        layeredPane.add(shoppanel, Integer.valueOf(10));
-        layeredPane.add(treesbookpanel, Integer.valueOf(11));
+        layeredPane.add(deskbackgroundpanel, Integer.valueOf(6));
+        layeredPane.add(dayspanel, Integer.valueOf(7));
+        layeredPane.add(treeholderspanel, Integer.valueOf(8));
+        layeredPane.add(questsboardpanel, Integer.valueOf(9));
+        layeredPane.add(mainquestpanel, Integer.valueOf(10));
+        layeredPane.add(subquestpanel, Integer.valueOf(11));
+        layeredPane.add(magictablepanel, Integer.valueOf(12));
+        layeredPane.add(shoppanel, Integer.valueOf(13));
+        layeredPane.add(treesbookpanel, Integer.valueOf(14));
 
         add(layeredPane, BorderLayout.CENTER);
 

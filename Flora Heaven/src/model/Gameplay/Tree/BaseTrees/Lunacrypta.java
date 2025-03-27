@@ -1,6 +1,6 @@
-package model.Tree.BaseTrees;
+package model.Gameplay.Tree.BaseTrees;
 
-import model.Tree.Tree;
+import model.Gameplay.Tree.Tree;
 import view.trees.LunacryptaPanel;
 
 public class Lunacrypta extends Tree {

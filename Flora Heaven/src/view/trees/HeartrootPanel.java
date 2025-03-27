@@ -7,7 +7,7 @@ package view.trees;
 import javax.swing.*;
 import java.awt.*;
 
-public class Heartroot extends JPanel {
+public class HeartrootPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

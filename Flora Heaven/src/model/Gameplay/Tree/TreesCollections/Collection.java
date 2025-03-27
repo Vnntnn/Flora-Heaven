@@ -1,23 +1,23 @@
-package model.Tree.TreesCollections;
+package model.Gameplay.Tree.TreesCollections;
 
-import model.Tree.Tree;
+import model.Gameplay.Tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class treeCollection {
+public abstract class Collection {
     private static int DEFAULT_SIZE;
     private final List<Tree> baseTrees;
 
-    public treeCollection() {
+    public Collection() {
         baseTrees = null;
         DEFAULT_SIZE = 12;
         initializeBaseTrees();
     }
 
-    protected treeCollection(List<Tree> baseTrees, int DEFAULT_SIZE) {
+    protected Collection(List<Tree> baseTrees, int DEFAULT_SIZE) {
         this.baseTrees = baseTrees;
-        treeCollection.DEFAULT_SIZE = DEFAULT_SIZE;
+        Collection.DEFAULT_SIZE = DEFAULT_SIZE;
     }
 
     private void initializeBaseTrees() {

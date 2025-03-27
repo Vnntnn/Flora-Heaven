@@ -1,4 +1,4 @@
-package model.Gameplay.Player;
+package model.Player;
 
 public class TreeObtains {
 }

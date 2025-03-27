@@ -1,4 +1,4 @@
-package view.gameplay;
+package view.gameplay.Arcanashop;
 
 // ***
 // Author: Vnntnn
@@ -11,6 +11,6 @@ public class TreesBookPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(AssetsLoaderGameplay.treesbook, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(AssetsLoaderArcanashop.treesbook, 0, 0, getWidth(), getHeight(), this);
     }
 }

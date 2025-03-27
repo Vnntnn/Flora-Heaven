@@ -1,6 +1,6 @@
-package model.Tree.BaseTrees;
+package model.Gameplay.Tree.BaseTrees;
 
-import model.Tree.Tree;
+import model.Gameplay.Tree.Tree;
 import view.trees.Illumis_sproutPanel;
 
 public class IllumisSprout extends Tree {

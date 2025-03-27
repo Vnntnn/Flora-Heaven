@@ -1,11 +1,11 @@
-package model.Tree.TreesCollections;
+package model.Gameplay.Tree.TreesCollections;
 
-import model.Tree.BaseTrees.*;
-import model.Tree.Tree;
+import model.Gameplay.Tree.BaseTrees.*;
+import model.Gameplay.Tree.Tree;
 
 import java.util.*;
 
-public class BaseTreeCollection extends treeCollection {
+public class BaseCollectionTrees extends Collection {
     private final List<Tree> baseTrees;
     private static final List<Tree> DEFAULT_BASE_TREES = List.of(
             new Huolu(),
@@ -22,7 +22,7 @@ public class BaseTreeCollection extends treeCollection {
             new bloodvalorTree()
     );
 
-    public BaseTreeCollection() {
+    public BaseCollectionTrees() {
         baseTrees = new ArrayList<>(DEFAULT_BASE_TREES);
     }
 

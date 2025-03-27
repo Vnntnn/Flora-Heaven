@@ -1,4 +1,4 @@
-package view.gameplay;
+package view.gameplay.Arcanashop;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class TreeholdersPanel extends JPanel {
         super.paintComponent(g);
         for (int i = 0; i < 12; i++) {
             JPanel panel = new JPanel();
-            g.drawImage(AssetsLoaderGameplay.treeholder[i], 0, 0, getWidth(), getHeight(), this);
+            g.drawImage(AssetsLoaderArcanashop.treeholder[i], 0, 0, getWidth(), getHeight(), this);
         }
     }
 }

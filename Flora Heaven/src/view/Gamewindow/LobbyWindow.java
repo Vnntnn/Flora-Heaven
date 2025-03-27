@@ -1,3 +1,9 @@
+package view.Gamewindow;
+
+import controller.LobbyController;
+import model.Firefly;
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,14 +12,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
-public class Lobby extends JPanel {
+public class LobbyWindow extends JPanel {
     private BufferedImage backgroundImage;
     private BufferedImage woodBoardImage;
     private ArrayList<Firefly> fireflies;
-    private Controller controller;
+    private LobbyController controller;
     private static final int NUM_FIREFLIES = 120;
 
-    public StartPage(Controller controller) {
+    public LobbyWindow(LobbyController controller) {
         this.controller = controller;
         setLayout(null);
         loadImages();
@@ -29,11 +35,12 @@ public class Lobby extends JPanel {
     }
 
     private void loadImages() {
+        String[] imagePaths = {"/assets/Lobby/background.PNG", "/assets/Lobby/woodboard.PNG"};
         try {
-            backgroundImage = ImageIO.read(new File("src/background.PNG"));
-            woodBoardImage = ImageIO.read(new File("src/woodboard.PNG"));
+            backgroundImage = ImageIO.read(getClass().getResource(imagePaths[0]));
+            woodBoardImage = ImageIO.read(getClass().getResource(imagePaths[1]));
         } catch (IOException e) {
-            System.out.println("Image not found!");
+            System.err.println("Error while loading images: " + e.getMessage());
         }
     }
 
@@ -95,9 +102,14 @@ public class Lobby extends JPanel {
             g2d.drawImage(woodBoardImage, 0, 0, getWidth(), getHeight(), this);
         }
 
+        try {
+            Font pixelFont = Font.createFont(Font.TRUETYPE_FONT, new File("pixel-font.ttf")).deriveFont(50f);
+            g2d.setFont(pixelFont);
+        } catch (Exception e) {
+            g2d.setFont(new Font("Serif", Font.BOLD, 120)); // Fallback font
+        }
+
         g2d.setColor(new Color(99, 42, 38));
         g2d.drawString("Flora Heaven", 78, 193);
-        g2d.setColor(new Color(244, 232, 193));
-        g2d.drawString("Flora Heaven", 80, 190);
     }
 }

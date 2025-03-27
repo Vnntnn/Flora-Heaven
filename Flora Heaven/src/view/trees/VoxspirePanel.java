@@ -7,7 +7,7 @@ package view.trees;
 import javax.swing.*;
 import java.awt.*;
 
-public class Voxspire extends JPanel {
+public class VoxspirePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

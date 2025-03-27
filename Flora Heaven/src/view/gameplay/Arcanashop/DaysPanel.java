@@ -1,15 +1,20 @@
-package view.gameplay;
+package view.gameplay.Arcanashop;
 
-import model.Gameplay.Player.Player;
+import model.Player.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DaysPanel extends JPanel {
-    Player player = new Player();
+    private Player player;
+
+    public DaysPanel(Player player) {
+        this.player = player;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(AssetsLoaderGameplay.Dayscard[player.getDay() - 1], 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(AssetsLoaderArcanashop.Dayscard[player.getDay() - 1], 0, 0, getWidth(), getHeight(), this);
     }
 }

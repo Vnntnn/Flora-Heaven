@@ -7,7 +7,7 @@ package view.trees;
 import javax.swing.*;
 import java.awt.*;
 
-public class Ilumis_sproutPanel extends JPanel {
+public class Illumis_sproutPanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
