@@ -44,9 +44,9 @@ public class LobbyWindow extends JFrame {
 
         layeredPane.add(lobbybackgroundpanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(gameboardpanel, Integer.valueOf(1));
-        layeredPane.add(startbtnpanel, Integer.valueOf(2));
-        layeredPane.add(quitbtnpanel, Integer.valueOf(2));
-        layeredPane.add(creditsbtnpanel, Integer.valueOf(2));
+        layeredPane.add(startbtnpanel, Integer.valueOf(3));
+        layeredPane.add(quitbtnpanel, Integer.valueOf(3));
+        layeredPane.add(creditsbtnpanel, Integer.valueOf(3));
 
         add(layeredPane);
 

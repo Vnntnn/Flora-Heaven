@@ -2,11 +2,10 @@ package controller;
 
 import model.Firefly;
 import view.Gamewindow.LobbyWindow;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class LobbyController {
@@ -36,24 +35,31 @@ public class LobbyController {
     }
 
     private void addEventListeners() {
-        
-        view.getStartButton().addActionListener(e -> {
-            System.out.println("Start button clicked - confirmed!");
-            JOptionPane.showMessageDialog(view, "Start button works!");
-        });
+        JButton startButton = view.getStartButton();
+        JButton creditsButton = view.getCreditsButton();
+        JButton quitButton = view.getQuitButton();
 
-        view.getCreditsButton().addActionListener(e -> {
-            System.out.println("Credits button clicked! - confirmed!");
-            JOptionPane.showMessageDialog(view, "Credits button works!");
-        });
+        if (startButton != null) {
+            System.out.println("Adding startButton...");
+            startButton.addActionListener(e -> {
+                JOptionPane.showMessageDialog(view, "Start button works!");
+            });
+        }
 
-        view.getQuitButton().addActionListener(e -> {
-            System.out.println("Quit button clicked! - confirmed!");
-            System.exit(0);
-        });
+        if (creditsButton != null) {
+            creditsButton.addActionListener(e -> {
+                JOptionPane.showMessageDialog(view, "Credits button works!");
+            });
+        }
 
+        if (quitButton != null) {
+            quitButton.addActionListener(e -> {
+                System.out.println("Quit button clicked - confirmed!");
+                System.exit(0);
+            });
+        }
     }
-
+    
     public ArrayList<Firefly> getFireflies() {
         return fireflies;
     }
