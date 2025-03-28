@@ -22,34 +22,33 @@ public class LobbyWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        gameboardpanel = new GameboardPanel();
         lobbybackgroundpanel = new LobbybackgroundPanel();
+        gameboardpanel = new GameboardPanel();
         startbtnpanel = new startBtnPanel();
         quitbtnpanel = new quitBtnPanel();
         creditsbtnpanel = new creditsBtnPanel();
 
-        JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(1290, 755));
-
-        gameboardpanel.setBounds(0, 0, 1290, 755);
         lobbybackgroundpanel.setBounds(0, 0, 1290, 755);
+        gameboardpanel.setBounds(0, 0, 1290, 755);
         startbtnpanel.setBounds(0, 0, 1290, 755);
         quitbtnpanel.setBounds(0, 0, 1290, 755);
         creditsbtnpanel.setBounds(0, 0, 1290, 755);
 
         gameboardpanel.setOpaque(false);
-        lobbybackgroundpanel.setOpaque(false);
         startbtnpanel.setOpaque(false);
         quitbtnpanel.setOpaque(false);
         creditsbtnpanel.setOpaque(false);
 
-        layeredPane.add(gameboardpanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(lobbybackgroundpanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(startbtnpanel, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(creditsbtnpanel, JLayeredPane.PALETTE_LAYER);
-        layeredPane.add(quitbtnpanel, JLayeredPane.PALETTE_LAYER);
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(1290, 755));
 
-        add(layeredPane, BorderLayout.CENTER);
+        layeredPane.add(lobbybackgroundpanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(gameboardpanel, Integer.valueOf(1));
+        layeredPane.add(startbtnpanel, Integer.valueOf(2));
+        layeredPane.add(quitbtnpanel, Integer.valueOf(2));
+        layeredPane.add(creditsbtnpanel, Integer.valueOf(2));
+
+        add(layeredPane);
 
         Timer timer = new Timer(50, e -> {
             controller.updateFireflies(getWidth(), getHeight());

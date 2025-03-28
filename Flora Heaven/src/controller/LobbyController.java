@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class LobbyController {
     private LobbyWindow view;
     private ArrayList<Firefly> fireflies;
@@ -34,26 +36,22 @@ public class LobbyController {
     }
 
     private void addEventListeners() {
-        view.getStartButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Start button clicked!");
-            }
+        
+        view.getStartButton().addActionListener(e -> {
+            System.out.println("Start button clicked - confirmed!");
+            JOptionPane.showMessageDialog(view, "Start button works!");
         });
 
-        view.getCreditsButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Credits button clicked!");
-            }
+        view.getCreditsButton().addActionListener(e -> {
+            System.out.println("Credits button clicked! - confirmed!");
+            JOptionPane.showMessageDialog(view, "Credits button works!");
         });
 
-        view.getQuitButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
+        view.getQuitButton().addActionListener(e -> {
+            System.out.println("Quit button clicked! - confirmed!");
+            System.exit(0);
         });
+
     }
 
     public ArrayList<Firefly> getFireflies() {

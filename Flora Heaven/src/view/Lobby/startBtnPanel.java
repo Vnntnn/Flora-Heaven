@@ -6,12 +6,14 @@ public class startBtnPanel extends JPanel {
     private createButton startBtn;
 
     public startBtnPanel() {
-        startBtn = new createButton("Start", 120, 350);
-        startBtn.getButton().setVisible(true);
+        setLayout(null);
+        setOpaque(false);
+        
+        startBtn = new createButton("Start", 113,365);
         add(startBtn);
     }
 
-    public createButton getStartBtn() {
+    public JButton getStartBtn() {
         return startBtn;
     }
 }
