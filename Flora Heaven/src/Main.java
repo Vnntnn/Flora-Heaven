@@ -1,5 +1,4 @@
 import controller.LobbyController;
-import view.Gamewindow.LobbyWindow;
 
 import javax.swing.*;
 
