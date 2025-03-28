@@ -5,18 +5,12 @@ package view.Lobby;
 */
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class AssetsLoaderLobby {
     protected static BufferedImage Lobbybackground;
     protected static BufferedImage Gameboard;
-    protected Font pixelFont;
-    protected JButton startButton;
-    protected JButton creditsButton;
-    protected JButton exitButton;
     private static AssetsLoaderLobby instance = new AssetsLoaderLobby();
 
     private AssetsLoaderLobby() {

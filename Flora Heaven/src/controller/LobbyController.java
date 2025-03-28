@@ -4,7 +4,9 @@ package controller;
   @author tipwareeetaokhotsee
 */
 
+import model.Credits.CreditsModel;
 import model.Firefly;
+import view.Gamewindow.CreditsWindow;
 import view.Gamewindow.LobbyWindow;
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,7 +52,7 @@ public class LobbyController {
 
         if (creditsButton != null) {
             creditsButton.addActionListener(e -> {
-                JOptionPane.showMessageDialog(view, "Credits button works!");
+                new CreditsController(new CreditsModel(), new CreditsWindow());
             });
         }
 
