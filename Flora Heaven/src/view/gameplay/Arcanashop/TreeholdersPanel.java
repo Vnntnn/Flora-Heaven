@@ -1,5 +1,9 @@
 package view.gameplay.Arcanashop;
 
+// ***
+// Author: Vnntnn
+// ***
+
 import javax.swing.*;
 import java.awt.*;
 

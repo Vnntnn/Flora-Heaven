@@ -1,7 +1,10 @@
 package view.gameplay.Arcanashop;
 
-import model.Player.Player;
+// ***
+// Author: Vnntnn
+// ***
 
+import model.Player.Player;
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,7 +1,11 @@
 package view.Gamewindow;
+
+// ***
+// Author: Vnntnn
+// ***
+
 import model.Player.Player;
 import view.gameplay.Quests.MainQuests.*;
-
 import javax.swing.*;
 import java.awt.*;
 

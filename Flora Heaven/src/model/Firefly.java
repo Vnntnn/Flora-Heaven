@@ -1,5 +1,9 @@
 package model;
 
+/*
+  @author tipwareeetaokhotsee
+*/
+
 import java.awt.*;
 import java.util.Random;
 

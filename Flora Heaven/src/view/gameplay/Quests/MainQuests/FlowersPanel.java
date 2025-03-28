@@ -1,5 +1,9 @@
 package view.gameplay.Quests.MainQuests;
 
+// ***
+// Author: Vnntnn
+// ***
+
 import java.awt.*;
 import javax.swing.*;
 

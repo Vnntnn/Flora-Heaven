@@ -1,5 +1,9 @@
 package view.Lobby;
 
+/*
+  @author tipwareeetaokhotsee
+*/
+
 import controller.LobbyController;
 import model.Firefly;
 import javax.swing.*;

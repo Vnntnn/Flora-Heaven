@@ -2,7 +2,6 @@ package view.Gamewindow;
 
 import controller.LobbyController;
 import view.Lobby.*;
-
 import javax.swing.*;
 import java.awt.*;
 

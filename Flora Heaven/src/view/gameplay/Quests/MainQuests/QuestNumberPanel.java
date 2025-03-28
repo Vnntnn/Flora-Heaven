@@ -1,7 +1,10 @@
 package view.gameplay.Quests.MainQuests;
 
-import model.Player.Player;
+// ***
+// Author: Vnntnn
+// ***
 
+import model.Player.Player;
 import java.awt.*;
 import javax.swing.*;
 

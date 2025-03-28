@@ -1,5 +1,9 @@
 package view.gameplay.Quests.MainQuests;
 
+// ***
+// Author: Vnntnn
+// ***
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

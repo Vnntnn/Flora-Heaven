@@ -1,5 +1,9 @@
 package view.Lobby;
 
+/*
+  @author tipwareeetaokhotsee
+*/
+
 import javax.swing.*;
 import java.awt.*;
 

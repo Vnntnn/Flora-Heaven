@@ -1,10 +1,13 @@
 package controller;
 
+/*
+  @author tipwareeetaokhotsee
+*/
+
 import model.Firefly;
 import view.Gamewindow.LobbyWindow;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -40,7 +43,6 @@ public class LobbyController {
         JButton quitButton = view.getQuitButton();
 
         if (startButton != null) {
-            System.out.println("Adding startButton...");
             startButton.addActionListener(e -> {
                 JOptionPane.showMessageDialog(view, "Start button works!");
             });
@@ -59,7 +61,7 @@ public class LobbyController {
             });
         }
     }
-    
+
     public ArrayList<Firefly> getFireflies() {
         return fireflies;
     }

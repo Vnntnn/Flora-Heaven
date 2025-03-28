@@ -1,5 +1,9 @@
 package model.Gameplay;
 
+// ***
+// Author: Vnntnn
+// ***
+
 import model.Gameplay.Tree.Tree;
 
 public interface Combinable {
