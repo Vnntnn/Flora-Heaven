@@ -1,115 +1,74 @@
 package view.Gamewindow;
 
 import controller.LobbyController;
-import model.Firefly;
-import org.jetbrains.annotations.NotNull;
+import view.Lobby.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 
-public class LobbyWindow extends JPanel {
-    private BufferedImage backgroundImage;
-    private BufferedImage woodBoardImage;
-    private ArrayList<Firefly> fireflies;
+public class LobbyWindow extends JFrame {
+    private GameboardPanel gameboardpanel;
+    private LobbybackgroundPanel lobbybackgroundpanel;
+    private startBtnPanel startbtnpanel;
+    private quitBtnPanel quitbtnpanel;
+    private creditsBtnPanel creditsbtnpanel;
     private LobbyController controller;
-    private static final int NUM_FIREFLIES = 120;
 
     public LobbyWindow(LobbyController controller) {
         this.controller = controller;
-        setLayout(null);
-        loadImages();
-        initFireflies();
-        initButtons();
 
-        // Animation Timer
+        setTitle("Flora Heaven");
+        setSize(1290, 755);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        gameboardpanel = new GameboardPanel();
+        lobbybackgroundpanel = new LobbybackgroundPanel();
+        startbtnpanel = new startBtnPanel();
+        quitbtnpanel = new quitBtnPanel();
+        creditsbtnpanel = new creditsBtnPanel();
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(1290, 755));
+
+        gameboardpanel.setBounds(0, 0, 1290, 755);
+        lobbybackgroundpanel.setBounds(0, 0, 1290, 755);
+        startbtnpanel.setBounds(0, 0, 1290, 755);
+        quitbtnpanel.setBounds(0, 0, 1290, 755);
+        creditsbtnpanel.setBounds(0, 0, 1290, 755);
+
+        gameboardpanel.setOpaque(false);
+        lobbybackgroundpanel.setOpaque(false);
+        startbtnpanel.setOpaque(false);
+        quitbtnpanel.setOpaque(false);
+        creditsbtnpanel.setOpaque(false);
+
+        layeredPane.add(gameboardpanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(lobbybackgroundpanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(startbtnpanel, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(creditsbtnpanel, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(quitbtnpanel, JLayeredPane.PALETTE_LAYER);
+
+        add(layeredPane, BorderLayout.CENTER);
+
         Timer timer = new Timer(50, e -> {
             controller.updateFireflies(getWidth(), getHeight());
             repaint();
         });
         timer.start();
+
+        setVisible(true);
     }
 
-    private void loadImages() {
-        String[] imagePaths = {"/assets/Lobby/background.PNG", "/assets/Lobby/woodboard.PNG"};
-        try {
-            backgroundImage = ImageIO.read(getClass().getResource(imagePaths[0]));
-            woodBoardImage = ImageIO.read(getClass().getResource(imagePaths[1]));
-        } catch (IOException e) {
-            System.err.println("Error while loading images: " + e.getMessage());
-        }
+    public JButton getStartButton() {
+        return startbtnpanel.getStartBtn();
     }
 
-    private void initFireflies() {
-        fireflies = controller.getFireflies();
+    public JButton getCreditsButton() {
+        return creditsbtnpanel.getCreditseButton();
     }
 
-    private void initButtons() {
-        JButton startButton = createButton("Start", 120, 350);
-        JButton creditsButton = createButton("Credits", 120, 400);
-        JButton quitButton = createButton("Quit", 120, 450);
-
-        quitButton.addActionListener(e -> System.exit(0));
-
-        add(startButton);
-        add(creditsButton);
-        add(quitButton);
-    }
-
-    private JButton createButton(String text, int x, int y) {
-        JButton button = new JButton(text);
-        button.setBounds(x, y, 150, 40);
-        button.setContentAreaFilled(false);
-        button.setBorderPainted(false);
-        button.setFocusPainted(false);
-        button.setForeground(Color.WHITE);
-        button.setFont(new Font("Arial", Font.BOLD, 18));
-
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setForeground(new Color(255, 183, 197));
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setForeground(Color.WHITE);
-            }
-        });
-
-        return button;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-
-        if (backgroundImage != null) {
-            g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        } else {
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(0, 0, getWidth(), getHeight());
-        }
-
-        for (Firefly firefly : fireflies) {
-            firefly.draw(g2d);
-        }
-
-        if (woodBoardImage != null) {
-            g2d.drawImage(woodBoardImage, 0, 0, getWidth(), getHeight(), this);
-        }
-
-        try {
-            Font pixelFont = Font.createFont(Font.TRUETYPE_FONT, new File("pixel-font.ttf")).deriveFont(50f);
-            g2d.setFont(pixelFont);
-        } catch (Exception e) {
-            g2d.setFont(new Font("Serif", Font.BOLD, 120)); // Fallback font
-        }
-
-        g2d.setColor(new Color(99, 42, 38));
-        g2d.drawString("Flora Heaven", 78, 193);
+    public JButton getQuitButton() {
+        return quitbtnpanel.getQuitBtn();
     }
 }
