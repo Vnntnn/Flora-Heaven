@@ -1,0 +1,16 @@
+package main.view.trees;
+
+// ***
+// Author: Vnntnn
+// ***
+
+import javax.swing.*;
+import java.awt.*;
+
+public class EclipsaraPanel extends JPanel {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(AssetsLoaderTrees.eclipsara, 0, 0, getWidth(), getHeight(), this);
+    }
+}
