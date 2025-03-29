@@ -1,6 +1,8 @@
 package view.Gamewindow;
 import model.Player.Player;
 import view.gameplay.Arcanashop.*;
+import view.trees.AssetsLoaderTrees;
+import view.trees.Bloodvalor_blossomPanel;
 
 // ***
 // Author: Vnntnn
@@ -55,11 +57,12 @@ public class ArcanashopWindow extends JFrame {
         mqevent = new JPanel();
         sqevents = new JPanel[3];
         for (int i = 0; i < 3; i++) {
-            sqevents[i] = new JPanel();
+            sqevents[i] = new Bloodvalor_blossomPanel();
         }
         treeholders = new JPanel[12];
         for (int i = 0; i < 12; i++) {
             treeholders[i] = new JPanel();
+            treeholders[i].setOpaque(true);
         }
         shop = new JPanel();
         book = new JPanel();
@@ -92,29 +95,29 @@ public class ArcanashopWindow extends JFrame {
         sqevents[2].setBounds(1076,155,125,140);
         sqevents[2].setBackground(Color.BLACK);
 
-        treeholders[0].setBounds(20,15,89,98);
+        treeholders[0].setBounds(23,5,85,85);
         treeholders[0].setBackground(new Color(0,0,0,150));
-        treeholders[1].setBounds(132,15,89,98);
+        treeholders[1].setBounds(132,5,85,85);
         treeholders[1].setBackground(new Color(0,0,0,150));
-        treeholders[2].setBounds(240,15,89,98);
+        treeholders[2].setBounds(240,5,85,85);
         treeholders[2].setBackground(new Color(0,0,0,150));
-        treeholders[3].setBounds(345,15,89,98);
+        treeholders[3].setBounds(345,5,85,85);
         treeholders[3].setBackground(new Color(0,0,0,150));
-        treeholders[4].setBounds(20,131,89,98);
+        treeholders[4].setBounds(20,118,85,85);
         treeholders[4].setBackground(new Color(0,0,0,150));
-        treeholders[5].setBounds(132,131,89,98);
+        treeholders[5].setBounds(132,118,85,85);
         treeholders[5].setBackground(new Color(0,0,0,150));
-        treeholders[6].setBounds(240,131,89,98);
+        treeholders[6].setBounds(240,118,85,85);
         treeholders[6].setBackground(new Color(0,0,0,150));
-        treeholders[7].setBounds(345,131,89,98);
+        treeholders[7].setBounds(342,118,85,85);
         treeholders[7].setBackground(new Color(0,0,0,150));
-        treeholders[8].setBounds(18,247,89,98);
+        treeholders[8].setBounds(18,236,85,85);
         treeholders[8].setBackground(new Color(0,0,0,150));
-        treeholders[9].setBounds(130,247,89,98);
+        treeholders[9].setBounds(130,236,85,85);
         treeholders[9].setBackground(new Color(0,0,0,150));
-        treeholders[10].setBounds(235,247,89,98);
+        treeholders[10].setBounds(235,236,85,85);
         treeholders[10].setBackground(new Color(0,0,0,150));
-        treeholders[11].setBounds(340,247,89,98);
+        treeholders[11].setBounds(340,236,85,85);
         treeholders[11].setBackground(new Color(0,0,0,150));
 
         shop.setBounds(970,360,129,348);

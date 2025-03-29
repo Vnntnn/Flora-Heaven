@@ -41,7 +41,7 @@ public class AssetsLoaderArcanashop {
             Dayholder = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/Daypapercard_holder.png"));
             Dayscard = new BufferedImage[5];
             for (int i = 0; i < 5; i++) {
-                Dayscard[i] = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/Gameplay/Arcanashop/Days/Day" + (i + 1) + ".png"));
+                Dayscard[i] = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/Days/Day" + (i + 1) + ".png"));
             }
             treeholder = new BufferedImage[12];
             for (int i = 0; i < 12; i++) {
