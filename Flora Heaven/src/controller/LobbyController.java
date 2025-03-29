@@ -4,14 +4,12 @@ package controller;
   @author tipwareeetaokhotsee
 */
 
-import model.Credits.CreditsModel;
 import model.Firefly;
-import view.Gamewindow.CreditsWindow;
 import view.Gamewindow.LobbyWindow;
+
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class LobbyController {
     private LobbyWindow view;
@@ -23,6 +21,14 @@ public class LobbyController {
         this.fireflies = new ArrayList<>();
         initFireflies();
         addEventListeners();
+    }
+
+    public LobbyWindow getView() {
+        return view;
+    }
+
+    public LobbyController getController() {
+        return this;
     }
 
     private void initFireflies() {
@@ -46,19 +52,20 @@ public class LobbyController {
 
         if (startButton != null) {
             startButton.addActionListener(e -> {
-                JOptionPane.showMessageDialog(view, "Start button works!");
+                view.setVisible(false);
+                new openStoryPage();
             });
         }
 
         if (creditsButton != null) {
             creditsButton.addActionListener(e -> {
-                new CreditsController(new CreditsModel(), new CreditsWindow());
+                view.setVisible(false);
+                new creditPage();
             });
         }
 
         if (quitButton != null) {
             quitButton.addActionListener(e -> {
-                System.out.println("Quit button clicked - confirmed!");
                 System.exit(0);
             });
         }

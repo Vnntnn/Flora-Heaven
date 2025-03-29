@@ -46,4 +46,12 @@ public abstract class Tree {
     public void setStar(int star) {
         this.star = star;
     }
+
+    public Component getImage() {
+        return image;
+    }
+
+    public void setImage(Component image) {
+        this.image = image;
+    }
 }

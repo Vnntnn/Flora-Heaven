@@ -1,4 +1,5 @@
 package view.Gamewindow;
+import controller.ArcanashopController;
 import model.Player.Player;
 import view.gameplay.Arcanashop.*;
 
@@ -25,10 +26,12 @@ public class ArcanashopWindow extends JFrame {
     private DaysPanel dayspanel;
     private TreeholdersPanel treeholderspanel;
     private DaypapercardholderPanel daypapercardholderpanel;
+    private ArcanashopController controller;
 
     public ArcanashopWindow() {
         AssetsLoaderArcanashop.getInstance();
         this.player = new Player();
+        this.controller = controller;
 
         // Windows setup
         setTitle("Flora Heaven");
@@ -42,7 +45,7 @@ public class ArcanashopWindow extends JFrame {
         shelfbackgroundpanel = new ShelfBackgroundPanel();
         deskbackgroundpanel = new DeskBackgroundPanel();
         questsboardpanel = new QuestsBoardPanel(player);
-        mainquestpanel = new MainQuestPanel();
+        mainquestpanel = new MainQuestPanel(controller);
         subquestpanel = new SubQuestPanel();
         magictablepanel = new MagicTablePanel();
         shoppanel = new ShopPanel();
@@ -107,5 +110,9 @@ public class ArcanashopWindow extends JFrame {
         add(layeredPane, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ArcanashopWindow();
     }
 }
