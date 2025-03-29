@@ -1,4 +1,4 @@
-package model.Threads;
+package main.model.Threads;
 
 public class Timer implements Runnable {
     private int sec = 54000;

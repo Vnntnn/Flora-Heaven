@@ -1,4 +1,4 @@
-package model.Threads;
+package main.model.Threads;
 
 /*
   @author tipwareeetaokhotsee
