@@ -1,5 +1,4 @@
 package view.Gamewindow;
-import controller.ArcanashopController;
 import model.Player.Player;
 import view.gameplay.Arcanashop.*;
 
@@ -24,14 +23,14 @@ public class ArcanashopWindow extends JFrame {
     private TreesBookPanel treesbookpanel;
     private MailboxPanel mailboxpanel;
     private DaysPanel dayspanel;
-    private TreeholdersPanel treeholderspanel;
     private DaypapercardholderPanel daypapercardholderpanel;
-    private ArcanashopController controller;
+    private JPanel mqevent, shop, book;
+    private JPanel[] sqevents;
+    private JPanel[] treeholders;
 
     public ArcanashopWindow() {
         AssetsLoaderArcanashop.getInstance();
         this.player = new Player();
-        this.controller = controller;
 
         // Windows setup
         setTitle("Flora Heaven");
@@ -45,15 +44,25 @@ public class ArcanashopWindow extends JFrame {
         shelfbackgroundpanel = new ShelfBackgroundPanel();
         deskbackgroundpanel = new DeskBackgroundPanel();
         questsboardpanel = new QuestsBoardPanel(player);
-        mainquestpanel = new MainQuestPanel(controller);
+        mainquestpanel = new MainQuestPanel();
         subquestpanel = new SubQuestPanel();
         magictablepanel = new MagicTablePanel();
         shoppanel = new ShopPanel();
         treesbookpanel = new TreesBookPanel();
         mailboxpanel = new MailboxPanel();
         dayspanel = new DaysPanel(player);
-        treeholderspanel = new TreeholdersPanel();
         daypapercardholderpanel = new DaypapercardholderPanel();
+        mqevent = new JPanel();
+        sqevents = new JPanel[3];
+        for (int i = 0; i < 3; i++) {
+            sqevents[i] = new JPanel();
+        }
+        treeholders = new JPanel[12];
+        for (int i = 0; i < 12; i++) {
+            treeholders[i] = new JPanel();
+        }
+        shop = new JPanel();
+        book = new JPanel();
 
         // Initializing LayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
@@ -72,8 +81,46 @@ public class ArcanashopWindow extends JFrame {
         treesbookpanel.setBounds(0, 0, 1280, 720);
         mailboxpanel.setBounds(0, 0, 1280, 720);
         dayspanel.setBounds(0, 0, 1280, 720);
-        treeholderspanel.setBounds(0, 0, 1280, 720);
         daypapercardholderpanel.setBounds(0, 0, 1280, 720);
+        mqevent.setBounds(540, 64, 212, 245);
+        mqevent.setBackground(Color.BLACK);
+
+        sqevents[0].setBounds(790,155,125,140);
+        sqevents[0].setBackground(Color.BLACK);
+        sqevents[1].setBounds(930,155,125,140);
+        sqevents[1].setBackground(Color.BLACK);
+        sqevents[2].setBounds(1076,155,125,140);
+        sqevents[2].setBackground(Color.BLACK);
+
+        treeholders[0].setBounds(20,15,89,98);
+        treeholders[0].setBackground(new Color(0,0,0,150));
+        treeholders[1].setBounds(132,15,89,98);
+        treeholders[1].setBackground(new Color(0,0,0,150));
+        treeholders[2].setBounds(240,15,89,98);
+        treeholders[2].setBackground(new Color(0,0,0,150));
+        treeholders[3].setBounds(345,15,89,98);
+        treeholders[3].setBackground(new Color(0,0,0,150));
+        treeholders[4].setBounds(20,131,89,98);
+        treeholders[4].setBackground(new Color(0,0,0,150));
+        treeholders[5].setBounds(132,131,89,98);
+        treeholders[5].setBackground(new Color(0,0,0,150));
+        treeholders[6].setBounds(240,131,89,98);
+        treeholders[6].setBackground(new Color(0,0,0,150));
+        treeholders[7].setBounds(345,131,89,98);
+        treeholders[7].setBackground(new Color(0,0,0,150));
+        treeholders[8].setBounds(18,247,89,98);
+        treeholders[8].setBackground(new Color(0,0,0,150));
+        treeholders[9].setBounds(130,247,89,98);
+        treeholders[9].setBackground(new Color(0,0,0,150));
+        treeholders[10].setBounds(235,247,89,98);
+        treeholders[10].setBackground(new Color(0,0,0,150));
+        treeholders[11].setBounds(340,247,89,98);
+        treeholders[11].setBackground(new Color(0,0,0,150));
+
+        shop.setBounds(970,360,129,348);
+        shop.setBackground(Color.BLACK);
+        book.setBounds(1120,360,145,210);
+        book.setBackground(Color.BLACK);
 
         // Make components background not opacity
         treeholdershelfpanel.setOpaque(false);
@@ -88,7 +135,6 @@ public class ArcanashopWindow extends JFrame {
         treesbookpanel.setOpaque(false);
         mailboxpanel.setOpaque(false);
         dayspanel.setOpaque(false);
-        treeholderspanel.setOpaque(false);
         daypapercardholderpanel.setOpaque(false);
 
         // Adding panels to layeredPane
@@ -99,13 +145,28 @@ public class ArcanashopWindow extends JFrame {
         layeredPane.add(mailboxpanel, Integer.valueOf(5));
         layeredPane.add(deskbackgroundpanel, Integer.valueOf(6));
         layeredPane.add(dayspanel, Integer.valueOf(7));
-        layeredPane.add(treeholderspanel, Integer.valueOf(8));
         layeredPane.add(questsboardpanel, Integer.valueOf(9));
         layeredPane.add(mainquestpanel, Integer.valueOf(10));
         layeredPane.add(subquestpanel, Integer.valueOf(11));
         layeredPane.add(magictablepanel, Integer.valueOf(12));
         layeredPane.add(shoppanel, Integer.valueOf(13));
         layeredPane.add(treesbookpanel, Integer.valueOf(14));
+        layeredPane.add(mqevent, Integer.valueOf(15));
+
+        for (int i = 0; i < 3; i++) {
+            int layer_index = 16;
+            layeredPane.add(sqevents[i], Integer.valueOf(layer_index));
+            layer_index++;
+        }
+
+        layeredPane.add(shop, Integer.valueOf(19));
+        layeredPane.add(book, Integer.valueOf(20));
+
+        for (int i = 0; i < 12; i++) {
+            int layer_index = 21;
+            layeredPane.add(treeholders[i], Integer.valueOf(layer_index));
+            layer_index++;
+        }
 
         add(layeredPane, BorderLayout.CENTER);
 

@@ -5,6 +5,7 @@ package model.Gameplay.Tree;
 // ***
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Tree {
     private String name;
