@@ -1,8 +1,7 @@
 package main.view.Gamewindow;
 import main.model.Player.Player;
 import main.view.gameplay.Arcanashop.*;
-import main.view.trees.AssetsLoaderTrees;
-import main.view.trees.Bloodvalor_blossomPanel;
+import main.view.trees.SilenttisshadePanel;
 
 // ***
 // Author: Vnntnn
@@ -57,18 +56,12 @@ public class ArcanashopWindow extends JFrame {
         mqevent = new JPanel();
         sqevents = new JPanel[3];
         for (int i = 0; i < 3; i++) {
-            sqevents[i] = new Bloodvalor_blossomPanel();
+            sqevents[i] = new JPanel();
         }
         treeholders = new JPanel[12];
         for (int i = 0; i < 12; i++) {
-            treeholders[i] = new JPanel(){
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponents(g);
-                    g.drawImage(AssetsLoaderTrees.chandra, 0, 0,getX(),getY(),this);
-                }
-            };
-            treeholders[i].setOpaque(true);
+            treeholders[i] = new SilenttisshadePanel();
+            treeholders[i].setOpaque(false);
         }
         shop = new JPanel();
         book = new JPanel();
