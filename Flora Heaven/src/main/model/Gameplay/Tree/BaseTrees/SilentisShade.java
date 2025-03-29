@@ -5,6 +5,6 @@ import main.view.trees.SilenttisshadePanel;
 
 public class SilentisShade extends Tree {
     public SilentisShade() {
-        super("Silentis Shade", 740.0, 1, new SilenttisshadePanel());
+        super("Silentis Shade", 100.0, 1, new SilenttisshadePanel());
     }
 }

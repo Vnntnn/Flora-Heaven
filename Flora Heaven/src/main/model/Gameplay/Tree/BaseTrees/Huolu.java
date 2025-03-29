@@ -5,6 +5,6 @@ import main.view.trees.HuoluPanel;
 
 public class Huolu extends Tree {
     public Huolu() {
-        super("Huolu", 670.0, 1, new HuoluPanel());
+        super("Huolu", 100.0, 1, new HuoluPanel());
     }
 }

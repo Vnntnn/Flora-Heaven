@@ -5,6 +5,6 @@ import main.view.trees.EclipsaraPanel;
 
 public class Eclipsara extends Tree {
     public Eclipsara() {
-        super("Eclipsara", 1350.0, 0, new EclipsaraPanel());
+        super("Eclipsara", 150.0, 0, new EclipsaraPanel());
     }
 }

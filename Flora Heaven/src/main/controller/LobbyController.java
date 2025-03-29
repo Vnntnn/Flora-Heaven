@@ -4,7 +4,7 @@ package main.controller;
   @author tipwareeetaokhotsee
 */
 
-import main.model.Firefly;
+import main.model.Threads.Firefly;
 import main.view.Gamewindow.LobbyWindow;
 
 import java.util.ArrayList;
