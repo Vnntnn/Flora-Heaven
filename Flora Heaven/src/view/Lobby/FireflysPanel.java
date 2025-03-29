@@ -5,7 +5,7 @@ package view.Lobby;
 */
 
 import controller.LobbyController;
-import model.Firefly;
+import model.Threads.Firefly;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
