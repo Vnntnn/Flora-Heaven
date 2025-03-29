@@ -5,6 +5,6 @@ import view.trees.MindspirePanel;
 
 public class Mindspire extends Tree {
     public Mindspire() {
-        super("Mindspire", 100.0, 1, new MindspirePanel());
+        super("Mindspire", 390.0, 1, new MindspirePanel());
     }
 }

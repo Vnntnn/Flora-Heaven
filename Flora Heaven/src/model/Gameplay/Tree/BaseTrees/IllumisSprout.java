@@ -5,6 +5,6 @@ import view.trees.Illumis_sproutPanel;
 
 public class IllumisSprout extends Tree {
     public IllumisSprout() {
-        super("Illumis Sprout", 100.0, 1, new Illumis_sproutPanel());
+        super("Illumis Sprout", 770.0, 1, new Illumis_sproutPanel());
     }
 }

@@ -5,6 +5,6 @@ import view.trees.VoxspirePanel;
 
 public class Voxspire extends Tree {
     public Voxspire() {
-        super("Voxspire", 100.0, 1, new VoxspirePanel());
+        super("Voxspire", 850.0, 1, new VoxspirePanel());
     }
 }
