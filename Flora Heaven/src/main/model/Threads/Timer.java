@@ -1,7 +1,19 @@
 package main.model.Threads;
 
 public class Timer implements Runnable {
-    private int sec = 54000;
+    private int sec;
+
+    public Timer(int sec) {
+        this.sec = sec;
+    }
+
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
+        this.sec = sec;
+    }
 
     @Override
     public void run() {

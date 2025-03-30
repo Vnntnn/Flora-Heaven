@@ -1,7 +1,7 @@
 package main.view.Gamewindow;
 
 import main.controller.LobbyController;
-import main.view.Lobby.*;
+import main.view.AssetsLoader.Lobby.*;
 import javax.swing.*;
 import java.awt.*;
 

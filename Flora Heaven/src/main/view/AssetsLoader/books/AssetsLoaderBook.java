@@ -1,4 +1,4 @@
-package main.view.books;
+package main.view.AssetsLoader.books;
 
 // ***
 // Author: Vnntnn

@@ -1,4 +1,4 @@
-package main.view.Lobby;
+package main.view.AssetsLoader.Lobby;
 
 /*
   @author tipwareeetaokhotsee

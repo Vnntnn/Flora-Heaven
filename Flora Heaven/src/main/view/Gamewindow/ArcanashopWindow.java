@@ -1,12 +1,12 @@
 package main.view.Gamewindow;
 import main.model.Player.Player;
-import main.view.gameplay.Arcanashop.*;
-import main.view.trees.AssetsLoaderTrees;
-import main.view.trees.Bloodvalor_blossomPanel;
+import main.view.AssetsLoader.gameplay.Arcanashop.*;
+import main.view.AssetsLoader.trees.AssetsLoaderTrees;
+import main.view.AssetsLoader.trees.Bloodvalor_blossomPanel;
 
-// ***
-// Author: Vnntnn
-// ***
+/**
+ * Author: Vnntnn
+ */
 
 import javax.swing.*;
 import java.awt.*;

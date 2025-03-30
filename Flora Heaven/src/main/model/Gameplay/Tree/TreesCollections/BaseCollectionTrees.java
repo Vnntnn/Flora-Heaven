@@ -8,18 +8,18 @@ import java.util.*;
 public class BaseCollectionTrees extends Collection {
     private final List<Tree> baseTrees;
     private static final List<Tree> DEFAULT_BASE_TREES = List.of(
+            new Huolu(),
+            new Mindspire(),
+            new SilentisShade(),
+            new Voxspire(),
+            new IllumisSprout(),
+            new Heartroot(),
+            new Eclipsara(),
+            new Lunacrypta(),
             new Luckybloom(),
             new bloodvalorTree(),
             new Everguard(),
-            new Chandra(),
-            new Huolu(),
-            new Voxspire(),
-            new Eclipsara(),
-            new Heartroot(),
-            new Mindspire(),
-            new Lunacrypta(),
-            new IllumisSprout(),
-            new SilentisShade()
+            new Chandra()
     );
 
     public BaseCollectionTrees() {

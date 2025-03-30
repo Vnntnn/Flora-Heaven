@@ -1,7 +1,7 @@
 package main.controller;
 
 import main.view.Gamewindow.ArcanashopWindow;
-import main.view.gameplay.Arcanashop.MainQuestPanel;
+import main.view.AssetsLoader.gameplay.Arcanashop.MainQuestPanel;
 
 import java.awt.event.MouseEvent;
 

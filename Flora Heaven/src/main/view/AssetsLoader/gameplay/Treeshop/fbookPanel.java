@@ -1,4 +1,4 @@
-package main.view.gameplay.Treeshop;
+package main.view.AssetsLoader.gameplay.Treeshop;
 
 import javax.swing.*;
 import java.awt.*;

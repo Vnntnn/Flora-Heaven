@@ -1,4 +1,4 @@
-package main.view.gameplay.Quests.MainQuests;
+package main.view.AssetsLoader.gameplay.Quests.MainQuests;
 
 // ***
 // Author: Vnntnn

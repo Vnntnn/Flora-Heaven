@@ -1,4 +1,4 @@
-package main.view.trees;
+package main.view.AssetsLoader.trees;
 
 // ***
 // Author: Vnntnn

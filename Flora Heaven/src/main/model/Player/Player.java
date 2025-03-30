@@ -12,7 +12,7 @@ public class Player implements Serializable{
     private TreeObtains obtainTrees;
 
     public Player(){
-        coins = 150;
+        coins = 1500;
         day = 1;
         obtainTrees = new TreeObtains();
     }
