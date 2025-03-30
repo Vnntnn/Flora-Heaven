@@ -11,11 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 public class AssetsLoaderBook {
     protected static BufferedImage bookbackground;
     protected static BufferedImage[] Trees;
-    protected static ImageIcon nav;
+    protected static ImageIcon navleft;
+    protected static ImageIcon navright;
     private static AssetsLoaderBook instance = new AssetsLoaderBook();
 
     private AssetsLoaderBook() {
@@ -36,7 +38,8 @@ public class AssetsLoaderBook {
             Trees[10] = ImageIO.read(AssetsLoaderBook.class.getResourceAsStream("/assets/Book/Trees/silentisshadetxt.png"));
             Trees[11] = ImageIO.read(AssetsLoaderBook.class.getResourceAsStream("/assets/Book/Trees/voxspiretxt.png"));
 
-            nav = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/ArrowsPage/both_arrow.gif"));
+            navleft = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/ArrowsPage/prev_arrow.GIF"));
+            navright = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/ArrowsPage/next_arrow.GIF"));
         } catch (IOException e) {
             e.printStackTrace();
         }

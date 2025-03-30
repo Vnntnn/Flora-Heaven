@@ -5,18 +5,16 @@ package main.view.Gamewindow;
  */
 
 import main.controller.BookController;
-import main.view.AssetsLoader.books.ArrowsPanel;
-import main.view.AssetsLoader.books.AssetsLoaderBook;
-import main.view.AssetsLoader.books.BookbackgroundPanel;
-import main.view.AssetsLoader.books.TreesDescriptionsPanel;
+import main.view.AssetsLoader.books.*;
 
 import java.awt.*;
 import javax.swing.*;
 
 public class BookWindow extends JFrame {
     private BookbackgroundPanel bookbackgroundpanel;
-    private ArrowsPanel arrowspanel;
     private TreesDescriptionsPanel treesdescriptionspanel;
+    private LeftarrowPanel leftarrowpanel;
+    private RightarrowPanel rightarrowpanel;
     private BookController bookcontroller;
 
     public BookWindow(BookController bookcontroller) {
@@ -29,14 +27,14 @@ public class BookWindow extends JFrame {
         setResizable(false);
 
         bookbackgroundpanel = new BookbackgroundPanel();
-        arrowspanel = new ArrowsPanel();
         treesdescriptionspanel = new TreesDescriptionsPanel();
+        leftarrowpanel = new LeftarrowPanel();
+        rightarrowpanel = new RightarrowPanel();
 
         JLayeredPane layeredpane = new JLayeredPane();
         layeredpane.setPreferredSize(new Dimension(1290, 755));
 
         bookbackgroundpanel.setBounds(0, 0, 1290, 755);
-        arrowspanel.setBounds(0, 0, 1290, 755);
         treesdescriptionspanel.setBounds(0, 0, 1290, 755);
 
         bookbackgroundpanel.setOpaque(false);
@@ -44,7 +42,8 @@ public class BookWindow extends JFrame {
 
         layeredpane.add(bookbackgroundpanel, Integer.valueOf(1));
         layeredpane.add(treesdescriptionspanel, Integer.valueOf(2));
-        layeredpane.add(arrowspanel, Integer.valueOf(4));
+        layeredpane.add(leftarrowpanel, Integer.valueOf(3));
+        layeredpane.add(rightarrowpanel, Integer.valueOf(4));
 
         add(layeredpane, BorderLayout.CENTER);
 

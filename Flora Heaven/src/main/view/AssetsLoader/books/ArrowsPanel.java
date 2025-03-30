@@ -15,14 +15,9 @@ public class ArrowsPanel extends JPanel {
         setOpaque(false);
         setLayout(null);
 
-        URL gifUrl = AssetsLoaderBook.class.getResource("/assets/Book/ArrowsPage/both_arrow.GIF");
-        if (gifUrl != null) {
-            ImageIcon originalIcon = new ImageIcon(gifUrl);
-            JLabel gifLabel = new JLabel(originalIcon);
-            gifLabel.setBounds(0, 0, originalIcon.getIconWidth(), originalIcon.getIconHeight());
-            add(gifLabel);
-        } else {
-            System.err.println("GIF resource not found!");
-        }
+//        ImageIcon originalIcon = new ImageIcon(AssetsLoaderBook.gifUrl);
+//        JLabel gifLabel = new JLabel(originalIcon);
+//        gifLabel.setBounds(0, 0, 1000, 600);
+//        add(gifLabel);
     }
 }
