@@ -1,4 +1,4 @@
-package Day_Opening;
+package End_Open;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class Opening_day extends JFrame {
+public class Day_Ending extends JFrame {
     private String imagePath;
     
-    public Opening_day(String imagePath) {
+    public Day_Ending(String imagePath) {
         this.imagePath = imagePath;
         initialize();
     }
@@ -68,9 +68,9 @@ public class Opening_day extends JFrame {
     }
     
     public static void showDay(int dayNumber) {
-        String imagePath = "/Images/Day_" + dayNumber + "_Op.png";
+        String imagePath = "/Day_op_end/Day_" + dayNumber + "_End.png";
         SwingUtilities.invokeLater(() -> {
-            Opening_day frame = new Opening_day(imagePath);
+            Day_Ending frame = new Day_Ending(imagePath);
             frame.setVisible(true);
         });
     }
