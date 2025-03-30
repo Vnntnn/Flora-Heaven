@@ -1,5 +1,7 @@
 package main.controller;
 
+import main.model.Gameplay.BasicCombineTree;
+import main.model.Gameplay.Tree.Tree;
 import main.view.Gamewindow.ArcanashopWindow;
 import main.view.Gamewindow.MainQuestWindow;
 import main.view.gameplay.Arcanashop.MainQuestGIF;
@@ -34,6 +36,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private SubQuest3GIFPanel subQuest3GIFPanel;
     private TreeBookGIFPanel treeBookGIFPanel;
     private ShopGIFPanel shopGIFPanel;
+    private BasicCombineTree combiner;
+    private HashMap<Component, Tree> treeMap;
+    private JPanel newtree;
 
     public ArcanashopController(ArcanashopWindow arcanashopWindow) {
         this.arcanashopWindow = arcanashopWindow;
@@ -44,7 +49,11 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         subQuest3GIFPanel = new SubQuest3GIFPanel();
         shopGIFPanel = new ShopGIFPanel();
         treeBookGIFPanel = new TreeBookGIFPanel();
-        
+        combiner = new BasicCombineTree();
+        treeMap = new HashMap<>();
+        for (int i = 0;i<arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().size(); i++){
+            treeMap.put(arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().get(i).getImage(),arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().get(i));
+        }
 
         position = new HashMap<>();
         treeJPanels = arcanashopWindow.getPanel();
@@ -68,6 +77,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         arcanashopWindow.getMainQuest().addActionListener(this);
         arcanashopWindow.getShop().addActionListener(this);
         arcanashopWindow.getBook().addActionListener(this);
+        arcanashopWindow.getCombine().addActionListener(this);
     }
 
     public void onMainQuestClicked(MouseEvent e) {
@@ -92,6 +102,25 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if (e.getSource()==arcanashopWindow.getBook()){
             System.out.println("Bokkkkkk collection");
+        }
+        else if(e.getSource()==arcanashopWindow.getCombine()){
+            if (arcanashopWindow.getDrop1().getComponentCount()==1 && arcanashopWindow.getDrop2().getComponentCount()==1){
+                Tree tree1 = treeMap.get(arcanashopWindow.getDrop1().getComponent(0));
+                Tree tree2 = treeMap.get(arcanashopWindow.getDrop2().getComponent(0));
+                System.out.println(combiner.combine(tree1, tree2).getName());
+                newtree = (JPanel) combiner.combine(tree1, tree2).getImage();
+                newtree.setBounds(630,450,175,175);
+                newtree.setOpaque(false);
+                newtree.addMouseListener(this);
+                newtree.addMouseMotionListener(this);
+                arcanashopWindow.getDrop1().getComponent(0).setLocation(position.get(arcanashopWindow.getDrop1().getComponent(0)));
+                arcanashopWindow.getDrop2().getComponent(0).setLocation(position.get(arcanashopWindow.getDrop2().getComponent(0)));
+                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop1().getComponent(0), Integer.valueOf(30));  //add to frame 
+                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop2().getComponent(0), Integer.valueOf(30));  //add to frame 
+                arcanashopWindow.getLayeredPane().add(newtree,Integer.valueOf(12));
+                arcanashopWindow.getLayeredPane().revalidate();
+                arcanashopWindow.getLayeredPane().repaint();
+            }
         }
     }
     @Override
@@ -131,10 +160,16 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (e.getComponent()!=arcanashopWindow.getMainQuest()){
+        if (e.getComponent() != newtree){
             e.getComponent().setLocation(e.getXOnScreen()-mouseX-arcanashopWindow.getX(),e.getYOnScreen()-mouseY-arcanashopWindow.getY());
             arcanashopWindow.getLayeredPane().add(e.getComponent(),Integer.valueOf(31));
             arcanashopWindow.getLayeredPane().setLayer(e.getComponent(), Integer.valueOf(31));
+        }
+        else{
+            e.getComponent().setLocation(e.getXOnScreen()-mouseX-arcanashopWindow.getX(),e.getYOnScreen()-mouseY-arcanashopWindow.getY());
+            arcanashopWindow.getLayeredPane().add(e.getComponent(),Integer.valueOf(31));
+            arcanashopWindow.getLayeredPane().setLayer(e.getComponent(), Integer.valueOf(31));
+
         }
         if(e.getComponent().getBounds().intersects(arcanashopWindow.getMainQuest().getBounds())){
             arcanashopWindow.getLayeredPane().repaint();
@@ -146,7 +181,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         Component c = e.getComponent();
         if(c != arcanashopWindow.getMainQuest() &&
             c!= arcanashopWindow.getShop() && c != arcanashopWindow.getBook()&&
-            !Arrays.asList(arcanashopWindow.getSubQuest()).contains(c)){
+            !Arrays.asList(arcanashopWindow.getSubQuest()).contains(c) && c!= newtree){
             if(c.getBounds().intersects(arcanashopWindow.getDrop1().getBounds())){      //if component in Drop1
                 if (arcanashopWindow.getDrop1().getComponentCount() == 0){          //if Drop1 is Empty
                     c.setLocation(25,25);

@@ -40,7 +40,7 @@ public class ArcanashopWindow extends JFrame {
     private DaysPanel dayspanel;
     private DaypapercardholderPanel daypapercardholderpanel;
     private JPanel drop1, drop2;
-    private JButton mqevent, shop ,book;
+    private JButton mqevent, shop ,book, combine;
     private JButton[] sqevents;
     private JPanel[] treeholders;
     private JLayeredPane layeredPane;
@@ -82,6 +82,7 @@ public class ArcanashopWindow extends JFrame {
         mailboxpanel = new MailboxPanel();
         dayspanel = new DaysPanel(player);
         daypapercardholderpanel = new DaypapercardholderPanel();
+        combine = new JButton();
         mqevent = new JButton();
         sqevents = new JButton[3];
         for (int i = 0; i < 3; i++) {
@@ -129,6 +130,9 @@ public class ArcanashopWindow extends JFrame {
         mqevent.setBounds(540, 64, 212, 245);
         mqevent.setContentAreaFilled(false);
         mqevent.setBorderPainted(false);
+        combine.setBounds(617,435,200,200);
+        combine.setContentAreaFilled(false);
+        combine.setBorderPainted(false);
 
         sqevents[0].setBounds(790,155,125,140);
         sqevents[0].setContentAreaFilled(false);
@@ -204,6 +208,7 @@ public class ArcanashopWindow extends JFrame {
         layeredPane.add(shoppanel, Integer.valueOf(13));
         layeredPane.add(treesbookpanel, Integer.valueOf(14));
         layeredPane.add(mqevent, Integer.valueOf(16));
+        layeredPane.add(combine,Integer.valueOf(17));
         layeredPane.setOpaque(false);
 
         for (int i = 0; i < 3; i++) {
@@ -258,6 +263,9 @@ public class ArcanashopWindow extends JFrame {
         return shop;
     }
 
+    public JButton getCombine(){
+        return combine;
+    }
     public JLayeredPane getJLayeredPane(){
         return layeredPane;
     }
