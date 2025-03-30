@@ -2,13 +2,9 @@ package Day_Ending;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 
 public class Fifth_day extends JFrame {
-    private Timer closeTimer;
-    // Timer 7 sec
     public Fifth_day() {
         setTitle("Flora Heaven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,22 +18,15 @@ public class Fifth_day extends JFrame {
         backgroundPanel.setBounds(0, 0, 1280, 720);
         layeredPane.add(backgroundPanel, JLayeredPane.DEFAULT_LAYER);
 
-        add(layeredPane,BorderLayout.CENTER);
-        setLocationRelativeTo(null); 
-
-        setupCloseTimer();
-    }
-
-    private void setupCloseTimer() {
-        closeTimer = new Timer(5000, new ActionListener() {
+        add(layeredPane, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
+        
+        addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                closeTimer.stop();
+            public void mouseClicked(MouseEvent e) {
                 dispose();
             }
         });
-        closeTimer.setRepeats(false);
-        closeTimer.start();
     }
 
     public static void main(String[] args) {

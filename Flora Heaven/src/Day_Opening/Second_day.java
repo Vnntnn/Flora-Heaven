@@ -2,13 +2,9 @@ package Day_Opening;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 
 public class Second_day extends JFrame {
-    private Timer closeTimer;
-    // Timer 5 sec
     public Second_day() {
         setTitle("Flora Heaven");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,23 +18,16 @@ public class Second_day extends JFrame {
         backgroundPanel.setBounds(0, 0, 1280, 720);
         layeredPane.add(backgroundPanel, JLayeredPane.DEFAULT_LAYER);
 
-        add(layeredPane,BorderLayout.CENTER);
-        setLocationRelativeTo(null); 
-
-        setupCloseTimer();
-    }
-    private void setupCloseTimer() {
-        closeTimer = new Timer(5000, new ActionListener() {
+        add(layeredPane, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
+        
+        addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                closeTimer.stop();
-                dispose(); // can change to story day 2
+            public void mouseClicked(MouseEvent e) {
+                dispose();
             }
         });
-        closeTimer.setRepeats(false);
-        closeTimer.start();
     }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Second_day frame = new Second_day();
