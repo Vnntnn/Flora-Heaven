@@ -3,6 +3,7 @@ package main.controller;
 import main.model.Gameplay.Tree.TreesCollections.BaseCollectionTrees;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Player.Player;
+import main.view.AssetsLoader.gameplay.Treeshop.BuybuttonPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ public class ShopController {
     private int currentDay;
     private Player player;
     private List<Tree> treeList;  // เก็บต้นไม้จาก Collection
+    private BuybuttonPanel buybuttonPanel;
 
     public ShopController(Player player) {
         this.player = player;
@@ -38,20 +40,10 @@ public class ShopController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (canBuy[currentDay - 1][index] && player.getCoins() >= tree.getPrice()) {
-                    player.setCoins((int) (player.getCoins() - tree.getPrice())); // หักเงิน
-                    System.out.println("ซื้อ " + tree.getName() + " ราคา " + tree.getPrice() + " Coins!");
-
-                    canBuy[currentDay - 1][index] = false;
-
-                    // เงื่อนไข: ถ้าซื้อต้นที่ 2 ต้นที่ 3 จะปลดล็อก
-                    if (index == 1) {
-                        canBuy[currentDay - 1][2] = true;
-                        updateButtonState(button, 2);
+                    if (buybuttonPanel != null) {
+                        buybuttonPanel.updateButtonState(index, false);
+                        buybuttonPanel.repaint();
                     }
-
-                    updateButtonState(button, index);
-                } else {
-                    System.out.println("เงินไม่พอ! ต้องการ " + tree.getPrice() + " Coins");
                 }
             }
         });
@@ -63,5 +55,16 @@ public class ShopController {
         } else {
             button.setEnabled(false);
         }
+    }
+
+    public boolean canBuy(int index) {
+        if (currentDay >= 1 && currentDay <= 5 && index >= 0 && index < 8) {
+            return canBuy[currentDay - 1][index];
+        }
+        return false;
+    }
+
+    public void setBuybuttonPanel(BuybuttonPanel panel) { // เพิ่มเมธอด setter
+        this.buybuttonPanel = panel;
     }
 }

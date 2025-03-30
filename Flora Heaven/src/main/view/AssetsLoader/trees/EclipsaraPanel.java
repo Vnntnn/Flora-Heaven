@@ -10,6 +10,7 @@ import java.awt.*;
 public class EclipsaraPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
+        setOpaque(false);
         super.paintComponent(g);
         g.drawImage(AssetsLoaderTrees.eclipsara, 0, 0, getWidth(), getHeight(), this);
     }

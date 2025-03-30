@@ -1,6 +1,7 @@
 package main.view.Gamewindow;
 
 import main.controller.ShopController;
+import main.model.Gameplay.Tree.TreesCollections.BaseCollectionTrees;
 import main.model.Player.Player;
 import main.view.AssetsLoader.gameplay.Treeshop.*;
 
@@ -15,6 +16,7 @@ public class Shopwindow extends JFrame {
     private JPanel[] buypanel;
     private JButton[] buy;
     private BuybuttonPanel buybutton;
+    private BaseCollectionTrees basecollectiontrees;
     private ShopController controller;
 
     public Shopwindow(ShopController controller) {
@@ -30,6 +32,8 @@ public class Shopwindow extends JFrame {
         candlepanel = new candlePanel();
         fbookpanel = new fbookPanel();
         buybutton = new BuybuttonPanel();
+        controller.setBuybuttonPanel(buybutton);
+        basecollectiontrees = new BaseCollectionTrees();
 
         buypanel = new JPanel[8];
         buy = new JButton[8];
@@ -43,6 +47,9 @@ public class Shopwindow extends JFrame {
             buy[i].setContentAreaFilled(false);
             buy[i].setFocusPainted(false);
             controller.setupBuyButton(buy[i], i);
+
+            buybutton.updateButtonState(i, controller.canBuy(i));
+
             buypanel[i].add(buy[i]);
         }
 
@@ -64,6 +71,44 @@ public class Shopwindow extends JFrame {
         buypanel[6].setBounds(706, 636, 161, 43);
         buypanel[7].setBounds(934, 636, 161, 43);
 
+        int width = 150; int height = 150;
+        int y;
+        for (int i = 0; i < 8; i++) {
+            if (i < 4) {
+                y = 260;
+                switch (i) {
+                    case 0:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(208, 290, width, height);
+                        break;
+                    case 1:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(430, 265, width, height);
+                        break;
+                    case 2:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(712, y, width, height);
+                        break;
+                    case 3:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(948, y, width, height);
+                        break;
+                }
+            } else {
+                y = 477;
+                switch (i) {
+                    case 4:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(202, y, width, height);
+                        break;
+                    case 5:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(435, y, width, height);
+                        break;
+                    case 6:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(713, y, width, height);
+                        break;
+                    case 7:
+                        basecollectiontrees.getBaseTrees().get(i).getImage().setBounds(945, y, width, height);
+                        break;
+                }
+            }
+        }
+
         shopbackground.setOpaque(false);
         shoplogo.setOpaque(false);
         buybutton.setOpaque(false);
@@ -74,6 +119,10 @@ public class Shopwindow extends JFrame {
         layeredPane.add(fbookpanel, Integer.valueOf(4));
         layeredPane.add(buybutton, Integer.valueOf(5));
 
+        for (int i = 0; i < 8; i++) {
+            layeredPane.add(basecollectiontrees.getBaseTrees().get(i).getImage(), Integer.valueOf(i + 2));
+        }
+
         for (JPanel panel : buypanel) {
             layeredPane.add(panel, Integer.valueOf(6));
         }
@@ -83,6 +132,10 @@ public class Shopwindow extends JFrame {
         setUndecorated(true);
         setBackground(new Color(0, 0, 0, 0));
         setVisible(true);
+    }
+
+    public void updateBuyButtonImage(int index, boolean canBuy) {
+        buybutton.updateButtonState(index, canBuy);
     }
 
     public static void main(String[] args) {

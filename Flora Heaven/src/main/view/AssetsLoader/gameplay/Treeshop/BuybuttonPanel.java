@@ -2,8 +2,6 @@ package main.view.AssetsLoader.gameplay.Treeshop;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 public class BuybuttonPanel extends JPanel {
@@ -22,6 +20,11 @@ public class BuybuttonPanel extends JPanel {
                 {170, 390}, {400, 390}, {680, 390}, {910, 390},
                 {170, 605}, {400, 605}, {680, 605}, {910, 605}
         };
+    }
+
+    public void updateButtonState(int index, boolean canBuy) {
+        btn[index] = canBuy ? buybtn : unbuybtn;
+        repaint(); // วาดใหม่ทันที
     }
 
     @Override
