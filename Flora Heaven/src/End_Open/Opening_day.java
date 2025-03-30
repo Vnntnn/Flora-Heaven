@@ -67,7 +67,8 @@ public class Opening_day extends JFrame {
         }
     }
     
-    public static void showDay(int dayNumber) {
+    public static void showDay(int dayNumber) { //showDay(Player player)
+        // int dayNumber = player.getDay()
         String imagePath = "/Day_op_end/Day_" + dayNumber + "_Op.png";
         SwingUtilities.invokeLater(() -> {
             Opening_day frame = new Opening_day(imagePath);
