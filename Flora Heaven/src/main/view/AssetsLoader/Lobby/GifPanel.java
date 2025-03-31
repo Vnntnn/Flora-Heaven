@@ -9,14 +9,14 @@ public class GifPanel extends JPanel {
         setOpaque(false);
         setLayout(null);
 
-        int width = 1180;
-        int height = 635;
+        int width = 1100;
+        int height = 585;
 
         Image originalImage = AssetsLoaderLobby.gif.getImage();
         Image scaledImage = originalImage.getScaledInstance(width, height, Image.SCALE_DEFAULT);
 
         JLabel gifLabel = new JLabel(new ImageIcon(scaledImage));
-        gifLabel.setBounds(-5,-8, width, height);
+        gifLabel.setBounds(0,0, width, height);
 
         add(gifLabel);
     }

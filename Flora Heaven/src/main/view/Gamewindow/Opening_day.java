@@ -1,4 +1,4 @@
-package End_Open;
+package main.view.Gamewindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +69,7 @@ public class Opening_day extends JFrame {
     
     public static void showDay(int dayNumber) { //showDay(Player player)
         // int dayNumber = player.getDay()
-        String imagePath = "/Day_op_end/Day_" + dayNumber + "_Op.png";
+        String imagePath = "/DayOpenAndEnd/Open/Day_" + dayNumber + "_Op.png";
         SwingUtilities.invokeLater(() -> {
             Opening_day frame = new Opening_day(imagePath);
             frame.setVisible(true);
