@@ -3,6 +3,11 @@ package main.controller;
 import main.model.Gameplay.BasicCombineTree;
 import main.model.Gameplay.SubQuestGenerator;
 import main.model.Gameplay.Tree.Tree;
+import main.model.Gameplay.Tree.CombineTrees.CrimsonWard;
+import main.model.Gameplay.Tree.CombineTrees.Cryptara;
+import main.model.Gameplay.Tree.CombineTrees.HeartEclipse;
+import main.model.Gameplay.Tree.CombineTrees.LuminousFinder;
+import main.model.Gameplay.Tree.CombineTrees.SilentGuardian;
 import main.view.Gamewindow.ArcanashopWindow;
 import main.view.Gamewindow.MainQuestWindow;
 import main.view.gameplay.Arcanashop.MainQuestGIF;
@@ -42,7 +47,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private JPanel treeResultimg;
     private SubQuestGenerator subQuestGenerator1,subQuestGenerator2,subQuestGenerator3;
     private Tree sqTree1,sqTree2,sqTree3;
-    Tree treeResult;
+    private Tree treeResult, treeResultMain;
 
     public ArcanashopController(ArcanashopWindow arcanashopWindow) {
         this.arcanashopWindow = arcanashopWindow;
@@ -55,6 +60,23 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         treeBookGIFPanel = new TreeBookGIFPanel();
         combiner = new BasicCombineTree();
         treeMap = new HashMap<>();
+        switch (arcanashopWindow.getPlayer().getDay()) {
+            case 1:
+                treeResultMain = new CrimsonWard();
+                break;
+            case 2:
+                treeResultMain = new SilentGuardian();
+                break;
+            case 3:
+                treeResultMain = new LuminousFinder();
+                break;
+            case 4:
+                treeResultMain = new HeartEclipse();
+                break;
+            case 5:
+                treeResultMain = new Cryptara();
+                break;
+        }
         //สุ่มคำใบ้
         subQuestGenerator1 = new SubQuestGenerator();
         sqTree1 = subQuestGenerator1.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
@@ -305,6 +327,28 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 System.out.println("Yes3");
             }
             else{
+                arcanashopWindow.getLayeredPane().remove(treeResultimg);
+            }
+        }
+        else if (c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getMainQuest().getBounds())){
+            if (treeResult.getName() == treeResultMain.getName()){
+                switch (arcanashopWindow.getPlayer().getDay()) {
+                    case 1:
+                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+100);
+                        break;
+                    case 2:
+                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+300);
+                        break;
+                    case 3:
+                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+550);
+                        break;
+                    case 4:
+                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+888);
+                        break;
+                    case 5:
+                        System.out.println("Yahhhh Enddingss");
+                        break;
+                }
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
             }
         }
