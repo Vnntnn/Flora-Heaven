@@ -7,12 +7,15 @@ package main.controller;/*
  *
  * @author chenl
  */
+import main.model.Player.Player;
+import main.model.showDayOpen;
 import main.view.Gamewindow.Opening_day;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import main.view.Gamewindow.Opening_day;
 
 
 public class rolePage {
@@ -149,7 +152,8 @@ public class rolePage {
             timer1.start();
             
             Timer timer2 = new Timer(600, ev -> {
-                new openStoryPage();
+                fr.dispose();
+                new showDayOpen(new Player().getDay());
             });
             timer2.setRepeats(false);
             timer2.start();

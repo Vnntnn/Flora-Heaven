@@ -6,6 +6,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import main.controller.*;
+import main.model.Player.Player;
 
 public class Opening_day extends JFrame {
     private String imagePath;
@@ -35,6 +37,7 @@ public class Opening_day extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 dispose();
+                new ArcanashopController(new Player());
             }
         });
     }
@@ -65,18 +68,5 @@ public class Opening_day extends JFrame {
                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
         }
-    }
-    
-    public static void showDay(int dayNumber) { //showDay(Player player)
-        // int dayNumber = player.getDay()
-        String imagePath = "/DayOpenAndEnd/Open/Day_" + dayNumber + "_Op.png";
-        SwingUtilities.invokeLater(() -> {
-            Opening_day frame = new Opening_day(imagePath);
-            frame.setVisible(true);
-        });
-    }
-
-    public static void main(String[] args) {
-        showDay(3); // 1-5
     }
 }

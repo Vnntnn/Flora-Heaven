@@ -54,7 +54,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
 
     public ArcanashopController(Player player) {
         this.player = player;
-        player.setDay(5);
+        player.setDay(player.getDay());
         player.getObtainTrees().addTree(new Chandra());
         player.getObtainTrees().addTree(new Luckybloom());
         player.getObtainTrees().addTree(new bloodvalorTree());
@@ -372,10 +372,11 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             }
         }
         else if (c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getMainQuest().getBounds())){
-            if (treeResult.getName() == treeResultMain.getName()){
+            if (treeResult.getName() == treeResultMain.getName()) {
                 switch (player.getDay()) {
                     case 1:
                         player.setCoins(player.getCoins()+100);
+                        new 
                         break;
                     case 2:
                         player.setCoins(player.getCoins()+300);
