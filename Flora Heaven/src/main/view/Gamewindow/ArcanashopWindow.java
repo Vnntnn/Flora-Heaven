@@ -1,5 +1,6 @@
 package main.view.Gamewindow;
 
+import main.controller.ArcanashopController;
 import main.model.Gameplay.Tree.BaseTrees.*;
 import main.model.Player.Player;
 import main.model.Threads.Timer;
@@ -35,25 +36,13 @@ public class ArcanashopWindow extends JFrame {
     private SubQuestTextPanel subQuestTextPanel1, subQuestTextPanel2,subQuestTextPanel3;
     private Timer timer;
     private JLabel timeLabel;
+    private ArcanashopController controller;
 
-    public ArcanashopWindow() {
+    public ArcanashopWindow(ArcanashopController controller) {
+        this.controller = controller;
+        this.player = controller.getPlayer();
         AssetsLoaderArcanashop.getInstance();
-        this.player = new Player();
-        player.setDay(5);
-        
-        player.getObtainTrees().addTree(new Chandra());
-        player.getObtainTrees().addTree(new Luckybloom());
-        player.getObtainTrees().addTree(new bloodvalorTree());
-        player.getObtainTrees().addTree(new Everguard());
-        player.getObtainTrees().addTree(new Mindspire());
-        player.getObtainTrees().addTree(new Eclipsara());
-        player.getObtainTrees().addTree(new Heartroot());
-        player.getObtainTrees().addTree(new Huolu());
-        player.getObtainTrees().addTree(new IllumisSprout());
-        player.getObtainTrees().addTree(new Lunacrypta());
-        player.getObtainTrees().addTree(new SilentisShade());
-        player.getObtainTrees().addTree(new Voxspire());
-        
+
         // Windows setup
         setTitle("Flora Heaven");
         setSize(1290, 755);
@@ -65,7 +54,7 @@ public class ArcanashopWindow extends JFrame {
         counterpanel = new CounterPanel();
         shelfbackgroundpanel = new ShelfBackgroundPanel();
         deskbackgroundpanel = new DeskBackgroundPanel();
-        questsboardpanel = new QuestsBoardPanel(player);
+        questsboardpanel = new QuestsBoardPanel(controller.getPlayer());
         mainquestpanel = new MainQuestPanel();
         subquestpanel = new SubQuestPanel();
         magictablepanel = new MagicTablePanel();

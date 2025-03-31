@@ -2,19 +2,22 @@ package main.controller;
 
 import main.model.Gameplay.BasicCombineTree;
 import main.model.Gameplay.SubQuestGenerator;
+import main.model.Gameplay.Tree.BaseTrees.Chandra;
+import main.model.Gameplay.Tree.BaseTrees.Everguard;
+import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
+import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Gameplay.Tree.CombineTrees.CrimsonWard;
 import main.model.Gameplay.Tree.CombineTrees.Cryptara;
 import main.model.Gameplay.Tree.CombineTrees.HeartEclipse;
 import main.model.Gameplay.Tree.CombineTrees.LuminousFinder;
 import main.model.Gameplay.Tree.CombineTrees.SilentGuardian;
+import main.model.Player.Player;
 import main.view.Gamewindow.ArcanashopWindow;
-import main.view.Gamewindow.BookWindow;
 import main.view.Gamewindow.MainQuestWindow;
 import main.view.AssetsLoader.gameplay.Arcanashop.*;
 import main.view.AssetsLoader.gameplay.Arcanashop.SubQuest3GIFPanel.MainQuestGIF;
 import main.model.Threads.Timer;
-import main.view.Gamewindow.Shopwindow;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -47,9 +50,18 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private Tree sqTree1,sqTree2,sqTree3;
     private Tree treeResult, treeResultMain;
     private Timer timer;
+    private Player player;
 
-    public ArcanashopController(ArcanashopWindow arcanashopWindow) {
-        this.arcanashopWindow = arcanashopWindow;
+    public ArcanashopController(Player player) {
+        this.player = player;
+        player.setDay(5);
+        player.getObtainTrees().addTree(new Chandra());
+        player.getObtainTrees().addTree(new Luckybloom());
+        player.getObtainTrees().addTree(new bloodvalorTree());
+        player.getObtainTrees().addTree(new Everguard());
+
+        this.arcanashopWindow = new ArcanashopWindow(this);
+
         this.mainQuestPanel = new MainQuestPanel();
         this.timer = new Timer(900); // 15 นาที
         startTimer();
@@ -61,7 +73,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         treeBookGIFPanel = new TreeBookGIFPanel();
         combiner = new BasicCombineTree();
         treeMap = new HashMap<>();
-        switch (arcanashopWindow.getPlayer().getDay()) {
+        switch (player.getDay()) {
             case 1:
                 treeResultMain = new CrimsonWard();
                 break;
@@ -80,29 +92,29 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
 
         subQuestGenerator1 = new SubQuestGenerator();
-        sqTree1 = subQuestGenerator1.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+        sqTree1 = subQuestGenerator1.generatorSubQuestTree(player.getDay());
         arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator1.gethintString1()+" กับ");
         arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator1.gethintString2());
 
         subQuestGenerator2= new SubQuestGenerator();
-        sqTree2 = subQuestGenerator2.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+        sqTree2 = subQuestGenerator2.generatorSubQuestTree(player.getDay());
         arcanashopWindow.getsuSubQuestTextPanel2().getHintJLabel2().setText(subQuestGenerator2.gethintString1()+" กับ");
         arcanashopWindow.getsuSubQuestTextPanel2().getHintJLabel3().setText(subQuestGenerator2.gethintString2());
 
         subQuestGenerator3 = new SubQuestGenerator();
-        sqTree3 = subQuestGenerator3.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+        sqTree3 = subQuestGenerator3.generatorSubQuestTree(player.getDay());
         arcanashopWindow.getsuSubQuestTextPanel3().getHintJLabel2().setText(subQuestGenerator3.gethintString1()+" กับ");
         arcanashopWindow.getsuSubQuestTextPanel3().getHintJLabel3().setText(subQuestGenerator3.gethintString2());
 
 
-        for (int i = 0;i<arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().size(); i++){
-            treeMap.put(arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().get(i).getImage(),arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().get(i));
+        for (int i = 0;i<player.getObtainTrees().getObtainedTree().size(); i++){
+            treeMap.put(player.getObtainTrees().getObtainedTree().get(i).getImage(),player.getObtainTrees().getObtainedTree().get(i));
         }
 
         position = new HashMap<>();
         treeJPanels = arcanashopWindow.getPanel();
         for (int i = 0; i < 12; i++){
-            if (i < arcanashopWindow.getPlayer().getObtainTrees().getObtainedTree().size()){
+            if (i < player.getObtainTrees().getObtainedTree().size()){
                 treeJPanels[i].addMouseListener(this);
                 treeJPanels[i].addMouseMotionListener(this);
                 position.put(treeJPanels[i], treeJPanels[i].getLocation());
@@ -158,12 +170,11 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==arcanashopWindow.getMainQuest()){
+        if(e.getSource() == arcanashopWindow.getMainQuest()) {
             new MainQuestWindow();
         }
-        else if(e.getSource()==arcanashopWindow.getShop()){
-            // เปิดหน้าต่าง Shop
-            new ShopController(arcanashopWindow.getPlayer());
+        else if(e.getSource() == arcanashopWindow.getShop()) {
+            new ShopController(player);
         }
         else if (e.getSource()==arcanashopWindow.getSubQuest()[0]){
             System.out.println("QUEST11111111111");
@@ -176,7 +187,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if (e.getSource()==arcanashopWindow.getBook()){
             // เปิดหน้าต่าง Book
-            new BookController(arcanashopWindow.getPlayer());
+            new BookController(player);
         }
         else if(e.getSource()==arcanashopWindow.getCombine()){
             if (arcanashopWindow.getDrop1().getComponentCount()==1 && arcanashopWindow.getDrop2().getComponentCount()==1){
@@ -320,10 +331,10 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel1().getBounds())){
             if (treeResult.getName() == sqTree1.getName()){
-                arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+(int)sqTree1.getPrice());
+                player.setCoins(player.getCoins()+(int)sqTree1.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator1 = new SubQuestGenerator();
-                sqTree1 = subQuestGenerator1.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+                sqTree1 = subQuestGenerator1.generatorSubQuestTree(player.getDay());
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator1.gethintString1()+" กับ");
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator1.gethintString2());
                 System.out.println("Yes1");
@@ -334,10 +345,10 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel2().getBounds())){
             if (treeResult.getName() == sqTree2.getName()){
-                arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+(int)sqTree2.getPrice());
+                player.setCoins(player.getCoins()+(int)sqTree2.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator1 = new SubQuestGenerator();
-                sqTree2 = subQuestGenerator2.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+                sqTree2 = subQuestGenerator2.generatorSubQuestTree(player.getDay());
                 arcanashopWindow.getsuSubQuestTextPanel2().getHintJLabel2().setText(subQuestGenerator2.gethintString1()+" กับ");
                 arcanashopWindow.getsuSubQuestTextPanel2().getHintJLabel3().setText(subQuestGenerator2.gethintString2());
                 System.out.println("Yes2");
@@ -348,10 +359,10 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel3().getBounds())){
             if (treeResult.getName() == sqTree3.getName()){
-                arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+(int)sqTree3.getPrice());
+                player.setCoins(player.getCoins()+(int)sqTree3.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator3 = new SubQuestGenerator();
-                sqTree3 = subQuestGenerator3.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
+                sqTree3 = subQuestGenerator3.generatorSubQuestTree(player.getDay());
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator3.gethintString1()+" กับ");
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator3.gethintString2());
                 System.out.println("Yes3");
@@ -362,18 +373,18 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if (c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getMainQuest().getBounds())){
             if (treeResult.getName() == treeResultMain.getName()){
-                switch (arcanashopWindow.getPlayer().getDay()) {
+                switch (player.getDay()) {
                     case 1:
-                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+100);
+                        player.setCoins(player.getCoins()+100);
                         break;
                     case 2:
-                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+300);
+                        player.setCoins(player.getCoins()+300);
                         break;
                     case 3:
-                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+550);
+                        player.setCoins(player.getCoins()+550);
                         break;
                     case 4:
-                        arcanashopWindow.getPlayer().setCoins(arcanashopWindow.getPlayer().getCoins()+888);
+                        player.setCoins(player.getCoins()+888);
                         break;
                     case 5:
                         System.out.println("Yahhhh Enddingss");
@@ -424,8 +435,12 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     @Override
     public void mouseMoved(MouseEvent e) {}
 
+    public Player getPlayer() {
+        return player;
+    }
 
     public static void main(String[] args) {
-        new ArcanashopController(new ArcanashopWindow());
+        Player player = new Player();
+        ArcanashopController controller = new ArcanashopController(player);
     }
 }
