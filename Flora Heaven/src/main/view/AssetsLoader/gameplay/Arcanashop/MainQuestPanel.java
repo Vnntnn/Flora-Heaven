@@ -14,4 +14,9 @@ public class MainQuestPanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(AssetsLoaderArcanashop.mainquest, 0, 0, getWidth(), getHeight(), this);
     }
+    public MainQuestPanel(){
+        setOpaque(false);
+    }
+
+    
 }

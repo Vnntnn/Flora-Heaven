@@ -1,12 +1,25 @@
 package main.view.Gamewindow;
+import main.model.Gameplay.Tree.BaseTrees.Chandra;
+import main.model.Gameplay.Tree.BaseTrees.Eclipsara;
+import main.model.Gameplay.Tree.BaseTrees.Everguard;
+import main.model.Gameplay.Tree.BaseTrees.Heartroot;
+import main.model.Gameplay.Tree.BaseTrees.Huolu;
+import main.model.Gameplay.Tree.BaseTrees.IllumisSprout;
+import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
+import main.model.Gameplay.Tree.BaseTrees.Lunacrypta;
+import main.model.Gameplay.Tree.BaseTrees.Mindspire;
+import main.model.Gameplay.Tree.BaseTrees.SilentisShade;
+import main.model.Gameplay.Tree.BaseTrees.Voxspire;
+import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
 import main.model.Player.Player;
-import main.view.AssetsLoader.gameplay.Arcanashop.*;
-import main.view.AssetsLoader.trees.AssetsLoaderTrees;
-import main.view.AssetsLoader.trees.Bloodvalor_blossomPanel;
+import main.model.Player.TreeObtains;
+import main.view.gameplay.Arcanashop.*;
+import main.view.trees.AssetsLoaderTrees;
+import main.view.trees.Bloodvalor_blossomPanel;
 
-/**
- * Author: Vnntnn
- */
+// ***
+// Author: Vnntnn
+// ***
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,14 +39,31 @@ public class ArcanashopWindow extends JFrame {
     private MailboxPanel mailboxpanel;
     private DaysPanel dayspanel;
     private DaypapercardholderPanel daypapercardholderpanel;
-    private JPanel mqevent, shop, book;
-    private JPanel[] sqevents;
+    private JPanel drop1, drop2;
+    private JButton mqevent, shop ,book, combine;
+    private JButton[] sqevents;
     private JPanel[] treeholders;
+    private JLayeredPane layeredPane;
+    private SubQuestTextPanel subQuestTextPanel1, subQuestTextPanel2,subQuestTextPanel3;
 
     public ArcanashopWindow() {
         AssetsLoaderArcanashop.getInstance();
         this.player = new Player();
-
+        player.setDay(5);
+        
+        player.getObtainTrees().addTree(new Chandra());
+        player.getObtainTrees().addTree(new Luckybloom());
+        player.getObtainTrees().addTree(new bloodvalorTree());
+        player.getObtainTrees().addTree(new Everguard());
+        player.getObtainTrees().addTree(new Mindspire());
+        player.getObtainTrees().addTree(new Eclipsara());
+        player.getObtainTrees().addTree(new Heartroot());
+        player.getObtainTrees().addTree(new Huolu());
+        player.getObtainTrees().addTree(new IllumisSprout());
+        player.getObtainTrees().addTree(new Lunacrypta());
+        player.getObtainTrees().addTree(new SilentisShade());
+        player.getObtainTrees().addTree(new Voxspire());
+        
         // Windows setup
         setTitle("Flora Heaven");
         setSize(1290, 755);
@@ -54,27 +84,38 @@ public class ArcanashopWindow extends JFrame {
         mailboxpanel = new MailboxPanel();
         dayspanel = new DaysPanel(player);
         daypapercardholderpanel = new DaypapercardholderPanel();
-        mqevent = new JPanel();
-        sqevents = new JPanel[3];
+        subQuestTextPanel1 = new SubQuestTextPanel();
+        subQuestTextPanel2 = new SubQuestTextPanel();
+        subQuestTextPanel3 = new SubQuestTextPanel();
+        combine = new JButton();
+        mqevent = new JButton();
+        sqevents = new JButton[3];
         for (int i = 0; i < 3; i++) {
-            sqevents[i] = new Bloodvalor_blossomPanel();
+            sqevents[i] = new JButton();
         }
         treeholders = new JPanel[12];
         for (int i = 0; i < 12; i++) {
-            treeholders[i] = new JPanel(){
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponents(g);
-                    g.drawImage(AssetsLoaderTrees.chandra, 0, 0,getX(),getY(),this);
-                }
-            };
-            treeholders[i].setOpaque(true);
+            if (i < player.getObtainTrees().getObtainedTree().size()){
+                treeholders[i] = (JPanel) player.getObtainTrees().getObtainedTree().get(i).getImage();
+            }
+            else{
+                treeholders[i] = new JPanel();
+            }
+            treeholders[i].setOpaque(false);
         }
-        shop = new JPanel();
-        book = new JPanel();
+        shop = new JButton();
+        book = new JButton();
+        drop1 = new JPanel();       //Area combine tree1
+        drop1.setLayout(null);
+        drop1.setBounds(507, 470, 138, 146);
+        drop1.setOpaque(false);
+        drop2 = new JPanel();       //Area combine tree2
+        drop2.setLayout(null);
+        drop2.setOpaque(false);
+        drop2.setBounds(783, 470, 138, 146);
 
         // Initializing LayeredPane
-        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1290, 755));
 
         // setup components sizes
@@ -92,22 +133,32 @@ public class ArcanashopWindow extends JFrame {
         dayspanel.setBounds(0, 0, 1280, 720);
         daypapercardholderpanel.setBounds(0, 0, 1280, 720);
         mqevent.setBounds(540, 64, 212, 245);
-        mqevent.setBackground(Color.BLACK);
+        mqevent.setContentAreaFilled(false);
+        mqevent.setBorderPainted(false);
+        combine.setBounds(617,435,200,200);
+        combine.setContentAreaFilled(false);
+        combine.setBorderPainted(false);
+        subQuestTextPanel1.setBounds(790,185,125,110);
+        subQuestTextPanel2.setBounds(930,185,125,110);
+        subQuestTextPanel3.setBounds(1076,185,125,110);
 
         sqevents[0].setBounds(790,155,125,140);
-        sqevents[0].setBackground(Color.BLACK);
+        sqevents[0].setContentAreaFilled(false);
+        sqevents[0].setBorderPainted(false);
         sqevents[1].setBounds(930,155,125,140);
-        sqevents[1].setBackground(Color.BLACK);
+        sqevents[1].setContentAreaFilled(false);
+        sqevents[1].setBorderPainted(false);
         sqevents[2].setBounds(1076,155,125,140);
-        sqevents[2].setBackground(Color.BLACK);
+        sqevents[2].setContentAreaFilled(false);
+        sqevents[2].setBorderPainted(false);
 
-        treeholders[0].setBounds(23,5,85,85);
+        treeholders[0].setBounds(23,6,85,85);
         treeholders[0].setBackground(new Color(0,0,0,150));
-        treeholders[1].setBounds(132,5,85,85);
+        treeholders[1].setBounds(132,6,85,85);
         treeholders[1].setBackground(new Color(0,0,0,150));
-        treeholders[2].setBounds(240,5,85,85);
+        treeholders[2].setBounds(240,6,85,85);
         treeholders[2].setBackground(new Color(0,0,0,150));
-        treeholders[3].setBounds(345,5,85,85);
+        treeholders[3].setBounds(345,6,85,85);
         treeholders[3].setBackground(new Color(0,0,0,150));
         treeholders[4].setBounds(20,118,85,85);
         treeholders[4].setBackground(new Color(0,0,0,150));
@@ -127,9 +178,11 @@ public class ArcanashopWindow extends JFrame {
         treeholders[11].setBackground(new Color(0,0,0,150));
 
         shop.setBounds(970,360,129,348);
-        shop.setBackground(Color.BLACK);
+        shop.setContentAreaFilled(false);
+        shop.setBorderPainted(false);
         book.setBounds(1120,360,145,210);
-        book.setBackground(Color.BLACK);
+        book.setContentAreaFilled(false);
+        book.setBorderPainted(false);
 
         // Make components background not opacity
         treeholdershelfpanel.setOpaque(false);
@@ -145,8 +198,13 @@ public class ArcanashopWindow extends JFrame {
         mailboxpanel.setOpaque(false);
         dayspanel.setOpaque(false);
         daypapercardholderpanel.setOpaque(false);
+        subQuestTextPanel1.setOpaque(false);
+        subQuestTextPanel2.setOpaque(false);
+        subQuestTextPanel3.setOpaque(false);
 
         // Adding panels to layeredPane
+        layeredPane.add(drop1, Integer.valueOf(30));
+        layeredPane.add(drop2, Integer.valueOf(24));
         layeredPane.add(shelfbackgroundpanel, Integer.valueOf(1));
         layeredPane.add(treeholdershelfpanel, Integer.valueOf(2));
         layeredPane.add(counterpanel, Integer.valueOf(3));
@@ -160,7 +218,12 @@ public class ArcanashopWindow extends JFrame {
         layeredPane.add(magictablepanel, Integer.valueOf(12));
         layeredPane.add(shoppanel, Integer.valueOf(13));
         layeredPane.add(treesbookpanel, Integer.valueOf(14));
-        layeredPane.add(mqevent, Integer.valueOf(15));
+        layeredPane.add(mqevent, Integer.valueOf(16));
+        layeredPane.add(combine,Integer.valueOf(17));
+        layeredPane.add(subQuestTextPanel1,Integer.valueOf(18));
+        layeredPane.add(subQuestTextPanel2,Integer.valueOf(19));
+        layeredPane.add(subQuestTextPanel3,Integer.valueOf(20));
+        layeredPane.setOpaque(false);
 
         for (int i = 0; i < 3; i++) {
             int layer_index = 16;
@@ -182,7 +245,53 @@ public class ArcanashopWindow extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new ArcanashopWindow();
+    public JPanel[] getPanel(){
+        return treeholders;
     }
+
+    public Player getPlayer(){
+        return player;
+    }
+
+    public JPanel getDrop1(){
+        return drop1;
+    }
+
+    public JPanel getDrop2(){
+        return drop2;
+    }
+
+    public JButton getMainQuest(){
+        return mqevent;
+    }
+
+    public JButton[] getSubQuest(){
+        return sqevents;
+    }
+
+    public JButton getBook(){
+        return book;
+    }
+
+    public JButton getShop(){
+        return shop;
+    }
+
+    public JButton getCombine(){
+        return combine;
+    }
+
+    public JLayeredPane getJLayeredPane(){
+        return layeredPane;
+    }
+
+    public SubQuestTextPanel getsuSubQuestTextPanel1(){
+        return subQuestTextPanel1;
+    } 
+    public SubQuestTextPanel getsuSubQuestTextPanel2(){
+        return subQuestTextPanel2;
+    } 
+    public SubQuestTextPanel getsuSubQuestTextPanel3(){
+        return subQuestTextPanel3;
+    } 
 }

@@ -1,10 +1,12 @@
-package main.view.AssetsLoader.gameplay.Arcanashop;
+package main.view.gameplay.Arcanashop;
 
-/**
- * @author Vnntnn
- */
+// ***
+// Author: Vnntnn
+// ***
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -23,6 +25,7 @@ public class AssetsLoaderArcanashop {
     protected static BufferedImage mailsbox;
     protected static BufferedImage[] Dayscard;
     protected static BufferedImage Dayholder;
+    protected static ImageIcon mainQuestGIF,subQuest1GIF,subQuest2GIF,subQuest3GIF,shopGIF,plant_CollectionGIF;
     private static AssetsLoaderArcanashop instance = new AssetsLoaderArcanashop();
 
     private AssetsLoaderArcanashop() {
@@ -39,6 +42,13 @@ public class AssetsLoaderArcanashop {
             treesbook = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/plant_collection.png"));
             mailsbox = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/mails_box.png"));
             Dayholder = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/Daypapercard_holder.png"));
+            mainQuestGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/main_quest.GIF"));
+            subQuest1GIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/sidequest_blue.GIF"));
+            subQuest2GIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/sidequest_green.GIF"));
+            subQuest3GIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/sidequest_yellow.GIF"));
+            shopGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/shop.GIF"));
+            plant_CollectionGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/plant_collection.GIF"));
+
             Dayscard = new BufferedImage[5];
             for (int i = 0; i < 5; i++) {
                 Dayscard[i] = ImageIO.read(AssetsLoaderArcanashop.class.getResourceAsStream("/assets/Gameplay/Arcanashop/Days/Day" + (i + 1) + ".png"));
@@ -50,9 +60,14 @@ public class AssetsLoaderArcanashop {
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
+
     }
 
     public static AssetsLoaderArcanashop getInstance() {
         return instance;
+    }
+
+    public static void main(String[] args) {
+        new AssetsLoaderArcanashop();
     }
 }
