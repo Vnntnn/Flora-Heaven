@@ -1,4 +1,4 @@
-package main.model;
+package main.controller;
 
 import main.view.Gamewindow.Day_Ending;
 

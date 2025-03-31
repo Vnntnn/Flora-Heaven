@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.model.Player.Player;
 import main.view.Fail.FailView;
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,10 @@ public class FailController {
     private FailView view;
     private Font customFont;
     private Image backgroundImage;
+    private Player player;
 
-    public FailController() {
+    public FailController(Player player) {
+        this.player = player;
         EventQueue.invokeLater(() -> {
             try {
                 initialize();
@@ -106,7 +109,7 @@ public class FailController {
     
         nextButton.addActionListener(e -> {
             view.close();
-            EventQueue.invokeLater(() -> new SecretController());
+            EventQueue.invokeLater(() -> new SecretController(player));
         });
     }
 

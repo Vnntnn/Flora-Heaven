@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.model.Player.Player;
 import main.view.secretPage.SecretView;
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,10 @@ public class SecretController {
     private SecretView view;
     private Font customFont;
     private Image backgroundImage;
+    private Player player;
 
-    public SecretController() {
+    public SecretController(Player player) {
+        this.player = player;
         EventQueue.invokeLater(() -> {
             try {
                 initialize();
@@ -110,7 +113,7 @@ public class SecretController {
     
         nextButton.addActionListener(e -> {
             view.close();
-            EventQueue.invokeLater(() -> new RestartController());
+            EventQueue.invokeLater(() -> new RestartController(player));
         });
     }
 

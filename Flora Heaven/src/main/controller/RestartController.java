@@ -1,5 +1,7 @@
 package main.controller;
 
+import main.model.Player.Player;
+import main.model.Player.TreeObtains;
 import main.view.Restart.RestartView;
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,10 @@ public class RestartController {
     private Image backgroundImage;
     private Image yesButtonImage;
     private Image noButtonImage;
+    private Player player;
 
-    public RestartController() {
+    public RestartController(Player player) {
+        this.player = player;
         EventQueue.invokeLater(() -> {
             try {
                 initialize();
@@ -95,7 +99,7 @@ public class RestartController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 view.close();
-                EventQueue.invokeLater(() -> new LobbyController());
+                EventQueue.invokeLater(() -> new ArcanashopController(new Player(150, 1, new TreeObtains())));
             }
         });
 
@@ -103,8 +107,7 @@ public class RestartController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 view.close();
-                EventQueue.invokeLater(() -> new SecretController());
-                
+                EventQueue.invokeLater(() -> new ArcanashopController(player));
             }
         });
     }
@@ -130,5 +133,9 @@ public class RestartController {
         customFont = null;
         yesButtonImage = null;
         noButtonImage = null;
+    }
+
+    public static void main(String[] args) {
+        new RestartController(new Player());
     }
 }

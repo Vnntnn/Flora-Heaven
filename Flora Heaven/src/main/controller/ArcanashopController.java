@@ -2,10 +2,6 @@ package main.controller;
 
 import main.model.Gameplay.BasicCombineTree;
 import main.model.Gameplay.SubQuestGenerator;
-import main.model.Gameplay.Tree.BaseTrees.Chandra;
-import main.model.Gameplay.Tree.BaseTrees.Everguard;
-import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
-import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Gameplay.Tree.CombineTrees.CrimsonWard;
 import main.model.Gameplay.Tree.CombineTrees.Cryptara;
@@ -18,9 +14,7 @@ import main.view.Gamewindow.MainQuestWindow;
 import main.view.AssetsLoader.gameplay.Arcanashop.*;
 import main.view.AssetsLoader.gameplay.Arcanashop.SubQuest3GIFPanel.MainQuestGIF;
 import main.model.Threads.Timer;
-import main.model.*;
 import main.model.Player.EndingDay;
-import main.controller.*;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -60,10 +54,6 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     public ArcanashopController(Player player) {
         this.player = player;
         player.setDay(player.getDay());
-        player.getObtainTrees().addTree(new Chandra());
-        player.getObtainTrees().addTree(new Luckybloom());
-        player.getObtainTrees().addTree(new bloodvalorTree());
-        player.getObtainTrees().addTree(new Everguard());
 
         this.arcanashopWindow = new ArcanashopWindow(this);
 
@@ -165,8 +155,8 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             }
 
             SwingUtilities.invokeLater(() -> {
-                JOptionPane.showMessageDialog(arcanashopWindow, "เวลาเล่นเกมหมดแล้ว!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
                 arcanashopWindow.dispose();
+                new FailController(player);
             });
         });
         timer.start();

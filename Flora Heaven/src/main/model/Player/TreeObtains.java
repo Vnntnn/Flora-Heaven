@@ -4,6 +4,10 @@ package main.model.Player;
 // Author: Vnntnn
 // ***
 
+import main.model.Gameplay.Tree.BaseTrees.Chandra;
+import main.model.Gameplay.Tree.BaseTrees.Everguard;
+import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
+import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
 import main.model.Gameplay.Tree.Tree;
 
 import java.util.ArrayList;
@@ -14,6 +18,10 @@ public class TreeObtains {
 
     public TreeObtains() {
         this.obtainedTree = new ArrayList<>();
+        addTree(new Chandra());
+        addTree(new Luckybloom());
+        addTree(new bloodvalorTree());
+        addTree(new Everguard());
     }
 
     public TreeObtains(List<Tree> obtainedTree) {
