@@ -55,39 +55,73 @@ public class LobbyController {
 
     private void handleStartButton() {
         setButtonsEnabled(false);
-        startInstantTransition(() -> {
-            view.dispose();
+        startSmoothTransition(() -> {
             new OpenStoryController().show();
-        });
+        }, LobbyWindow.TRANSITION_SLIDE);
     }
     
     private void handleCreditsButton() {
         setButtonsEnabled(false);
-        startInstantTransition(() -> {
-            view.dispose();
+        startSmoothTransition(() -> {
             new CreditController(this).show();
-        });
+        }, LobbyWindow.TRANSITION_SLIDE);
     }
     
     private void handleQuitButton() {
         setButtonsEnabled(false);
-        startInstantTransition(() -> {
-            view.dispose();
+        startSmoothTransition(() -> {
             new QuitController(this).show();
-        });
+        }, LobbyWindow.TRANSITION_ZOOM); 
     }
     
-    private void startInstantTransition(Runnable onComplete) {
+    private void startSmoothTransition(Runnable onComplete, int transitionType) {
+        // หยุด timer ถ้ายังทำงานอยู่
         if (transitionTimer != null && transitionTimer.isRunning()) {
             transitionTimer.stop();
         }
         
-        SwingUtilities.invokeLater(() -> {
-            if (view != null) {
-                view.dispose();
+        // ตั้งค่าประเภท transition
+        view.setTransitionType(transitionType);
+        
+        // สร้าง timer สำหรับ animation
+        transitionTimer = new Timer(16, new ActionListener() {
+            private float progress = 0f;
+            private final float speed = 0.05f; 
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                progress += speed;
+                
+                if (progress >= 1.0f) {
+                    progress = 1.0f;
+                    ((Timer)e.getSource()).stop();
+                    
+                    // เมื่อ animation เสร็จสิ้น
+                    SwingUtilities.invokeLater(() -> {
+                        if (view != null) {
+                            view.dispose();
+                        }
+                        onComplete.run();
+                    });
+                }
+                
+                // อัพเดต transition ตามประเภท
+                switch(transitionType) {
+                    case LobbyWindow.TRANSITION_FADE:
+                        view.setTransitionAlpha(progress);
+                        break;
+                        
+                    case LobbyWindow.TRANSITION_ZOOM:
+                        view.setZoomFactor(1.0f - progress * 0.9f); // zoom จาก 1.0 ถึง 0.1
+                        break;
+                        
+                    case LobbyWindow.TRANSITION_SLIDE:
+                        view.setSlideOffset(progress);
+                        break;
+                }
             }
-            onComplete.run();
         });
+        transitionTimer.start();
     }
 
     private void setButtonsEnabled(boolean enabled) {

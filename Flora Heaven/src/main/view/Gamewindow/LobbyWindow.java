@@ -97,8 +97,10 @@ public class LobbyWindow extends JFrame {
         animationTimer.start();
     }
 
+    // Transition control methods
     public void setTransitionType(int type) {
         this.currentTransition = type;
+        repaint();
     }
     
     public void setTransitionAlpha(float alpha) {
@@ -107,52 +109,73 @@ public class LobbyWindow extends JFrame {
     }
     
     public void setZoomFactor(float factor) {
-        this.zoomFactor = factor;
+        this.zoomFactor = Math.max(0.1f, Math.min(1.0f, factor));
         repaint();
     }
     
     public void setSlideOffset(float offset) {
-        this.slideOffset = offset;
+        this.slideOffset = Math.min(1f, Math.max(0f, offset));
         repaint();
     }
 
     private void renderTransitionEffect(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g.create();
         
-        switch(currentTransition) {
-            case TRANSITION_ZOOM:
-                AffineTransform transform = new AffineTransform();
-                transform.translate(getWidth()/2, getHeight()/2);
-                transform.scale(zoomFactor, zoomFactor);
-                transform.translate(-getWidth()/2, -getHeight()/2);
-                g2d.setTransform(transform);
-                break;
-                
-            case TRANSITION_SLIDE:
-                g2d.translate(-slideOffset * getWidth(), 0);
-                break;
+        try {
+            // Apply current transition effect with easing
+            switch(currentTransition) {
+                case TRANSITION_ZOOM:
+                    float scale = easeOutQuad(zoomFactor);
+                    AffineTransform transform = new AffineTransform();
+                    transform.translate(getWidth()/2, getHeight()/2);
+                    transform.scale(scale, scale);
+                    transform.translate(-getWidth()/2, -getHeight()/2);
+                    g2d.setTransform(transform);
+                    break;
+                    
+                case TRANSITION_SLIDE:
+                    float slidePos = easeInOutQuad(slideOffset);
+                    g2d.translate(-slidePos * getWidth(), 0);
+                    break;
+            }
+            
+            // Apply smooth fade overlay
+            if (transitionAlpha > 0) {
+                float alpha = easeOutQuad(transitionAlpha);
+                g2d.setComposite(AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, alpha));
+                g2d.setColor(new Color(0, 0, 0, (int)(alpha * 255)));
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        } finally {
+            g2d.dispose();
         }
-        
-        if (transitionAlpha > 0) {
-            g2d.setComposite(AlphaComposite.getInstance(
-                AlphaComposite.SRC_OVER, transitionAlpha));
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(0, 0, getWidth(), getHeight());
-        }
+    }
+
+    // Easing functions for smooth transitions
+    private float easeInOutQuad(float x) {
+        return x < 0.5f ? 2 * x * x : 1 - (float)Math.pow(-2 * x + 2, 2) / 2;
+    }
+    
+    private float easeOutQuad(float x) {
+        return 1 - (1 - x) * (1 - x);
     }
 
     @Override
     public void paint(Graphics g) {
+        // Double buffering with transition effects
         if (transitionBuffer == null || 
             transitionBuffer.getWidth() != getWidth() || 
             transitionBuffer.getHeight() != getHeight()) {
             transitionBuffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         }
         
+        // Render to buffer first
         Graphics bufferGraphics = transitionBuffer.getGraphics();
         super.paint(bufferGraphics);
         bufferGraphics.dispose();
         
+        // Render buffer with transition effects
         Graphics2D g2d = (Graphics2D) g;
         renderTransitionEffect(g2d);
         g2d.drawImage(transitionBuffer, 0, 0, null);
@@ -178,6 +201,7 @@ public class LobbyWindow extends JFrame {
         }
         if (transitionBuffer != null) {
             transitionBuffer.flush();
+            transitionBuffer = null;
         }
         super.dispose();
     }
