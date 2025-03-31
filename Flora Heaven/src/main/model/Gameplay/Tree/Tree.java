@@ -5,12 +5,16 @@ package main.model.Gameplay.Tree;
 // ***
 
 import java.awt.*;
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.*;
 
 public abstract class Tree {
     private String name;
     private double price;
     private int star;
     private Component image;
+    private ArrayList<String> hintList;
 
     public Tree() {
         this("", 0.0, 1, null);
@@ -21,7 +25,15 @@ public abstract class Tree {
         this.price = price;
         this.star = star;
         this.image = image;
+        this.hintList = new ArrayList<>();
     }
+/*     public Tree(String name, double price, int star, Component image, ArrayList<String> hintList) {
+        this.name = name;
+        this.price = price;
+        this.star = star;
+        this.image = image;
+        this.hintList = hintList;
+    } */
 
     public String getName() {
         return name;
@@ -53,5 +65,17 @@ public abstract class Tree {
 
     public void setImage(Component image) {
         this.image = image;
+    }
+
+    public ArrayList<String> getHintList() {
+        return hintList;
+    }
+
+    public void setHintList(ArrayList<String> hintList) {
+        this.hintList = hintList;
+    }
+
+    public void addHintList(String hint){
+        this.hintList.add(hint);
     }
 }

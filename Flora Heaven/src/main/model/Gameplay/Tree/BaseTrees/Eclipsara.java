@@ -6,5 +6,8 @@ import main.view.trees.EclipsaraPanel;
 public class Eclipsara extends Tree {
     public Eclipsara() {
         super("Eclipsara", 150.0, 0, new EclipsaraPanel());
+        addHintList("ดูดซับอารมณ์");
+        addHintList("ซึมซับความคิด");
+        addHintList("ซึมซับพลังความรู้สึก");
     }
 }

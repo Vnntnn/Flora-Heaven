@@ -6,16 +6,7 @@ import java.util.Map;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Gameplay.Tree.BaseTrees.Chandra;
 import main.model.Gameplay.Tree.BaseTrees.Eclipsara;
-import main.model.Gameplay.Tree.BaseTrees.Everguard;
-import main.model.Gameplay.Tree.BaseTrees.Heartroot;
-import main.model.Gameplay.Tree.BaseTrees.Huolu;
-import main.model.Gameplay.Tree.BaseTrees.IllumisSprout;
 import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
-import main.model.Gameplay.Tree.BaseTrees.Lunacrypta;
-import main.model.Gameplay.Tree.BaseTrees.Mindspire;
-import main.model.Gameplay.Tree.BaseTrees.SilentisShade;
-import main.model.Gameplay.Tree.BaseTrees.Voxspire;
-import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
 import main.model.Gameplay.Tree.CombineTrees.AurelianWhisper;
 import main.model.Gameplay.Tree.CombineTrees.CrimsonWard;
 import main.model.Gameplay.Tree.CombineTrees.Cryptara;
@@ -76,12 +67,12 @@ public class BasicCombineTree implements Combinable {
         throw new UnsupportedOperationException("Unimplemented method 'combine'");
     } */
 
-    public static void main(String[] args) {
+    /* public static void main(String[] args) {
         BasicCombineTree combiner = new BasicCombineTree();
         System.out.println(combiner.canCombine(new Chandra(), new Eclipsara()));
         if(combiner.canCombine(new Chandra(), new Luckybloom())){
             System.out.println(combiner.combine(new Chandra(), new Eclipsara()));
         }
-    }
+    } */
 }
 

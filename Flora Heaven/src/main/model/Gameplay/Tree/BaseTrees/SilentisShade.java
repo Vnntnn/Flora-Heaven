@@ -6,5 +6,8 @@ import main.view.trees.SilenttisshadePanel;
 public class SilentisShade extends Tree {
     public SilentisShade() {
         super("Silentis Shade", 100.0, 1, new SilenttisshadePanel());
+        addHintList("ป้องกันเสียงรบกวน");
+        addHintList("ช่วยระงับอารมณ์");
+        addHintList("บรรเทาความวุ่นวาย");
     }
 }
