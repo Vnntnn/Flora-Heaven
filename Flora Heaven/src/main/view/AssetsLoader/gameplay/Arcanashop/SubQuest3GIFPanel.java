@@ -1,4 +1,4 @@
-package main.view.gameplay.Arcanashop;
+package main.view.AssetsLoader.gameplay.Arcanashop;
 
 import java.awt.Image;
 
@@ -14,5 +14,16 @@ public class SubQuest3GIFPanel extends JPanel{
         JLabel giflLabel = new JLabel(resizedGif);
         add(giflLabel);
         setOpaque(false);
+    }
+
+    public static class MainQuestGIF extends JPanel{
+        public MainQuestGIF(){
+            ImageIcon originalIcon = AssetsLoaderArcanashop.mainQuestGIF;
+            Image scaledImage = originalIcon.getImage().getScaledInstance(1280, 722, Image.SCALE_DEFAULT);
+            ImageIcon resizedGif = new ImageIcon(scaledImage);
+            JLabel giflLabel = new JLabel(resizedGif);
+            add(giflLabel);
+            setOpaque(false);
+        }
     }
 }

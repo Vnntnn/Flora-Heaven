@@ -1,9 +1,7 @@
 package main.model.Gameplay.Tree.CombineTrees;
 
-import java.util.ArrayList;
-
 import main.model.Gameplay.Tree.Tree;
-import main.view.treescombine.AurelianWhisperPanel;
+import main.view.AssetsLoader.trees.treescombine.AurelianWhisperPanel;
 
 public class AurelianWhisper extends Tree{
     public AurelianWhisper(){

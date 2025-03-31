@@ -9,14 +9,12 @@ import main.model.Gameplay.Tree.CombineTrees.HeartEclipse;
 import main.model.Gameplay.Tree.CombineTrees.LuminousFinder;
 import main.model.Gameplay.Tree.CombineTrees.SilentGuardian;
 import main.view.Gamewindow.ArcanashopWindow;
+import main.view.Gamewindow.BookWindow;
 import main.view.Gamewindow.MainQuestWindow;
-import main.view.gameplay.Arcanashop.MainQuestGIF;
-import main.view.gameplay.Arcanashop.MainQuestPanel;
-import main.view.gameplay.Arcanashop.ShopGIFPanel;
-import main.view.gameplay.Arcanashop.SubQuest1GIFPanel;
-import main.view.gameplay.Arcanashop.SubQuest2GIFPanel;
-import main.view.gameplay.Arcanashop.SubQuest3GIFPanel;
-import main.view.gameplay.Arcanashop.TreeBookGIFPanel;
+import main.view.AssetsLoader.gameplay.Arcanashop.*;
+import main.view.AssetsLoader.gameplay.Arcanashop.SubQuest3GIFPanel.MainQuestGIF;
+import main.model.Threads.Timer;
+import main.view.Gamewindow.Shopwindow;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -28,7 +26,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Arrays;
 import java.util.HashMap;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class ArcanashopController implements MouseMotionListener,MouseListener,ActionListener{
     private ArcanashopWindow arcanashopWindow;
@@ -37,9 +35,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private int mouseX,mouseY;
     private HashMap<Component,Point> position; // เก็บ position Tree
     private MainQuestGIF mainQuestGIF;
+    private SubQuest3GIFPanel subQuest3GIFPanel;
     private SubQuest1GIFPanel subQuest1GIFPanel;
     private SubQuest2GIFPanel subQuest2GIFPanel;
-    private SubQuest3GIFPanel subQuest3GIFPanel;
     private TreeBookGIFPanel treeBookGIFPanel;
     private ShopGIFPanel shopGIFPanel;
     private BasicCombineTree combiner;
@@ -48,10 +46,13 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private SubQuestGenerator subQuestGenerator1,subQuestGenerator2,subQuestGenerator3;
     private Tree sqTree1,sqTree2,sqTree3;
     private Tree treeResult, treeResultMain;
+    private Timer timer;
 
     public ArcanashopController(ArcanashopWindow arcanashopWindow) {
         this.arcanashopWindow = arcanashopWindow;
         this.mainQuestPanel = new MainQuestPanel();
+        this.timer = new Timer(900); // 15 นาที
+        startTimer();
         mainQuestGIF = new MainQuestGIF();
         subQuest1GIFPanel = new SubQuest1GIFPanel();
         subQuest2GIFPanel = new SubQuest2GIFPanel();
@@ -77,7 +78,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 treeResultMain = new Cryptara();
                 break;
         }
-        //สุ่มคำใบ้
+
         subQuestGenerator1 = new SubQuestGenerator();
         sqTree1 = subQuestGenerator1.generatorSubQuestTree(arcanashopWindow.getPlayer().getDay());
         arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator1.gethintString1()+" กับ");
@@ -129,13 +130,40 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     public void onMainQuestClicked(MouseEvent e) {
     }
 
+    private void startTimer() {
+        Thread timerThread = new Thread(() -> {
+            while (!timer.isTimeUp()) {
+                int minutes = timer.getSec() / 60;
+                int seconds = timer.getSec() % 60;
+
+                SwingUtilities.invokeLater(() -> {
+                    arcanashopWindow.getTimeLabel().setText(String.format("%02d:%02d", minutes, seconds));
+                });
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(arcanashopWindow, "เวลาเล่นเกมหมดแล้ว!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                arcanashopWindow.dispose();
+            });
+        });
+        timer.start();
+        timerThread.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==arcanashopWindow.getMainQuest()){
             new MainQuestWindow();
         }
         else if(e.getSource()==arcanashopWindow.getShop()){
-            System.out.println("Open Shopppppppppppp");
+            // เปิดหน้าต่าง Shop
+            new ShopController(arcanashopWindow.getPlayer());
         }
         else if (e.getSource()==arcanashopWindow.getSubQuest()[0]){
             System.out.println("QUEST11111111111");
@@ -147,7 +175,8 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             System.out.println("QUEST33333333333");
         }
         else if (e.getSource()==arcanashopWindow.getBook()){
-            System.out.println("Bokkkkkk collection");
+            // เปิดหน้าต่าง Book
+            new BookController(arcanashopWindow.getPlayer());
         }
         else if(e.getSource()==arcanashopWindow.getCombine()){
             if (arcanashopWindow.getDrop1().getComponentCount()==1 && arcanashopWindow.getDrop2().getComponentCount()==1){
@@ -165,14 +194,15 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 treeResultimg.addMouseMotionListener(this);
                 arcanashopWindow.getDrop1().getComponent(0).setLocation(position.get(arcanashopWindow.getDrop1().getComponent(0)));
                 arcanashopWindow.getDrop2().getComponent(0).setLocation(position.get(arcanashopWindow.getDrop2().getComponent(0)));
-                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop1().getComponent(0), Integer.valueOf(30));  //add to frame 
-                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop2().getComponent(0), Integer.valueOf(30));  //add to frame 
+                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop1().getComponent(0), Integer.valueOf(30));
+                arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop2().getComponent(0), Integer.valueOf(30));
                 arcanashopWindow.getLayeredPane().add(treeResultimg,Integer.valueOf(12));
                 arcanashopWindow.getLayeredPane().revalidate();
                 arcanashopWindow.getLayeredPane().repaint();
             }
         }
     }
+
     @Override
     public void mouseEntered(MouseEvent e) {
         e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

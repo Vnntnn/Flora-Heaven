@@ -1,7 +1,7 @@
 package main.model.Gameplay.Tree.CombineTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.treescombine.HeartEclipsePanel;
+import main.view.AssetsLoader.trees.treescombine.HeartEclipsePanel;
 
 public class HeartEclipse extends Tree{
     public HeartEclipse(){

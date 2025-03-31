@@ -1,25 +1,13 @@
 package main.view.Gamewindow;
-import main.model.Gameplay.Tree.BaseTrees.Chandra;
-import main.model.Gameplay.Tree.BaseTrees.Eclipsara;
-import main.model.Gameplay.Tree.BaseTrees.Everguard;
-import main.model.Gameplay.Tree.BaseTrees.Heartroot;
-import main.model.Gameplay.Tree.BaseTrees.Huolu;
-import main.model.Gameplay.Tree.BaseTrees.IllumisSprout;
-import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
-import main.model.Gameplay.Tree.BaseTrees.Lunacrypta;
-import main.model.Gameplay.Tree.BaseTrees.Mindspire;
-import main.model.Gameplay.Tree.BaseTrees.SilentisShade;
-import main.model.Gameplay.Tree.BaseTrees.Voxspire;
-import main.model.Gameplay.Tree.BaseTrees.bloodvalorTree;
-import main.model.Player.Player;
-import main.model.Player.TreeObtains;
-import main.view.gameplay.Arcanashop.*;
-import main.view.trees.AssetsLoaderTrees;
-import main.view.trees.Bloodvalor_blossomPanel;
 
-// ***
-// Author: Vnntnn
-// ***
+import main.model.Gameplay.Tree.BaseTrees.*;
+import main.model.Player.Player;
+import main.model.Threads.Timer;
+import main.view.AssetsLoader.gameplay.Arcanashop.*;
+
+/**
+ * @author
+ */
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,6 +33,8 @@ public class ArcanashopWindow extends JFrame {
     private JPanel[] treeholders;
     private JLayeredPane layeredPane;
     private SubQuestTextPanel subQuestTextPanel1, subQuestTextPanel2,subQuestTextPanel3;
+    private Timer timer;
+    private JLabel timeLabel;
 
     public ArcanashopWindow() {
         AssetsLoaderArcanashop.getInstance();
@@ -114,6 +104,12 @@ public class ArcanashopWindow extends JFrame {
         drop2.setOpaque(false);
         drop2.setBounds(783, 470, 138, 146);
 
+        timer = new Timer(900);
+        timeLabel = new JLabel("15:00");
+        timeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        timeLabel.setForeground(Color.WHITE);
+        timeLabel.setBounds(50, 650, 100, 30);
+
         // Initializing LayeredPane
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1290, 755));
@@ -153,29 +149,17 @@ public class ArcanashopWindow extends JFrame {
         sqevents[2].setBorderPainted(false);
 
         treeholders[0].setBounds(23,6,85,85);
-        treeholders[0].setBackground(new Color(0,0,0,150));
         treeholders[1].setBounds(132,6,85,85);
-        treeholders[1].setBackground(new Color(0,0,0,150));
         treeholders[2].setBounds(240,6,85,85);
-        treeholders[2].setBackground(new Color(0,0,0,150));
         treeholders[3].setBounds(345,6,85,85);
-        treeholders[3].setBackground(new Color(0,0,0,150));
         treeholders[4].setBounds(20,118,85,85);
-        treeholders[4].setBackground(new Color(0,0,0,150));
         treeholders[5].setBounds(132,118,85,85);
-        treeholders[5].setBackground(new Color(0,0,0,150));
         treeholders[6].setBounds(240,118,85,85);
-        treeholders[6].setBackground(new Color(0,0,0,150));
         treeholders[7].setBounds(342,118,85,85);
-        treeholders[7].setBackground(new Color(0,0,0,150));
         treeholders[8].setBounds(18,236,85,85);
-        treeholders[8].setBackground(new Color(0,0,0,150));
         treeholders[9].setBounds(130,236,85,85);
-        treeholders[9].setBackground(new Color(0,0,0,150));
         treeholders[10].setBounds(235,236,85,85);
-        treeholders[10].setBackground(new Color(0,0,0,150));
         treeholders[11].setBounds(340,236,85,85);
-        treeholders[11].setBackground(new Color(0,0,0,150));
 
         shop.setBounds(970,360,129,348);
         shop.setContentAreaFilled(false);
@@ -208,10 +192,10 @@ public class ArcanashopWindow extends JFrame {
         layeredPane.add(shelfbackgroundpanel, Integer.valueOf(1));
         layeredPane.add(treeholdershelfpanel, Integer.valueOf(2));
         layeredPane.add(counterpanel, Integer.valueOf(3));
-        layeredPane.add(daypapercardholderpanel, Integer.valueOf(4));
-        layeredPane.add(mailboxpanel, Integer.valueOf(5));
+        layeredPane.add(mailboxpanel, Integer.valueOf(4));
+        layeredPane.add(dayspanel, Integer.valueOf(5));
         layeredPane.add(deskbackgroundpanel, Integer.valueOf(6));
-        layeredPane.add(dayspanel, Integer.valueOf(7));
+        layeredPane.add(daypapercardholderpanel, Integer.valueOf(7));
         layeredPane.add(questsboardpanel, Integer.valueOf(9));
         layeredPane.add(mainquestpanel, Integer.valueOf(10));
         layeredPane.add(subquestpanel, Integer.valueOf(11));
@@ -240,9 +224,15 @@ public class ArcanashopWindow extends JFrame {
             layer_index++;
         }
 
+        layeredPane.add(timeLabel, Integer.valueOf(30));
+
         add(layeredPane, BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public JLabel getTimeLabel() {
+        return timeLabel;
     }
 
     public JPanel[] getPanel(){

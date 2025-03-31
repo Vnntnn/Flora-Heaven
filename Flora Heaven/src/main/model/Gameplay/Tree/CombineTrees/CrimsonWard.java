@@ -1,8 +1,8 @@
 package main.model.Gameplay.Tree.CombineTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.trees.VoxspirePanel;
-import main.view.treescombine.CrimsonWardPanel;
+import main.view.AssetsLoader.trees.basetrees.VoxspirePanel;
+import main.view.AssetsLoader.trees.treescombine.CrimsonWardPanel;
 
 public class CrimsonWard extends Tree{
     public CrimsonWard(){

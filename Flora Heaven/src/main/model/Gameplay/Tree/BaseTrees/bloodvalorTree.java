@@ -1,9 +1,7 @@
 package main.model.Gameplay.Tree.BaseTrees;
 
-import java.util.ArrayList;
-
 import main.model.Gameplay.Tree.Tree;
-import main.view.AssetsLoader.trees.Bloodvalor_blossomPanel;
+import main.view.AssetsLoader.trees.basetrees.Bloodvalor_blossomPanel;
 
 public class bloodvalorTree extends Tree {
     public bloodvalorTree() {

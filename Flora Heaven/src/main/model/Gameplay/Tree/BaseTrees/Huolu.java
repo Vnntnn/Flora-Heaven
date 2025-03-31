@@ -1,7 +1,7 @@
 package main.model.Gameplay.Tree.BaseTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.AssetsLoader.trees.HuoluPanel;
+import main.view.AssetsLoader.trees.basetrees.HuoluPanel;
 
 public class Huolu extends Tree {
     public Huolu() {

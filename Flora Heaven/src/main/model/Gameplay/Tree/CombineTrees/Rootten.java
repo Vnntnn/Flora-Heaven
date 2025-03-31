@@ -1,8 +1,8 @@
 package main.model.Gameplay.Tree.CombineTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.trees.LuckybloomPanel;
-import main.view.treescombine.RoottenPanel;
+import main.view.AssetsLoader.trees.basetrees.LuckybloomPanel;
+import main.view.AssetsLoader.trees.treescombine.RoottenPanel;
 
 public class Rootten extends Tree{
     public Rootten(){

@@ -1,4 +1,4 @@
-package main.view.gameplay.Arcanashop;
+package main.view.AssetsLoader.gameplay.Arcanashop;
 
 import java.awt.Image;
 

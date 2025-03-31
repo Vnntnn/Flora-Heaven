@@ -4,8 +4,10 @@ import main.model.Player.Player;
 import main.model.sound.bgSound;
 import main.view.Gamewindow.BookWindow;
 import javax.swing.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
-public class BookController {
+public class BookController implements WindowFocusListener {
     private Player player;
     private BookWindow view;
     private int currentTreeIndex = 0;
@@ -17,6 +19,7 @@ public class BookController {
     public BookController(Player player) {
         this.player = player;
         this.view = new BookWindow(this);
+        view.addWindowFocusListener(this);
         bgSound bg = new bgSound();
         bg.play();
     }
@@ -103,5 +106,15 @@ public class BookController {
     public static void main(String[] args) {
         Player player = new Player();
         BookController controller = new BookController(player);
+    }
+
+    @Override
+    public void windowGainedFocus(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowLostFocus(WindowEvent e) {
+        view.dispose();
     }
 }

@@ -34,6 +34,7 @@ public class Shopwindow extends JFrame {
         fbookpanel = new fbookPanel();
         buybutton = new BuybuttonPanel();
         basecollectiontrees = new BaseCollectionTrees();
+
         controller.setBuybuttonPanel(buybutton);
 
         buypanel = new JPanel[8];
@@ -137,11 +138,5 @@ public class Shopwindow extends JFrame {
 
     public void updateBuyButtonImage(int index, boolean canBuy) {
         buybutton.updateButtonState(index, canBuy);
-    }
-
-    public static void main(String[] args) {
-        Player player = new Player();
-        ShopController controller = new ShopController(player);
-        new Shopwindow(controller);
     }
 }

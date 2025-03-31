@@ -1,8 +1,8 @@
 package main.model.Gameplay.Tree.CombineTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.trees.VoxspirePanel;
-import main.view.treescombine.MoonfortuneBloomPanel;
+import main.view.AssetsLoader.trees.basetrees.VoxspirePanel;
+import main.view.AssetsLoader.trees.treescombine.MoonfortuneBloomPanel;
 
 public class MoonfortuneBloom extends Tree{
     public MoonfortuneBloom(){

@@ -1,7 +1,7 @@
 package main.model.Gameplay.Tree.BaseTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.AssetsLoader.trees.ChandraPanel;
+import main.view.AssetsLoader.trees.basetrees.ChandraPanel;
 
 public class Chandra extends Tree {
     public Chandra() {

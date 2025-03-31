@@ -1,7 +1,7 @@
 package main.model.Gameplay.Tree.BaseTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.AssetsLoader.trees.MindspirePanel;
+import main.view.AssetsLoader.trees.basetrees.MindspirePanel;
 
 public class Mindspire extends Tree {
     public Mindspire() {
