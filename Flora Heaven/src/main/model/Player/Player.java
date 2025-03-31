@@ -6,7 +6,7 @@ package main.model.Player;
 
 import java.io.Serializable;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
     private int coins;
     private int day;
     private TreeObtains obtainTrees;

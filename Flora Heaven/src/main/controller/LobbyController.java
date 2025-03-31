@@ -13,13 +13,15 @@ import javax.swing.*;
 
 public class LobbyController {
     private LobbyWindow view;
-    private ArrayList<Firefly> fireflies;
+    private final ArrayList<Firefly> fireflies;
     private static final int NUM_FIREFLIES = 120;
+    private boolean isViewReady = false; // เพิ่ม flag ตรวจสอบ
 
     public LobbyController() {
-        this.view = new LobbyWindow(this);
         this.fireflies = new ArrayList<>();
         initFireflies();
+        this.view = new LobbyWindow(this);
+        this.isViewReady = true; // ตั้งค่าเมื่อ view พร้อม
         addEventListeners();
     }
 
@@ -39,6 +41,8 @@ public class LobbyController {
     }
 
     public void updateFireflies(int width, int height) {
+        if (!isViewReady || view == null) return;
+
         for (Firefly firefly : fireflies) {
             firefly.move();
         }
@@ -73,5 +77,9 @@ public class LobbyController {
 
     public ArrayList<Firefly> getFireflies() {
         return fireflies;
+    }
+
+    public static void main(String[] args) {
+        new LobbyController();
     }
 }

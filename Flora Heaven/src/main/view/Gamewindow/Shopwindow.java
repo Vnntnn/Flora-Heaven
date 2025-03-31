@@ -20,6 +20,7 @@ public class Shopwindow extends JFrame {
     private ShopController controller;
 
     public Shopwindow(ShopController controller) {
+        AssetsLoaderTreeShop.getInstance();
         this.controller = controller;
 
         setTitle("Flora Heaven");
@@ -32,8 +33,8 @@ public class Shopwindow extends JFrame {
         candlepanel = new candlePanel();
         fbookpanel = new fbookPanel();
         buybutton = new BuybuttonPanel();
-        controller.setBuybuttonPanel(buybutton);
         basecollectiontrees = new BaseCollectionTrees();
+        controller.setBuybuttonPanel(buybutton);
 
         buypanel = new JPanel[8];
         buy = new JButton[8];
