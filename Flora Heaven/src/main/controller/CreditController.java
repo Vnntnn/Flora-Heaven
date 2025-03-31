@@ -28,6 +28,12 @@ public class CreditController {
         } catch (IOException | FontFormatException e) {
             handleResourceError(e);
         }
+        EventQueue.invokeLater(() -> {
+            if (view != null) {
+                view.setVisible(true);
+                view.toFront();
+            }
+        });
     }
 
     private Font loadFont(String path) throws IOException, FontFormatException {

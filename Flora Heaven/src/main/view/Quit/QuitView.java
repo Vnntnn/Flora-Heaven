@@ -93,4 +93,14 @@ public class QuitView {
 
     public void show() { frame.setVisible(true); }
     public void close() { frame.dispose(); }
+
+    public void setVisible(boolean b) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVisible'");
+    }
+
+    public void toFront() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toFront'");
+    }
 }

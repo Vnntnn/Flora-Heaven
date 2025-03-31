@@ -34,11 +34,13 @@ public class QuitController {
     }
 
     public void show() {
-        if (view != null) {
-            view.show();  // เรียกเมธอด show() ของ OpenStoryView
-        }
+        EventQueue.invokeLater(() -> {
+            if (view != null) {
+                view.setVisible(true);
+                view.toFront();
+            }
+        });
     }
-
     private Font loadFont(String path) throws IOException, FontFormatException {
         try (InputStream fontStream = getClass().getResourceAsStream(path)) {
             if (fontStream == null) {
@@ -71,9 +73,7 @@ public class QuitController {
             // เปิด Lobby ใหม่แบบปลอดภัย
             SwingUtilities.invokeLater(() -> {
                 if (lobbyController != null) {
-                    // สร้าง LobbyWindow ใหม่แทนการใช้ของเดิม
-                    lobbyController = new LobbyController();
-                    lobbyController.showLobby();
+                    EventQueue.invokeLater(() -> new LobbyController());
                 }
             });
         });

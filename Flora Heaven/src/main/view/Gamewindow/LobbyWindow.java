@@ -1,13 +1,18 @@
 package main.view.Gamewindow;
 
 import main.controller.LobbyController;
-import main.view.Lobby.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.geom.AffineTransform;
+import main.view.Lobby.*;
 
 public class LobbyWindow extends JFrame {
+    public static final int TRANSITION_NONE = 0;
+    public static final int TRANSITION_FADE = 1;
+    public static final int TRANSITION_ZOOM = 2;
+    public static final int TRANSITION_SLIDE = 3;
+    
     private GameboardPanel gameboardpanel;
     private LobbybackgroundPanel lobbybackgroundpanel;
     private startBtnPanel startbtnpanel;
@@ -16,27 +21,20 @@ public class LobbyWindow extends JFrame {
     private FireflysPanel fireflysPanel;
     private LobbyController controller;
     
-    // Transition effects
+    private int currentTransition = TRANSITION_NONE;
     private float transitionAlpha = 0f;
     private float zoomFactor = 1.0f;
     private float slideOffset = 0f;
     private BufferedImage transitionBuffer;
     private Timer animationTimer;
-    
-    // Transition types
-    public static final int TRANSITION_FADE = 0;
-    public static final int TRANSITION_ZOOM = 1;
-    public static final int TRANSITION_SLIDE = 2;
-    private int currentTransition = TRANSITION_FADE;
 
     public LobbyWindow(LobbyController controller) {
         this.controller = controller;
-            initializeWindow();
-            initializePanels();
-            setupLayeredPane();
-            setupAnimationTimer();
-            setVisible(true);
-        
+        initializeWindow();
+        initializePanels();
+        setupLayeredPane();
+        setupAnimationTimer();
+        setVisible(true);
     }
 
     private void initializeWindow() {
@@ -76,17 +74,17 @@ public class LobbyWindow extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                paintTransitionEffect(g);
+                renderTransitionEffect(g);
             }
         };
         layeredPane.setPreferredSize(new Dimension(1290, 755));
 
         layeredPane.add(lobbybackgroundpanel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(gameboardpanel, Integer.valueOf(1));
-        layeredPane.add(fireflysPanel, Integer.valueOf(2));
-        layeredPane.add(startbtnpanel, Integer.valueOf(3));
-        layeredPane.add(quitbtnpanel, Integer.valueOf(3));
-        layeredPane.add(creditsbtnpanel, Integer.valueOf(3));
+        layeredPane.add(fireflysPanel, JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(gameboardpanel, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(startbtnpanel, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(quitbtnpanel, JLayeredPane.POPUP_LAYER);
+        layeredPane.add(creditsbtnpanel, JLayeredPane.POPUP_LAYER);
 
         add(layeredPane);
     }
@@ -99,69 +97,28 @@ public class LobbyWindow extends JFrame {
         animationTimer.start();
     }
 
-    // Transition control methods
     public void setTransitionType(int type) {
         this.currentTransition = type;
     }
     
     public void setTransitionAlpha(float alpha) {
         this.transitionAlpha = Math.min(1f, Math.max(0f, alpha));
+        repaint();
     }
     
     public void setZoomFactor(float factor) {
         this.zoomFactor = factor;
+        repaint();
     }
     
     public void setSlideOffset(float offset) {
         this.slideOffset = offset;
+        repaint();
     }
 
-    private void paintTransitionEffect(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g.create();
-        
-        try {
-            // Apply current transition effect
-            switch(currentTransition) {
-                case TRANSITION_ZOOM:
-                    AffineTransform transform = new AffineTransform();
-                    transform.translate(getWidth()/2, getHeight()/2);
-                    transform.scale(zoomFactor, zoomFactor);
-                    transform.translate(-getWidth()/2, -getHeight()/2);
-                    g2d.setTransform(transform);
-                    break;
-                    
-                case TRANSITION_SLIDE:
-                    g2d.translate(slideOffset * getWidth(), 0);
-                    break;
-            }
-            
-            // Always apply fade overlay
-            if (transitionAlpha > 0) {
-                g2d.setComposite(AlphaComposite.getInstance(
-                    AlphaComposite.SRC_OVER, transitionAlpha));
-                g2d.setColor(Color.BLACK);
-                g2d.fillRect(0, 0, getWidth(), getHeight());
-            }
-        } finally {
-            g2d.dispose();
-        }
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        // Double buffering with transition effects
-        if (transitionBuffer == null || 
-            transitionBuffer.getWidth() != getWidth() || 
-            transitionBuffer.getHeight() != getHeight()) {
-            transitionBuffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
-        }
-        
-        Graphics bufferGraphics = transitionBuffer.getGraphics();
-        super.paint(bufferGraphics);
-        
+    private void renderTransitionEffect(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         
-        // Apply transition effects to final render
         switch(currentTransition) {
             case TRANSITION_ZOOM:
                 AffineTransform transform = new AffineTransform();
@@ -172,21 +129,33 @@ public class LobbyWindow extends JFrame {
                 break;
                 
             case TRANSITION_SLIDE:
-                g2d.translate(slideOffset * getWidth(), 0);
+                g2d.translate(-slideOffset * getWidth(), 0);
                 break;
         }
         
-        g2d.drawImage(transitionBuffer, 0, 0, null);
-        
-        // Apply fade overlay
         if (transitionAlpha > 0) {
             g2d.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, transitionAlpha));
             g2d.setColor(Color.BLACK);
             g2d.fillRect(0, 0, getWidth(), getHeight());
         }
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        if (transitionBuffer == null || 
+            transitionBuffer.getWidth() != getWidth() || 
+            transitionBuffer.getHeight() != getHeight()) {
+            transitionBuffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        }
         
+        Graphics bufferGraphics = transitionBuffer.getGraphics();
+        super.paint(bufferGraphics);
         bufferGraphics.dispose();
+        
+        Graphics2D g2d = (Graphics2D) g;
+        renderTransitionEffect(g2d);
+        g2d.drawImage(transitionBuffer, 0, 0, null);
         g2d.dispose();
     }
 
@@ -206,6 +175,9 @@ public class LobbyWindow extends JFrame {
     public void dispose() {
         if (animationTimer != null) {
             animationTimer.stop();
+        }
+        if (transitionBuffer != null) {
+            transitionBuffer.flush();
         }
         super.dispose();
     }

@@ -133,7 +133,11 @@ public class OpenStoryController {
     }
 
     public void show() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'show'");
+        EventQueue.invokeLater(() -> {
+            if (view != null) {
+                view.setVisible(true); // แสดงหน้าต่างทันที
+                view.toFront(); // นำหน้าต่างมาด้านหน้า
+            }
+        });
     }
 }

@@ -137,4 +137,14 @@ public class CreditView {
     public boolean isVisible() {
         return isVisible;
     }
+
+    public void setVisible(boolean b) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVisible'");
+    }
+
+    public void toFront() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toFront'");
+    }
 }
