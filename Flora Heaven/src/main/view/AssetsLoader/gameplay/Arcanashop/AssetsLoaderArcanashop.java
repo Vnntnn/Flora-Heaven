@@ -1,8 +1,8 @@
 package main.view.AssetsLoader.gameplay.Arcanashop;
 
-// ***
-// Author: Vnntnn
-// ***
+/**
+ * @author Vnntnn
+ */
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -50,7 +50,6 @@ public class AssetsLoaderArcanashop {
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
-
     }
 
     public static AssetsLoaderArcanashop getInstance() {

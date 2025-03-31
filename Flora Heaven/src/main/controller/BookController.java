@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.model.Player.Player;
+import main.model.sound.bgSound;
 import main.view.Gamewindow.BookWindow;
 import javax.swing.*;
 
@@ -16,6 +17,8 @@ public class BookController {
     public BookController(Player player) {
         this.player = player;
         this.view = new BookWindow(this);
+        bgSound bg = new bgSound();
+        bg.play();
     }
 
     public void nextPage() {
@@ -38,7 +41,7 @@ public class BookController {
         view.showSwappingAnimation(isNextAnimation);
 
         // ใช้ Timer ที่มีความถี่สูงขึ้นสำหรับ animation
-        Timer timer = new Timer(50, e -> { // 50ms = 20 FPS
+        Timer timer = new Timer(50, e -> {
             if (isNextAnimation) {
                 changeToNextPage();
             } else {
@@ -47,7 +50,6 @@ public class BookController {
             isAnimating = false;
             ((Timer)e.getSource()).stop();
         });
-        timer.setInitialDelay(300); // ดีเลย์เท่ากับระยะเวลา animation
         timer.setRepeats(false);
         timer.start();
     }
