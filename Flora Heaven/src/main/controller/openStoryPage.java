@@ -13,7 +13,7 @@ import java.io.*;
 import java.net.URL;
 
 
-public class openStoryPage{
+public class openStoryPage {
     private JFrame fr;
     private JPanel pTitle, pFootage, pTopage, pButton, pTop, pMain, pConCan, pMid, pBG;
     private JLayeredPane pFrame, pBtnBack;

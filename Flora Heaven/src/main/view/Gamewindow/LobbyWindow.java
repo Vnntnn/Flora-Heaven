@@ -1,7 +1,7 @@
 package main.view.Gamewindow;
 
 import main.controller.LobbyController;
-import main.view.Lobby.*;
+import main.view.AssetsLoader.Lobby.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +12,7 @@ public class LobbyWindow extends JFrame {
     private quitBtnPanel quitbtnpanel;
     private creditsBtnPanel creditsbtnpanel;
     private FireflysPanel fireflysPanel;
+    private GifPanel lobbygifpanel;
     private LobbyController controller;
 
     public LobbyWindow(LobbyController controller) {
@@ -27,6 +28,7 @@ public class LobbyWindow extends JFrame {
         startbtnpanel = new startBtnPanel();
         quitbtnpanel = new quitBtnPanel();
         creditsbtnpanel = new creditsBtnPanel();
+        lobbygifpanel = new GifPanel();
         fireflysPanel = new FireflysPanel(controller);
 
         lobbybackgroundpanel.setBounds(0, 0, 1290, 755);
@@ -35,12 +37,14 @@ public class LobbyWindow extends JFrame {
         quitbtnpanel.setBounds(0, 0, 1290, 755);
         creditsbtnpanel.setBounds(0, 0, 1290, 755);
         fireflysPanel.setBounds(0, 0, 1290, 755);
+        lobbygifpanel.setBounds(0, 0, 1290, 755);
 
         gameboardpanel.setOpaque(false);
         startbtnpanel.setOpaque(false);
         quitbtnpanel.setOpaque(false);
         creditsbtnpanel.setOpaque(false);
         fireflysPanel.setOpaque(false);
+        lobbygifpanel.setOpaque(false);
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(1290, 755));
@@ -51,13 +55,17 @@ public class LobbyWindow extends JFrame {
         layeredPane.add(startbtnpanel, Integer.valueOf(3));
         layeredPane.add(quitbtnpanel, Integer.valueOf(3));
         layeredPane.add(creditsbtnpanel, Integer.valueOf(3));
+        layeredPane.add(lobbygifpanel, Integer.valueOf(4));
 
         add(layeredPane);
 
         Timer timer = new Timer(50, e -> {
-            controller.updateFireflies(getWidth(), getHeight());
-            fireflysPanel.repaint();
+            if (controller != null) {
+                controller.updateFireflies(getWidth(), getHeight());
+                fireflysPanel.repaint();
+            }
         });
+        timer.setInitialDelay(100);
         timer.start();
 
         setVisible(true);
@@ -73,5 +81,9 @@ public class LobbyWindow extends JFrame {
 
     public JButton getQuitButton() {
         return quitbtnpanel.getQuitBtn();
+    }
+
+    public static void main(String[] args) {
+        new LobbyWindow(new LobbyController());
     }
 }

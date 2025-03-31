@@ -1,7 +1,7 @@
 package main.model.Gameplay.Tree.BaseTrees;
 
 import main.model.Gameplay.Tree.Tree;
-import main.view.trees.HeartrootPanel;
+import main.view.AssetsLoader.trees.HeartrootPanel;
 
 public class Heartroot extends Tree {
     public Heartroot() {

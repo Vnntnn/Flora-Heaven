@@ -177,10 +177,8 @@ public class creditPage {
             timer1.start();
 
             Timer timer2 = new Timer(600, ev -> {
-//                LobbyController.
                 controller.getController().getView().setVisible(true);
                 fr.dispose(); // เปลี่ยนสีพื้นหลังกลับเป็นสีดำหลังจาก 1 วินาที
-                // ปิดหน้าต่างหลังจากเปลี่ยนสี
             });
             timer2.setRepeats(false); // ให้ Timer ทำงานเพียงครั้งเดียว
             timer2.start();

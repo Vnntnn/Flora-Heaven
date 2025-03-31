@@ -5,7 +5,7 @@ package main.view.Gamewindow;
 // ***
 
 import main.model.Player.Player;
-import main.view.gameplay.Quests.MainQuests.*;
+import main.view.AssetsLoader.gameplay.Quests.MainQuests.*;
 import javax.swing.*;
 import java.awt.*;
 

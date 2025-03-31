@@ -1,0 +1,17 @@
+package main.view.AssetsLoader.trees;
+
+// ***
+// Author: Vnntnn
+// ***
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Bloodvalor_blossomPanel extends JPanel {
+    @Override
+    protected void paintComponent(Graphics g) {
+        setOpaque(false);
+        super.paintComponent(g);
+        g.drawImage(AssetsLoaderTrees.bloodvalorblossom, 0, 0, getWidth(), getHeight(), this);
+    }
+}
