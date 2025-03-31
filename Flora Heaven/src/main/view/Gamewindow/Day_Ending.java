@@ -66,17 +66,4 @@ public class Day_Ending extends JFrame {
             }
         }
     }
-    
-    public static void showDay(int dayNumber) { //showDay(Player player)
-        // int dayNumber = player.getDay()
-        String imagePath = "/DayOpenAndEnd/End/Day_" + dayNumber + "_End.png";
-        SwingUtilities.invokeLater(() -> {
-            Day_Ending frame = new Day_Ending(imagePath);
-            frame.setVisible(true);
-        });
-    }
-
-    public static void main(String[] args) {
-        showDay(3);
-    }
 }

@@ -120,7 +120,7 @@ public class EndingController {
         nextButton.addActionListener(e -> {
             view.close();
             // อาจเปลี่ยนไปหน้า Credits หรือ MainMenu ตามต้องการ
-            EventQueue.invokeLater(() -> new FailController());
+            EventQueue.invokeLater(() -> new LobbyController());
         });
     }
 
@@ -143,5 +143,9 @@ public class EndingController {
         }
         backgroundImage = null;
         customFont = null;
+    }
+
+    public static void main(String[] args) {
+        new EndingController();
     }
 }

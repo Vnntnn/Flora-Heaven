@@ -18,6 +18,9 @@ import main.view.Gamewindow.MainQuestWindow;
 import main.view.AssetsLoader.gameplay.Arcanashop.*;
 import main.view.AssetsLoader.gameplay.Arcanashop.SubQuest3GIFPanel.MainQuestGIF;
 import main.model.Threads.Timer;
+import main.model.*;
+import main.model.Player.EndingDay;
+import main.controller.*;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -51,6 +54,8 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private Tree treeResult, treeResultMain;
     private Timer timer;
     private Player player;
+    private showDayEnding showdayending;
+    private showDayOpen showdayopen;
 
     public ArcanashopController(Player player) {
         this.player = player;
@@ -376,19 +381,36 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 switch (player.getDay()) {
                     case 1:
                         player.setCoins(player.getCoins()+100);
-                        new 
+                        arcanashopWindow.dispose();
+                        showdayending = new showDayEnding(player.getDay());
+                        new EndingDay(player);
+                        showdayopen = new showDayOpen(player.getDay());
                         break;
                     case 2:
                         player.setCoins(player.getCoins()+300);
+                        arcanashopWindow.dispose();
+                        showdayending = new showDayEnding(player.getDay());
+                        new EndingDay(player);
+                        showdayopen = new showDayOpen(player.getDay());
                         break;
                     case 3:
                         player.setCoins(player.getCoins()+550);
+                        arcanashopWindow.dispose();
+                        showdayending = new showDayEnding(player.getDay());
+                        new EndingDay(player);
+                        showdayopen = new showDayOpen(player.getDay());
                         break;
                     case 4:
                         player.setCoins(player.getCoins()+888);
+                        arcanashopWindow.dispose();
+                        showdayending = new showDayEnding(player.getDay());
+                        new EndingDay(player);
+                        showdayopen = new showDayOpen(player.getDay());
                         break;
                     case 5:
-                        System.out.println("Yahhhh Enddingss");
+                        arcanashopWindow.dispose();
+                        showdayending = new showDayEnding(player.getDay());
+                        new EndingController();
                         break;
                 }
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
