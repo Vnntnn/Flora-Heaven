@@ -7,6 +7,6 @@ public class LogoPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(AssetsLoaderLobby.logo, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(AssetsLoaderLobby.logo, 0, 0, 1150, 615, this);
     }
 }

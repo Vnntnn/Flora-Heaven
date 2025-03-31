@@ -12,7 +12,7 @@ public class LobbyWindow extends JFrame {
     private quitBtnPanel quitbtnpanel;
     private creditsBtnPanel creditsbtnpanel;
     private FireflysPanel fireflysPanel;
-    private LobbyGifPanel lobbygifpanel;
+    private GifPanel lobbygifpanel;
     private LogoPanel logopanel;
     private LobbyController controller;
 
@@ -29,7 +29,7 @@ public class LobbyWindow extends JFrame {
         startbtnpanel = new startBtnPanel();
         quitbtnpanel = new quitBtnPanel();
         creditsbtnpanel = new creditsBtnPanel();
-        lobbygifpanel = new LobbyGifPanel();
+        lobbygifpanel = new GifPanel();
         logopanel = new LogoPanel();
         fireflysPanel = new FireflysPanel(controller);
 
