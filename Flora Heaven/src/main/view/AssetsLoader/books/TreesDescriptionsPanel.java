@@ -1,18 +1,27 @@
 package main.view.AssetsLoader.books;
 
-/**
- * @author Vnntnn
- */
-
 import java.awt.*;
 import javax.swing.*;
+import main.controller.BookController;
 
 public class TreesDescriptionsPanel extends JPanel {
+    private BookController controller;
+
+    public TreesDescriptionsPanel(BookController controller) {
+        this.controller = controller;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int i = 0; i < 12; i++) {
-            g.drawImage(AssetsLoaderBook.Trees[i], 0, 0, getWidth(), getHeight(), null);
+        if (controller.isShowingTrees()) {
+            for (int i = 0; i < 4; i++) {
+                int index = (controller.getCurrentTreeIndex() + i) % 12;
+                if (index < AssetsLoaderBook.Trees.length) {
+                    g.drawImage(AssetsLoaderBook.Trees[index],
+                            0, 0, getWidth(), getHeight(), null);
+                }
+            }
         }
     }
 }

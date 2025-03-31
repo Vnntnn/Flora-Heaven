@@ -23,11 +23,20 @@ public class ShopController {
         currentDay = player.getDay();
 
         canBuy = new boolean[][] {
-                {true, true, false, false, false, false, false, false},  // Day 1
-                {false, false, false, true, false, false, false, false},  // Day 2
-                {false, false, false, false, true, false, false, false},  // Day 3
-                {false, false, false, false, false, true, true, false}, // Day 4
-                {false, false, false, false, false, false, false, true}   // Day 5
+                {true, true, false, false,
+                false, false, false, false},  // Day 1
+
+                {false, false, false, true,
+                false, false, false, false},  // Day 2
+
+                {false, false, false, false,
+                true, false, false, false},  // Day 3
+
+                {false, false, false, false,
+                false, true, true, false}, // Day 4
+
+                {false, false, false, false,
+                false, false, false, true}   // Day 5
         };
     }
 
@@ -43,7 +52,7 @@ public class ShopController {
                     player.setCoins((int)(player.getCoins() - tree.getPrice()));
                     canBuy[currentDay - 1][index] = false;
 
-                    // เงื่อนไขใหม่: ซื้อต้นที่ 2 (index 1) ในวันใดก็ได้
+                    // ซื้อต้นที่ 2 ปลดล็อกต้นที่ 3
                     if (index == 1) {
                         unlockTreeNextDay(2); // ปลดล็อกต้นที่ 3 ในวันถัดไป
                     }
