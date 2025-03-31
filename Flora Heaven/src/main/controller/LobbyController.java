@@ -64,7 +64,7 @@ public class LobbyController {
         if (creditsButton != null) {
             creditsButton.addActionListener(e -> {
                 view.setVisible(false);
-                new creditPage();
+                new creditPage(new LobbyController());
             });
         }
 

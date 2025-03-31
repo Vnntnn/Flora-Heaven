@@ -7,6 +7,8 @@ package main.controller;/*
  *
  * @author chenl
  */
+import main.view.Gamewindow.Opening_day;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -147,7 +149,7 @@ public class rolePage {
             timer1.start();
             
             Timer timer2 = new Timer(600, ev -> {
-                fr.dispose();
+                new openStoryPage();
             });
             timer2.setRepeats(false);
             timer2.start();

@@ -126,6 +126,7 @@ public class openStoryPage {
             timer1.start();
 
             Timer timer2 = new Timer(600, ev -> {
+                fr.setVisible(false);
                 new rolePage();
             });
             timer2.setRepeats(false);

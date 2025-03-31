@@ -26,7 +26,8 @@ public class creditPage {
     private ImageIcon background;
     private LobbyController controller;
 
-    public creditPage() {
+    public creditPage(LobbyController controller) {
+        this.controller = controller;
         int width = 1290;
         int height = 755;
         try {
