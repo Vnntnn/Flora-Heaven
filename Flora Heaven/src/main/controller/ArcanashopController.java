@@ -276,6 +276,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator1.gethintString2());
                 System.out.println("Yes1");
             }
+            else{
+                arcanashopWindow.getLayeredPane().remove(treeResultimg);
+            }
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel2().getBounds())){
             if (treeResult.getName() == sqTree2.getName()){
@@ -287,6 +290,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 arcanashopWindow.getsuSubQuestTextPanel2().getHintJLabel3().setText(subQuestGenerator2.gethintString2());
                 System.out.println("Yes2");
             }
+            else{
+                arcanashopWindow.getLayeredPane().remove(treeResultimg);
+            }
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel3().getBounds())){
             if (treeResult.getName() == sqTree3.getName()){
@@ -297,6 +303,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator3.gethintString1()+" กับ");
                 arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator3.gethintString2());
                 System.out.println("Yes3");
+            }
+            else{
+                arcanashopWindow.getLayeredPane().remove(treeResultimg);
             }
         }
     }
