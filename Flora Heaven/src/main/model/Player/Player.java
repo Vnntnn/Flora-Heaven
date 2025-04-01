@@ -27,6 +27,14 @@ public class Player implements Serializable {
         return coins;
     }
 
+    public void addCoins(int coins){
+        this.coins += coins;
+    }
+
+    public void addCoins(double coins){
+        this.coins += (int)coins;
+    }
+
     public int getDay(){
         return day;
     }

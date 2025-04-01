@@ -196,9 +196,6 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 Component checkkey2 = c2.getComponent(0);
                 Tree tree1 = treeMap.get(checkkey1);
                 Tree tree2 = treeMap.get(checkkey2);
-                System.out.println(tree1.getName());
-                System.out.println(tree2.getName());
-                System.out.println(combiner.combine(tree1, tree2).getName());
                 if(arcanashopWindow.getLayeredPane().isAncestorOf(treeResultimg)){
                     arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 }
@@ -336,7 +333,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel1().getBounds())){
             if (treeResult.getName() == sqTree1.getName()){
-                player.setCoins(player.getCoins()+(int)sqTree1.getPrice());
+                player.addCoins(sqTree1.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator1 = new SubQuestGenerator();
                 sqTree1 = subQuestGenerator1.generatorSubQuestTree(player.getDay());
@@ -349,7 +346,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel2().getBounds())){
             if (treeResult.getName() == sqTree2.getName()){
-                player.setCoins(player.getCoins()+(int)sqTree2.getPrice());
+                player.addCoins(sqTree2.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator1 = new SubQuestGenerator();
                 sqTree2 = subQuestGenerator2.generatorSubQuestTree(player.getDay());
@@ -362,7 +359,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel3().getBounds())){
             if (treeResult.getName() == sqTree3.getName()){
-                player.setCoins(player.getCoins()+(int)sqTree3.getPrice());
+                player.addCoins(sqTree3.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator3 = new SubQuestGenerator();
                 sqTree3 = subQuestGenerator3.generatorSubQuestTree(player.getDay());
@@ -379,23 +376,23 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                     case 1:
                         arcanashopWindow.dispose();
                         showdayending = new ShowDayEnding(player.getDay(),player);
-                        player.setCoins(player.getCoins()+100);
+                        player.addCoins(100);
                         new EndingDay(player).dayEnd();
                         break;
                     case 2:
-                        player.setCoins(player.getCoins()+300);
+                        player.addCoins(300);
                         arcanashopWindow.dispose();
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
                         break;
                     case 3:
-                        player.setCoins(player.getCoins()+550);
+                        player.addCoins(500);
                         arcanashopWindow.dispose();
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
                         break;
                     case 4:
-                        player.setCoins(player.getCoins()+888);
+                        player.addCoins(888.0);
                         arcanashopWindow.dispose();
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
