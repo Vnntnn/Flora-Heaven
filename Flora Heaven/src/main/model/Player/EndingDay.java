@@ -1,7 +1,5 @@
 package main.model.Player;
 
-import main.model.save.PlayerDataLoader;
-import main.model.save.PlayerDataSaver;
 
 public class EndingDay {
     private Player player;
@@ -12,6 +10,5 @@ public class EndingDay {
 
     private void dayEnd(Player player) {
         player.setDay(player.getDay() + 1);
-        PlayerDataSaver.savePlayer(this.player);
     }
 }

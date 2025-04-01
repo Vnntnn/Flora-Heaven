@@ -15,6 +15,7 @@ public class AssetsLoaderTreeShop {
     protected static ImageIcon candle;
     protected static ImageIcon fbook;
     protected static BufferedImage[] buybtn;
+    protected static BufferedImage[] unbuybtn;
     protected static BufferedImage[] unavailabletrees;
     private static AssetsLoaderTreeShop instance = new AssetsLoaderTreeShop();
 
@@ -23,9 +24,12 @@ public class AssetsLoaderTreeShop {
             shopbackground = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Background/background.png"));
             shoplogo = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Text/logo.png"));
 
-            buybtn = new BufferedImage[2];
-            buybtn[0] = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Buttons/Available/btn.png"));
-            buybtn[1] = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Buttons/Unavailable/btn.png"));
+            buybtn = new BufferedImage[8];
+            unbuybtn = new BufferedImage[8];
+            for (int i = 0; i < buybtn.length; i++) {
+                buybtn[i] = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Buttons/Unavailable/" + (i + 1) + ".png"));
+                unbuybtn[i] = ImageIO.read(AssetsLoaderTreeShop.class.getResourceAsStream("/assets/Gameplay/TreeShop/Buttons/Available/" + (i + 1) + ".png"));
+            }
 
             unavailabletrees = new BufferedImage[12];
             for (int i = 0; i < unavailabletrees.length; i++) {

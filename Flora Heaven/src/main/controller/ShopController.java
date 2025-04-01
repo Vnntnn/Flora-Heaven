@@ -48,7 +48,6 @@ public class ShopController implements WindowFocusListener {
     }
 
     public void setupBuyButton(JButton button, int index) {
-        // ตรวจสอบขอบเขตของ index
         if (index < 0 || index >= treeList.size()) {
             button.setEnabled(false);
             return;
@@ -70,7 +69,7 @@ public class ShopController implements WindowFocusListener {
 
                     updateButtonState(button, index);
                     if (buybuttonPanel != null) {
-                        buybuttonPanel.updateButtonState(index, false);
+                        buybuttonPanel.updateButtonState(index, false); // เปลี่ยนเป็น false เมื่อซื้อแล้ว
                     }
                 }
             }
@@ -78,10 +77,11 @@ public class ShopController implements WindowFocusListener {
     }
 
     public void updateButtonState(JButton button, int index) {
-        if (canBuy[currentDay - 1][index]) {
-            button.setEnabled(true);
-        } else {
-            button.setEnabled(false);
+        boolean canBuyState = canBuy[currentDay - 1][index] &&
+                player.getCoins() >= treeList.get(index).getPrice();
+        button.setEnabled(canBuyState);
+        if (buybuttonPanel != null) {
+            buybuttonPanel.updateButtonState(index, canBuyState);
         }
     }
 
