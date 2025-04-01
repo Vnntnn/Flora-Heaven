@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.model.Player.Player;
 import main.view.Role.RoleView;
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +74,7 @@ public class RoleController {
         
         nextButton.addActionListener(e -> {
             view.close();
-            EventQueue.invokeLater(() -> new EndingController());
+            EventQueue.invokeLater(() -> new ArcanashopController(new Player()));
         });
     }
 
@@ -88,63 +89,5 @@ public class RoleController {
                 JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         });
-    }
-
-    public void dispose() {
-        if (view != null) {
-            view.close();
-        }
-        backgroundImage = null;
-        customFont = null;
-    }
-
-    public void fadeOut(JFrame frame, Runnable onComplete) {
-        Timer timer = new Timer(30, new ActionListener() {
-            private float opacity = 1f;
-    
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                opacity -= 0.05f;
-                if (opacity <= 0) {
-                    opacity = 0;
-                    ((Timer) e.getSource()).stop();
-                    SwingUtilities.invokeLater(() -> {
-                        frame.setVisible(false);
-                        onComplete.run();
-                    });
-                }
-                frame.setOpacity(opacity);
-            }
-        });
-        timer.start();
-    }
-
-    // ฟังก์ชัน Fade In
-    public void fadeIn(JFrame frame) {
-        SwingUtilities.invokeLater(() -> {
-            frame.setUndecorated(true);
-            frame.setOpacity(0f);
-            frame.setVisible(true);
-        });
-
-        Timer timer = new Timer(30, new ActionListener() {
-            private float opacity = 0f;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                opacity += 0.05f;
-                if (opacity >= 1) {
-                    opacity = 1;
-                    ((Timer) e.getSource()).stop();
-                }
-                frame.setOpacity(opacity);
-            }
-        });
-        timer.start();
-    }
-
-    public void show() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'show'");
     }
 }

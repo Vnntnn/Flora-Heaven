@@ -37,7 +37,7 @@ public class rolePage {
         
         try {
             // Load custom font
-            InputStream fontStream = openStoryPage.class.getResourceAsStream("/Font/Pixelpoint.ttf");
+            InputStream fontStream = openStoryController.class.getResourceAsStream("/Font/Pixelpoint.ttf");
             if (fontStream == null) {
                 throw new FileNotFoundException("Font file not found in resources: /Font/Pixelpoint.ttf");
             }
@@ -47,7 +47,7 @@ public class rolePage {
             System.out.println("Font loaded successfully!");
 
             // Load animated GIF background
-            URL bgUrl = openStoryPage.class.getResource("/assets/Role/bgRole.png"); // Changed to GIF
+            URL bgUrl = openStoryController.class.getResource("/assets/Role/bgRole.png"); // Changed to GIF
             if (bgUrl == null) {
                 throw new FileNotFoundException("Background image not found: /img/bgRole.png");
             }
@@ -158,8 +158,4 @@ public class rolePage {
             timer2.start();
         });     
     }
-  
-//    public static void main(String[] args) {
-//        new rolePage();
-//    }
 }

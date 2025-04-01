@@ -1,5 +1,9 @@
 package main.controller;
 
+/**
+ * @author Vnntnn
+ */
+
 import main.model.Gameplay.BasicCombineTree;
 import main.model.Gameplay.SubQuestGenerator;
 import main.model.Gameplay.Tree.Tree;
@@ -26,18 +30,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.*;
 
-public class ArcanashopController implements MouseMotionListener,MouseListener,ActionListener{
+public class ArcanashopController implements MouseMotionListener,MouseListener,ActionListener {
+    // Panel initializing
     private ArcanashopWindow arcanashopWindow;
     private MainQuestPanel mainQuestPanel;
-    private JPanel[] treeJPanels;
-    private int mouseX,mouseY;
-    private HashMap<Component,Point> position; // เก็บ position Tree
+    private showDayEnding showdayending;
+    private ShopGIFPanel shopGIFPanel;
+    private TreeBookGIFPanel treeBookGIFPanel;
     private MainQuestGIF mainQuestGIF;
-    private SubQuest3GIFPanel subQuest3GIFPanel;
     private SubQuest1GIFPanel subQuest1GIFPanel;
     private SubQuest2GIFPanel subQuest2GIFPanel;
-    private TreeBookGIFPanel treeBookGIFPanel;
-    private ShopGIFPanel shopGIFPanel;
+    private SubQuest3GIFPanel subQuest3GIFPanel;
+
+    private int mouseX,mouseY;
+    private HashMap<Component,Point> position; // เก็บ position Tree
     private BasicCombineTree combiner;
     private HashMap<Component, Tree> treeMap;
     private JPanel treeResultimg;
@@ -46,7 +52,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     private Tree treeResult, treeResultMain;
     private Timer timer;
     private Player player;
-    private showDayEnding showdayending;
+    private JPanel[] treeJPanels;
     private showDayOpen showdayopen;
 
     public ArcanashopController(Player player) {

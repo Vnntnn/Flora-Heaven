@@ -34,6 +34,7 @@ public class ArcanashopWindow extends JFrame {
     private JPanel[] treeholders;
     private JLayeredPane layeredPane;
     private SubQuestTextPanel subQuestTextPanel1, subQuestTextPanel2,subQuestTextPanel3;
+    private ClockGIFPanel clockgifpanel;
     private Timer timer;
     private JLabel timeLabel;
     private ArcanashopController controller;
@@ -66,6 +67,7 @@ public class ArcanashopWindow extends JFrame {
         subQuestTextPanel1 = new SubQuestTextPanel();
         subQuestTextPanel2 = new SubQuestTextPanel();
         subQuestTextPanel3 = new SubQuestTextPanel();
+        clockgifpanel = new ClockGIFPanel();
         combine = new JButton();
         mqevent = new JButton();
         sqevents = new JButton[3];
@@ -99,7 +101,7 @@ public class ArcanashopWindow extends JFrame {
         timeLabel = new JLabel("15:00");
         timeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         timeLabel.setForeground(Color.WHITE);
-        timeLabel.setBounds(50, 650, 100, 30);
+        timeLabel.setBounds(195, 614, 100, 30);
 
         // Initializing LayeredPane
         layeredPane = new JLayeredPane();
@@ -128,6 +130,7 @@ public class ArcanashopWindow extends JFrame {
         subQuestTextPanel1.setBounds(790,185,125,110);
         subQuestTextPanel2.setBounds(930,185,125,110);
         subQuestTextPanel3.setBounds(1076,185,125,110);
+        clockgifpanel.setBounds(0,0,1280,720);
 
         sqevents[0].setBounds(790,155,125,140);
         sqevents[0].setContentAreaFilled(false);
@@ -216,6 +219,7 @@ public class ArcanashopWindow extends JFrame {
         }
 
         layeredPane.add(timeLabel, Integer.valueOf(30));
+        layeredPane.add(clockgifpanel, Integer.valueOf(31));
 
         add(layeredPane, BorderLayout.CENTER);
 

@@ -25,7 +25,7 @@ public class AssetsLoaderArcanashop {
     protected static BufferedImage mailsbox;
     protected static BufferedImage[] Dayscard;
     protected static BufferedImage Dayholder;
-    protected static ImageIcon mainQuestGIF,subQuest1GIF,subQuest2GIF,subQuest3GIF,shopGIF,plant_CollectionGIF;
+    protected static ImageIcon mainQuestGIF,subQuest1GIF,subQuest2GIF,subQuest3GIF,shopGIF,plant_CollectionGIF, clockGIF;
     private static AssetsLoaderArcanashop instance = new AssetsLoaderArcanashop();
 
     private AssetsLoaderArcanashop() {
@@ -48,6 +48,7 @@ public class AssetsLoaderArcanashop {
             subQuest3GIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/sidequest_yellow.GIF"));
             shopGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/shop.GIF"));
             plant_CollectionGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/plant_collection.GIF"));
+            clockGIF = new ImageIcon(AssetsLoaderArcanashop.class.getResource("/assets/Gameplay/GIF/Clock.GIF"));
 
             Dayscard = new BufferedImage[5];
             for (int i = 0; i < 5; i++) {

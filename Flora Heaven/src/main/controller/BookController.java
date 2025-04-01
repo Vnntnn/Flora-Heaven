@@ -20,8 +20,7 @@ public class BookController implements WindowFocusListener {
         this.player = player;
         this.view = new BookWindow(this);
         view.addWindowFocusListener(this);
-        bgSound bg = new bgSound();
-        bg.play();
+
     }
 
     public void nextPage() {

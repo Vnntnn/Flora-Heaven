@@ -3,10 +3,8 @@ package main.model.Gameplay;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.model.Gameplay.Tree.Combinable;
 import main.model.Gameplay.Tree.Tree;
-import main.model.Gameplay.Tree.BaseTrees.Chandra;
-import main.model.Gameplay.Tree.BaseTrees.Eclipsara;
-import main.model.Gameplay.Tree.BaseTrees.Luckybloom;
 import main.model.Gameplay.Tree.CombineTrees.AurelianWhisper;
 import main.model.Gameplay.Tree.CombineTrees.CrimsonWard;
 import main.model.Gameplay.Tree.CombineTrees.Cryptara;
@@ -54,25 +52,4 @@ public class BasicCombineTree implements Combinable {
         
         return COMBINATIONS.get(t1.getName()).get(t2.getName());
     }
-
-/*     @Override
-    public boolean canCombine(Tree tree1, Tree tree2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canCombine'");
-    }
-
-    @Override
-    public Tree combine(Tree tree1, Tree tree2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'combine'");
-    } */
-
-    /* public static void main(String[] args) {
-        BasicCombineTree combiner = new BasicCombineTree();
-        System.out.println(combiner.canCombine(new Chandra(), new Eclipsara()));
-        if(combiner.canCombine(new Chandra(), new Luckybloom())){
-            System.out.println(combiner.combine(new Chandra(), new Eclipsara()));
-        }
-    } */
 }
-

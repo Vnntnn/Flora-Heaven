@@ -5,6 +5,7 @@ package main.controller;
 */
 
 import main.model.Player.Player;
+import main.model.sound.bgSound;
 import main.view.Gamewindow.LobbyWindow;
 import main.model.Threads.Firefly;
 
@@ -26,6 +27,8 @@ public class LobbyController {
         this.isViewReady = true; // ตั้งค่าเมื่อ view พร้อม
         addEventListeners();
         this.player = new Player();
+        bgSound bg = new bgSound();
+        bg.play();
     }
 
     public LobbyWindow getView() {
@@ -60,7 +63,7 @@ public class LobbyController {
         if (startButton != null) {
             startButton.addActionListener(e -> {
                 view.setVisible(false);
-                new openStoryPage(player);
+                new openStoryController();
             });
         }
 
