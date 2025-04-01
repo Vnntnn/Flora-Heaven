@@ -1,5 +1,6 @@
 package main.controller.common;
 
+import main.controller.common.Ending.EndingController;
 import main.model.Player.Player;
 import main.view.Gamewindow.Ending.SecretView;
 import javax.swing.*;

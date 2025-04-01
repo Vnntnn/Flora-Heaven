@@ -96,8 +96,6 @@ public class SubQuestGenerator {
                 // ป้องกันการสุ่มซ้ำต้นไม้ต้นเดิม
             } while ((tree1 == tree2 || !basicCombineTree.canCombine(tree1, tree2)) && attempts < 100);
     
-            System.out.println(tree1.getName() + " + " + tree2.getName());
-    
             // ถ้าสุ่มเจอคู่ที่ผสมได้ return ต้นไม้ที่ผสมแล้ว
             if (basicCombineTree.canCombine(tree1, tree2)) {
                 hint1 = tree1.getHintList().get(random.nextInt(tree1.getHintList().size()));

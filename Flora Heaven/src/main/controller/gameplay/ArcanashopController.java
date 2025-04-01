@@ -291,7 +291,6 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         if (found) {
             // ทำอะไรสักอย่างเมื่อพบ Component c ใน treeholders
-            System.out.println("พบ Component ใน treeholders");
             if(c.getBounds().intersects(arcanashopWindow.getDrop1().getBounds())){
                 if (arcanashopWindow.getDrop1().getComponentCount() == 0){ //if Drop1 is Empty
                     c.setLocation(25,25);
@@ -336,7 +335,6 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             arcanashopWindow.getLayeredPane().repaint();
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel1().getBounds())){
-            System.out.println("subquest 1");
             if (treeResult.getName() == sqTree1.getName()){
                 player.setCoins(player.getCoins()+(int)sqTree1.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);

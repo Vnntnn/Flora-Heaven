@@ -47,7 +47,4 @@ public class SubQuestTextPanel extends JPanel{
     public JLabel getHintJLabel1() {
         return hintJLabel1;
     }
-    
-
-    
 }
