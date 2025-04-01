@@ -1,0 +1,13 @@
+package main.model.Gameplay.Tree.BaseTrees;
+
+import main.model.Gameplay.Tree.Tree;
+import main.view.AssetsLoader.trees.basetrees.VoxspirePanel;
+
+public class Voxspire extends Tree {
+    public Voxspire() {
+        super("Voxspire", 850, 1, new VoxspirePanel());
+        addHintList("ช่วยนำเสนองานอย่างมั่นใจ");
+        addHintList("ช่วยกระตุ้นจิตใจ");
+        addHintList("ทำให้กล้าแสดงออก");
+    }
+}
