@@ -391,6 +391,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                         player.setCoins(player.getCoins()+100);
                         new EndingDay(player).dayEnd();
                         showdayopen = new showDayOpen(player.getDay());
+                        arcanashopWindow.setVisible(true);
                         break;
                     case 2:
                         player.setCoins(player.getCoins()+300);
