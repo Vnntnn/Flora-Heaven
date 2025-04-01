@@ -7,7 +7,7 @@ public class Everguard extends Tree {
     public Everguard() {
         super("Everguard", 100.0, 1, new EverguardPanel());
         addHintList("เสริมสร้างภูมิคุ้มกัน");
-        addHintList("สร้างภูมิต้านทานโณค");
+        addHintList("สร้างภูมิต้านทานโรค");
         addHintList("ป้องกันโรค");
     }
 }

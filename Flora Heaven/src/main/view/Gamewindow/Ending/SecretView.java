@@ -34,6 +34,7 @@ public class SecretView {
         frame = new JFrame("Flora Heaven - Secret");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1290, 755);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
         JLayeredPane layeredPane = new JLayeredPane();

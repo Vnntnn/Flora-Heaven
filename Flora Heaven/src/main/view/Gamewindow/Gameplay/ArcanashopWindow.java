@@ -11,6 +11,7 @@ import main.view.AssetsLoader.gameplay.Arcanashop.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.InputStream;
 
 public class ArcanashopWindow extends JFrame {
     private Player player;
@@ -46,6 +47,7 @@ public class ArcanashopWindow extends JFrame {
         // Windows setup
         setTitle("Flora Heaven");
         setSize(1290, 755);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -98,9 +100,26 @@ public class ArcanashopWindow extends JFrame {
 
         timer = new Timer(900);
         timeLabel = new JLabel("15:00");
-        timeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        try{
+            // Load the font file from resources using ClassLoader
+            InputStream fontStream = getClass().getClassLoader().getResourceAsStream("assets/Font/Pixelpoint.ttf");
+            if (fontStream == null) {
+                throw new IllegalArgumentException("Font file not found in resources");
+            }
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontStream);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            // Derive the desired font size
+            Font sizedFont = customFont.deriveFont(Font.BOLD, 30f);
+            timeLabel.setFont(sizedFont);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            timeLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Fallback font
+        }
         timeLabel.setForeground(Color.WHITE);
-        timeLabel.setBounds(195, 614, 100, 30);
+        timeLabel.setBounds(190, 614, 100, 30);
 
         // Initializing LayeredPane
         layeredPane = new JLayeredPane();

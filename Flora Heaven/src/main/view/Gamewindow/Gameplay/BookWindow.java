@@ -27,6 +27,7 @@ public class BookWindow extends JFrame {
 
         setTitle("Flora Heaven");
         setSize(1290, 755);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
 

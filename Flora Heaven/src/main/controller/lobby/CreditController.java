@@ -24,6 +24,7 @@ public class CreditController {
             view = new CreditView(customFont, lobbyController);
             view.setBackgroundImage(background);
             view.setNames(getCreditNames());
+
             view.show();
         } catch (IOException | FontFormatException e) {
             handleResourceError(e);

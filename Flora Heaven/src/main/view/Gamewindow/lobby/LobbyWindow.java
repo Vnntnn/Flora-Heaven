@@ -20,6 +20,7 @@ public class LobbyWindow extends JFrame {
 
         setTitle("Flora Heaven");
         setSize(1290, 755);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 

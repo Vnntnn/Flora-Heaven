@@ -33,7 +33,7 @@ public class LobbyController {
         this.player = new Player();
         bgSound bg = new bgSound();
         // ลดเสียงเกม
-        bg.decreaseVolume(5.0f);
+        bg.decreaseVolume(16.0f);
         bg.play();
     }
 

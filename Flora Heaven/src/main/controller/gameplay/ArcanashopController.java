@@ -282,12 +282,16 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     @Override
     public void mouseReleased(MouseEvent e) {
         Component c = e.getComponent();
-        if(c != arcanashopWindow.getMainQuest() &&
-            c!= arcanashopWindow.getShop() && c != arcanashopWindow.getBook()&&
-            !Arrays.asList(arcanashopWindow.getSubQuest()).contains(c) && c!= treeResultimg &&
-            c != arcanashopWindow.getsuSubQuestTextPanel1() && c!= arcanashopWindow.getsuSubQuestTextPanel2() &&
-            c != arcanashopWindow.getsuSubQuestTextPanel3()){
-
+        boolean found = false;
+        for (JPanel panel : arcanashopWindow.getPanel()) {
+            if (panel == c) { // หรือใช้ panel.equals(c) ขึ้นอยู่กับความต้องการ
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            // ทำอะไรสักอย่างเมื่อพบ Component c ใน treeholders
+            System.out.println("พบ Component ใน treeholders");
             if(c.getBounds().intersects(arcanashopWindow.getDrop1().getBounds())){
                 if (arcanashopWindow.getDrop1().getComponentCount() == 0){ //if Drop1 is Empty
                     c.setLocation(25,25);
@@ -295,7 +299,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 }
                 else{ //if Drop1 have component
                     arcanashopWindow.getDrop1().getComponents()[0].setLocation(position.get(arcanashopWindow.getDrop1().getComponents()[0]));       //reset position component in Drop1
-                    arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop1().getComponents()[0]);      
+                    arcanashopWindow.getLayeredPane().add(arcanashopWindow.getDrop1().getComponents()[0]);
                     arcanashopWindow.getDrop1().removeAll();
                     c.setLocation(25,25);
                     arcanashopWindow.getDrop1().add(c); //add new Component in Drop1
@@ -320,7 +324,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 c.setLocation(position.get(c)); //reset position
                 arcanashopWindow.getLayeredPane().remove(c); //remove
                 arcanashopWindow.getLayeredPane().add(c, Integer.valueOf(30)); //add to frame
-                
+
             }
 
             // Update and refresh screen
@@ -332,6 +336,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             arcanashopWindow.getLayeredPane().repaint();
         }
         else if(c == treeResultimg && c.getBounds().intersects(arcanashopWindow.getsuSubQuestTextPanel1().getBounds())){
+            System.out.println("subquest 1");
             if (treeResult.getName() == sqTree1.getName()){
                 player.setCoins(player.getCoins()+(int)sqTree1.getPrice());
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);

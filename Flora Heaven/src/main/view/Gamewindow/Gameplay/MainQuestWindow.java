@@ -24,6 +24,7 @@ public class MainQuestWindow extends JFrame {
         // Windows setup
         setTitle("Main Quest");
         setSize(1290, 755);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
 

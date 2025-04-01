@@ -2,6 +2,8 @@ package main.view.Gamewindow.lobby;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import main.controller.lobby.LobbyController;
 
@@ -95,12 +97,11 @@ public class CreditView {
             }
         };
 
-        mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        mainPanel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 checkButtonClick(evt.getX(), evt.getY());
             }
         });
-
         frame.setContentPane(mainPanel);
     }
 
