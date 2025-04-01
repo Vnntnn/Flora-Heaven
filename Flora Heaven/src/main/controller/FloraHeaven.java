@@ -1,5 +1,7 @@
 package main.controller;
 
+import main.controller.lobby.LobbyController;
+
 import javax.swing.*;
 
 public class FloraHeaven {

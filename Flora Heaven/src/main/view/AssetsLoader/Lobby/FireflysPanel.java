@@ -4,7 +4,7 @@ package main.view.AssetsLoader.Lobby;
   @author tipwareeetaokhotsee
 */
 
-import main.controller.LobbyController;
+import main.controller.lobby.LobbyController;
 import main.model.Threads.Firefly;
 import javax.swing.*;
 import java.awt.*;

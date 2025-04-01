@@ -8,7 +8,7 @@ public class bgSound implements Soundmanager {
     private Clip backgroundClip;
     private FloatControl volumeControl;
     private boolean isPlaying = false;
-    private final String soundPath = "/assets/sound/bgsound.wav";
+    private final String SOUNDPATH = "/assets/sound/bgsound.wav";
 
     public bgSound() {
         initSound();
@@ -16,7 +16,7 @@ public class bgSound implements Soundmanager {
 
     private void initSound() {
         try {
-            URL soundUrl = getClass().getResource(soundPath);
+            URL soundUrl = getClass().getResource(SOUNDPATH);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundUrl);
             backgroundClip = AudioSystem.getClip();
             backgroundClip.open(audioIn);

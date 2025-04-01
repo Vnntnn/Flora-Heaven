@@ -2,7 +2,7 @@ package main.view.AssetsLoader.books;
 
 import java.awt.*;
 import javax.swing.*;
-import main.controller.BookController;
+import main.controller.gameplay.BookController;
 
 public class combinePanel extends JPanel {
     private BookController controller;

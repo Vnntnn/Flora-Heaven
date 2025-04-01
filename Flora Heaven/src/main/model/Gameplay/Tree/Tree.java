@@ -1,13 +1,11 @@
 package main.model.Gameplay.Tree;
 
-// ***
-// Author: Vnntnn
-// ***
+/**
+ * @author Vnntnn
+ */
 
 import java.awt.*;
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.*;
 
 public abstract class Tree {
     private String name;
@@ -27,13 +25,6 @@ public abstract class Tree {
         this.image = image;
         this.hintList = new ArrayList<>();
     }
-/*     public Tree(String name, double price, int star, Component image, ArrayList<String> hintList) {
-        this.name = name;
-        this.price = price;
-        this.star = star;
-        this.image = image;
-        this.hintList = hintList;
-    } */
 
     public String getName() {
         return name;
