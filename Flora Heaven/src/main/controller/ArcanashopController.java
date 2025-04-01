@@ -386,9 +386,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             if (treeResult.getName() == treeResultMain.getName()) {
                 switch (player.getDay()) {
                     case 1:
-                        player.setCoins(player.getCoins()+100);
                         arcanashopWindow.dispose();
                         showdayending = new showDayEnding(player.getDay());
+                        player.setCoins(player.getCoins()+100);
                         new EndingDay(player);
                         showdayopen = new showDayOpen(player.getDay());
                         break;
