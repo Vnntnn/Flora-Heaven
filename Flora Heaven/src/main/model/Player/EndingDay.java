@@ -8,7 +8,7 @@ public class EndingDay {
         this.player = player;
     }
 
-    private void dayEnd(Player player) {
+    public void dayEnd() {
         player.setDay(player.getDay() + 1);
     }
 }
