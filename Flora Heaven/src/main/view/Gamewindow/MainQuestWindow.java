@@ -16,9 +16,10 @@ public class MainQuestWindow extends JFrame {
     private QuestNumberPanel questnumberpanel;
     private FlowersPanel flowerspanel;
 
-    public MainQuestWindow() {
+    public MainQuestWindow(Player player) {
         AssetsLoaderMainQuests.getInstance();
-        this.player = new Player();
+        this.player = player;
+
 
         // Windows setup
         setTitle("Main Quest");

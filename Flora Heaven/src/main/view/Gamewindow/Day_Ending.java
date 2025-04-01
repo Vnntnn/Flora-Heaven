@@ -1,5 +1,10 @@
 package main.view.Gamewindow;
 
+import main.controller.EndingController;
+import main.controller.SecretController;
+import main.controller.showDayOpen;
+import main.model.Player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,9 +14,11 @@ import java.io.IOException;
 
 public class Day_Ending extends JFrame {
     private String imagePath;
+    private Player player;
     
-    public Day_Ending(String imagePath) {
+    public Day_Ending(String imagePath, Player player) {
         this.imagePath = imagePath;
+        this.player = player;
         initialize();
     }
     
@@ -34,6 +41,13 @@ public class Day_Ending extends JFrame {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(player.getDay()>=1 && player.getDay()<=5) {
+                    new showDayOpen(player.getDay(),player);
+                }
+                else {
+                    new SecretController(player);
+
+                }
                 dispose();
             }
         });

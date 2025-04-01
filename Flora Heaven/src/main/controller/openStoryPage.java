@@ -7,6 +7,8 @@ package main.controller;/*
  *
  * @author chenl
  */
+import main.model.Player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -20,12 +22,13 @@ public class openStoryPage {
     private JLabel title, bgLabel;
     private JButton btnBack, btnConfirm, btnCancle;
     private ImageIcon background;
+    private Player player;
 
-    public openStoryPage() {
+    public openStoryPage(Player player) {
         //set size screen
         int width = 1290;
         int height = 755;
-
+        this.player = player;
         fr = new JFrame("Flora Heaven");
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.setSize(new Dimension(width, height));
@@ -127,7 +130,7 @@ public class openStoryPage {
 
             Timer timer2 = new Timer(600, ev -> {
                 fr.setVisible(false);
-                new rolePage();
+                new rolePage(player);
             });
             timer2.setRepeats(false);
             timer2.start();

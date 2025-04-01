@@ -99,7 +99,7 @@ public class RestartController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 view.close();
-                EventQueue.invokeLater(() -> new ArcanashopController(new Player(150, 1, new TreeObtains())));
+                EventQueue.invokeLater(() -> new LobbyController());
             }
         });
 
@@ -107,6 +107,9 @@ public class RestartController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 view.close();
+                if(player.getDay()==6){
+                    player = new Player();
+                }
                 EventQueue.invokeLater(() -> new ArcanashopController(player));
             }
         });

@@ -13,4 +13,8 @@ public class Bloodvalor_blossomPanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(AssetsLoaderTrees.bloodvalorblossom, 0, 0, getWidth(), getHeight(), this);
     }
+
+    public Bloodvalor_blossomPanel(){
+        setOpaque(false);
+    }
 }

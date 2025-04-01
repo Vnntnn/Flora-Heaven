@@ -166,10 +166,11 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == arcanashopWindow.getMainQuest()) {
-            new MainQuestWindow();
+            new MainQuestWindow(player);
         }
         else if(e.getSource() == arcanashopWindow.getShop()) {
             new ShopController(player,arcanashopWindow);
+            arcanashopWindow.loadAllTreeHolders(); // โหลด tree ทั้งหมดใหม่
         }
         else if (e.getSource()==arcanashopWindow.getSubQuest()[0]){
             System.out.println("QUEST11111111111");
@@ -191,19 +192,19 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 Component second = arcanashopWindow.getDrop2().getComponent(0);
                 Container c1 = (Container) first;
                 Container c2 = (Container) second;
-                Component checkkey1 = arcanashopWindow.getDrop1().getComponent(0);
-                Component checkkey2 = arcanashopWindow.getDrop2().getComponent(0);
-                if (c1.getComponentCount()==1){
-                    checkkey1 = c1.getComponent(0);
-                }
-                if (c2.getComponentCount()==1){
-                    checkkey2 = c2.getComponent(0);
-                }
-
+                Component checkkey1 = c1.getComponent(0);
+                Component checkkey2 = c2.getComponent(0);
+//                if (c1.getComponentCount()==1){
+//                    checkkey1 = c1.getComponent(0);
+//                }
+//                if (c2.getComponentCount()==1){
+//                    checkkey2 = c2.getComponent(0);
+//                }
                 Tree tree1 = treeMap.get(checkkey1);
                 Tree tree2 = treeMap.get(checkkey2);
                 System.out.println(tree1.getName());
                 System.out.println(tree2.getName());
+                //System.out.println(tree1.getName()+" Tree1");
                 System.out.println(combiner.combine(tree1, tree2).getName());
                 if(arcanashopWindow.getLayeredPane().isAncestorOf(treeResultimg)){
                     arcanashopWindow.getLayeredPane().remove(treeResultimg);
@@ -292,7 +293,8 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             !Arrays.asList(arcanashopWindow.getSubQuest()).contains(c) && c!= treeResultimg &&
             c != arcanashopWindow.getsuSubQuestTextPanel1() && c!= arcanashopWindow.getsuSubQuestTextPanel2() &&
             c != arcanashopWindow.getsuSubQuestTextPanel3()){
-            if(c.getBounds().intersects(arcanashopWindow.getDrop1().getBounds())){      //if component in Drop1
+            if(c.getBounds().intersects(arcanashopWindow.getDrop1().getBounds())){
+                System.out.println("indrop1");//if component in Drop1
                 if (arcanashopWindow.getDrop1().getComponentCount() == 0){          //if Drop1 is Empty
                     c.setLocation(25,25);
                     arcanashopWindow.getDrop1().add(c);         //add component to Drop1
@@ -374,8 +376,8 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 subQuestGenerator3 = new SubQuestGenerator();
                 sqTree3 = subQuestGenerator3.generatorSubQuestTree(player.getDay());
-                arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel2().setText(subQuestGenerator3.gethintString1()+" กับ");
-                arcanashopWindow.getsuSubQuestTextPanel1().getHintJLabel3().setText(subQuestGenerator3.gethintString2());
+                arcanashopWindow.getsuSubQuestTextPanel3().getHintJLabel2().setText(subQuestGenerator3.gethintString1()+" กับ");
+                arcanashopWindow.getsuSubQuestTextPanel3().getHintJLabel3().setText(subQuestGenerator3.gethintString2());
                 System.out.println("Yes3");
             }
             else{
@@ -387,37 +389,32 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 switch (player.getDay()) {
                     case 1:
                         arcanashopWindow.dispose();
-                        showdayending = new showDayEnding(player.getDay());
+                        showdayending = new showDayEnding(player.getDay(),player);
                         player.setCoins(player.getCoins()+100);
                         new EndingDay(player).dayEnd();
-                        showdayopen = new showDayOpen(player.getDay());
-                        arcanashopWindow.setVisible(true);
                         break;
                     case 2:
                         player.setCoins(player.getCoins()+300);
                         arcanashopWindow.dispose();
-                        showdayending = new showDayEnding(player.getDay());
-                        new EndingDay(player);
-                        showdayopen = new showDayOpen(player.getDay());
+                        showdayending = new showDayEnding(player.getDay(),player);
+                        new EndingDay(player).dayEnd();
                         break;
                     case 3:
                         player.setCoins(player.getCoins()+550);
                         arcanashopWindow.dispose();
-                        showdayending = new showDayEnding(player.getDay());
-                        new EndingDay(player);
-                        showdayopen = new showDayOpen(player.getDay());
+                        showdayending = new showDayEnding(player.getDay(),player);
+                        new EndingDay(player).dayEnd();
                         break;
                     case 4:
                         player.setCoins(player.getCoins()+888);
                         arcanashopWindow.dispose();
-                        showdayending = new showDayEnding(player.getDay());
-                        new EndingDay(player);
-                        showdayopen = new showDayOpen(player.getDay());
+                        showdayending = new showDayEnding(player.getDay(),player);
+                        new EndingDay(player).dayEnd();
                         break;
                     case 5:
                         arcanashopWindow.dispose();
-                        showdayending = new showDayEnding(player.getDay());
-                        new EndingController();
+                        showdayending = new showDayEnding(player.getDay(),player);
+                        new EndingDay(player).dayEnd();
                         break;
                 }
                 arcanashopWindow.getLayeredPane().remove(treeResultimg);

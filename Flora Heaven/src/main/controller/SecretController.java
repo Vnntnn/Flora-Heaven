@@ -113,7 +113,7 @@ public class SecretController {
     
         nextButton.addActionListener(e -> {
             view.close();
-            EventQueue.invokeLater(() -> new RestartController(player));
+            EventQueue.invokeLater(() ->  new EndingController());
         });
     }
 

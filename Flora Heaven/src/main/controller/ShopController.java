@@ -8,14 +8,11 @@ import main.view.Gamewindow.ArcanashopWindow;
 import main.view.Gamewindow.Shopwindow;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopController implements WindowFocusListener {
+public class ShopController implements WindowFocusListener , WindowListener {
     private boolean[][] canBuy;
     private int currentDay;
     private Player player;
@@ -28,21 +25,31 @@ public class ShopController implements WindowFocusListener {
         this.player = player;
         this.treeList = new BaseCollectionTrees().getBaseTrees();
         this.arcanashopWindow = arcanashopWindow;
+
         // Initialize with empty list if null
         if (this.treeList == null) {
             this.treeList = new ArrayList<>();
             System.err.println("Warning: BaseCollectionTrees.getBaseTrees() returned null");
         }
+        System.out.println(player.getObtainTrees().getObtainedTree().size()+ " = size");
 
         currentDay = player.getDay();
 
         canBuy = new boolean[][] {
                 {true, true, false, false, false, false, false, false},  // Day 1
-                {false, false, false, true, false, false, false, false},  // Day 2
-                {false, false, false, false, true, false, false, false},  // Day 3
-                {false, false, false, false, false, true, true, false},   // Day 4
-                {false, false, false, false, false, false, false, true}    // Day 5
+                {false, true, true, false, false, false, false, false},  // Day 2
+                {false, true, false, false, true, false, false, false},  // Day 3
+                {false, true, false, true, false, true, true, false},   // Day 4
+                {false, true, false, true, false, false, false, true}    // Day 5
         };
+
+        // Disable ปุ่มสำหรับต้นไม้ที่ซื้อไปแล้ว
+        for (Tree ownedTree : player.getObtainTrees().getObtainedTree()) {
+            int index = treeList.indexOf(ownedTree);
+            if (index != -1) {
+                canBuy[currentDay - 1][index] = false;
+            }
+        }
 
         // สร้าง view หลังจาก initialize ข้อมูลทั้งหมดแล้ว
         this.view = new Shopwindow(this);
@@ -65,14 +72,14 @@ public class ShopController implements WindowFocusListener {
                     player.setCoins((int)(player.getCoins() - tree.getPrice()));
                     player.getObtainTrees().addTree(tree);
                     System.out.println(player.getObtainTrees().getObtainedTree().size());
-                    arcanashopWindow.loadtreeholders(player.getObtainTrees().getObtainedTree().size()-1);
+                    arcanashopWindow.loadAllTreeHolders();
                     arcanashopWindow.getLayeredPane().revalidate();
                     arcanashopWindow.getLayeredPane().repaint();
                     System.out.println("In");
                     canBuy[currentDay - 1][index] = false;
 
                     if (index == 1) {
-                        unlockTreeNextDay(2);
+                        unlockTreeNextDay(3);
                     }
 
                     updateButtonState(button, index);
@@ -125,4 +132,49 @@ public class ShopController implements WindowFocusListener {
     public void windowLostFocus(WindowEvent e) {
         view.dispose();
     }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        arcanashopWindow.getLayeredPane().revalidate();
+        arcanashopWindow.getLayeredPane().repaint();
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
+
+    public List<Tree> getTreeList() {
+        return treeList;
+    }
+
+    public Player getPlayer(){
+        return player;
+    }
+
 }

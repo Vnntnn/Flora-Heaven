@@ -48,9 +48,18 @@ public class Shopwindow extends JFrame {
             buy[i].setBorderPainted(false);
             buy[i].setContentAreaFilled(false);
             buy[i].setFocusPainted(false);
-            controller.setupBuyButton(buy[i], i);
 
-            buybutton.updateButtonState(i, controller.canBuy(i));
+            // Check if tree is already owned
+            boolean alreadyOwned = controller.getPlayer().getObtainTrees().getObtainedTree()
+                    .contains(controller.getTreeList().get(i));
+
+            if (!alreadyOwned) {
+                controller.setupBuyButton(buy[i], i);
+            } else {
+                buy[i].setEnabled(false);
+            }
+
+            buybutton.updateButtonState(i, controller.canBuy(i) && !alreadyOwned);
 
             buypanel[i].add(buy[i]);
         }

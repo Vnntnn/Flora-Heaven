@@ -109,7 +109,7 @@ public class FailController {
     
         nextButton.addActionListener(e -> {
             view.close();
-            EventQueue.invokeLater(() -> new SecretController(player));
+            EventQueue.invokeLater(() -> new RestartController(player));
         });
     }
 

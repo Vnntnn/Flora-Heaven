@@ -4,6 +4,7 @@ package main.controller;
   @author tipwareeetaokhotsee
 */
 
+import main.model.Player.Player;
 import main.view.Gamewindow.LobbyWindow;
 import main.model.Threads.Firefly;
 
@@ -16,6 +17,7 @@ public class LobbyController {
     private final ArrayList<Firefly> fireflies;
     private static final int NUM_FIREFLIES = 120;
     private boolean isViewReady = false; // เพิ่ม flag ตรวจสอบ
+    private Player player;
 
     public LobbyController() {
         this.fireflies = new ArrayList<>();
@@ -23,6 +25,7 @@ public class LobbyController {
         this.view = new LobbyWindow(this);
         this.isViewReady = true; // ตั้งค่าเมื่อ view พร้อม
         addEventListeners();
+        this.player = new Player();
     }
 
     public LobbyWindow getView() {
@@ -57,7 +60,7 @@ public class LobbyController {
         if (startButton != null) {
             startButton.addActionListener(e -> {
                 view.setVisible(false);
-                new openStoryPage();
+                new openStoryPage(player);
             });
         }
 

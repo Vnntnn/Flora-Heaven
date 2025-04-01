@@ -75,7 +75,9 @@ public class ArcanashopWindow extends JFrame {
         treeholders = new JPanel[12];
         for (int i = 0; i < 12; i++) {
             if (i < player.getObtainTrees().getObtainedTree().size()){
-                treeholders[i] = (JPanel) player.getObtainTrees().getObtainedTree().get(i).getImage();
+                treeholders[i] = new JPanel();
+                treeholders[i].add(player.getObtainTrees().getObtainedTree().get(i).getImage());
+                treeholders[i].setLayout(new GridLayout(1,1));
             }
             else{
                 treeholders[i] = new JPanel();
@@ -264,9 +266,15 @@ public class ArcanashopWindow extends JFrame {
         return layeredPane;
     }
 
-    public void loadtreeholders(int index){
-        treeholders[index].add(player.getObtainTrees().getObtainedTree().get(index).getImage());
-        treeholders[index].setLayout(new GridLayout(1,1));
+    public void loadAllTreeHolders() {
+        for (int i = 0; i < player.getObtainTrees().getObtainedTree().size(); i++) {
+            if (i < treeholders.length) {
+                treeholders[i].removeAll(); // ลบ component เดิมออกก่อน
+                treeholders[i].add(player.getObtainTrees().getObtainedTree().get(i).getImage());
+                treeholders[i].setLayout(new GridLayout(1,1));
+                treeholders[i].setOpaque(false);
+            }
+        }
         layeredPane.revalidate();
         layeredPane.repaint();
     }

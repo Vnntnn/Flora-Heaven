@@ -22,11 +22,13 @@ public class rolePage {
     private JLabel title, bgLabel, role;
     private JButton btnBack, btnConfirm, btnCancle;
     private ImageIcon background;
+    private Player player;
 
-    public rolePage() {
+    public rolePage(Player player) {
         //set size screen
         int width = 1290;
         int height = 755;
+        this.player = player;
         
         fr = new JFrame("Flora Heaven");
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,14 +152,14 @@ public class rolePage {
             
             Timer timer2 = new Timer(600, ev -> {
                 fr.dispose();
-                new showDayOpen(new Player().getDay());
+                new showDayOpen(new Player().getDay(),player);
             });
             timer2.setRepeats(false);
             timer2.start();
         });     
     }
   
-    public static void main(String[] args) {
-        new rolePage();
-    }
+//    public static void main(String[] args) {
+//        new rolePage();
+//    }
 }
