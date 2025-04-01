@@ -32,6 +32,8 @@ public class LobbyController {
         addEventListeners();
         this.player = new Player();
         bgSound bg = new bgSound();
+        // ลดเสียงเกม
+        bg.decreaseVolume(5.0f);
         bg.play();
     }
 
