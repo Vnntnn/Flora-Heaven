@@ -109,14 +109,9 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         position = new HashMap<>();
         treeJPanels = arcanashopWindow.getPanel();
         for (int i = 0; i < 12; i++){
-            if (i < player.getObtainTrees().getObtainedTree().size()){
-                treeJPanels[i].addMouseListener(this);
-                treeJPanels[i].addMouseMotionListener(this);
-                position.put(treeJPanels[i], treeJPanels[i].getLocation());
-            }
-            else{
-                continue;
-            }
+            treeJPanels[i].addMouseListener(this);
+            treeJPanels[i].addMouseMotionListener(this);
+            position.put(treeJPanels[i], treeJPanels[i].getLocation());
         }
         for (int i = 0; i<3;i++){
             arcanashopWindow.getSubQuest()[i].addMouseListener(this);
@@ -135,6 +130,13 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
     }
 
     public void onMainQuestClicked(MouseEvent e) {
+    }
+
+    public void updatetreeMap(){
+        treeMap.clear();
+        for (int i = 0;i<player.getObtainTrees().getObtainedTree().size(); i++){
+            treeMap.put(player.getObtainTrees().getObtainedTree().get(i).getImage(),player.getObtainTrees().getObtainedTree().get(i));
+        }
     }
 
     private void startTimer() {
@@ -169,7 +171,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
             new MainQuestWindow();
         }
         else if(e.getSource() == arcanashopWindow.getShop()) {
-            new ShopController(player);
+            new ShopController(player,arcanashopWindow);
         }
         else if (e.getSource()==arcanashopWindow.getSubQuest()[0]){
             System.out.println("QUEST11111111111");
@@ -186,15 +188,31 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         }
         else if(e.getSource()==arcanashopWindow.getCombine()){
             if (arcanashopWindow.getDrop1().getComponentCount()==1 && arcanashopWindow.getDrop2().getComponentCount()==1){
-                Tree tree1 = treeMap.get(arcanashopWindow.getDrop1().getComponent(0));
-                Tree tree2 = treeMap.get(arcanashopWindow.getDrop2().getComponent(0));
+                updatetreeMap();
+                Component first = arcanashopWindow.getDrop1().getComponent(0);
+                Component second = arcanashopWindow.getDrop2().getComponent(0);
+                Container c1 = (Container) first;
+                Container c2 = (Container) second;
+                Component checkkey1 = arcanashopWindow.getDrop1().getComponent(0);
+                Component checkkey2 = arcanashopWindow.getDrop2().getComponent(0);
+                if (c1.getComponentCount()==1){
+                    checkkey1 = c1.getComponent(0);
+                }
+                if (c2.getComponentCount()==1){
+                    checkkey2 = c2.getComponent(0);
+                }
+
+                Tree tree1 = treeMap.get(checkkey1);
+                Tree tree2 = treeMap.get(checkkey2);
+                System.out.println(tree1.getName());
+                System.out.println(tree2.getName());
                 System.out.println(combiner.combine(tree1, tree2).getName());
                 if(arcanashopWindow.getLayeredPane().isAncestorOf(treeResultimg)){
                     arcanashopWindow.getLayeredPane().remove(treeResultimg);
                 }
                 treeResult = combiner.combine(tree1, tree2);
                 treeResultimg = (JPanel) treeResult.getImage();
-                treeResultimg.setBounds(630,450,175,175);
+                treeResultimg.setBounds(630,450,140,140);
                 treeResultimg.setOpaque(false);
                 treeResultimg.addMouseListener(this);
                 treeResultimg.addMouseMotionListener(this);

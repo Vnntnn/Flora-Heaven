@@ -4,6 +4,7 @@ import main.model.Gameplay.Tree.TreesCollections.BaseCollectionTrees;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Player.Player;
 import main.view.AssetsLoader.gameplay.Treeshop.BuybuttonPanel;
+import main.view.Gamewindow.ArcanashopWindow;
 import main.view.Gamewindow.Shopwindow;
 
 import javax.swing.*;
@@ -21,11 +22,12 @@ public class ShopController implements WindowFocusListener {
     private List<Tree> treeList;
     private BuybuttonPanel buybuttonPanel;
     private Shopwindow view;
+    private ArcanashopWindow arcanashopWindow;
 
-    public ShopController(Player player) {
+    public ShopController(Player player, ArcanashopWindow arcanashopWindow) {
         this.player = player;
         this.treeList = new BaseCollectionTrees().getBaseTrees();
-
+        this.arcanashopWindow = arcanashopWindow;
         // Initialize with empty list if null
         if (this.treeList == null) {
             this.treeList = new ArrayList<>();
@@ -61,6 +63,12 @@ public class ShopController implements WindowFocusListener {
             public void actionPerformed(ActionEvent e) {
                 if (canBuy[currentDay - 1][index] && player.getCoins() >= tree.getPrice()) {
                     player.setCoins((int)(player.getCoins() - tree.getPrice()));
+                    player.getObtainTrees().addTree(tree);
+                    System.out.println(player.getObtainTrees().getObtainedTree().size());
+                    arcanashopWindow.loadtreeholders(player.getObtainTrees().getObtainedTree().size()-1);
+                    arcanashopWindow.getLayeredPane().revalidate();
+                    arcanashopWindow.getLayeredPane().repaint();
+                    System.out.println("In");
                     canBuy[currentDay - 1][index] = false;
 
                     if (index == 1) {
@@ -104,7 +112,8 @@ public class ShopController implements WindowFocusListener {
     }
 
     public static void main(String[] args) {
-        new ShopController(new Player());
+
+//        new ShopController(new Player());
     }
 
     @Override
