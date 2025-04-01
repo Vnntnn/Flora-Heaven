@@ -4,14 +4,19 @@ import main.model.Gameplay.Tree.TreesCollections.BaseCollectionTrees;
 import main.model.Gameplay.Tree.Tree;
 import main.model.Player.Player;
 import main.view.AssetsLoader.gameplay.Treeshop.BuybuttonPanel;
+import main.view.AssetsLoader.trees.basetrees.Bloodvalor_blossomPanel;
+import main.view.AssetsLoader.trees.basetrees.HuoluPanel;
+import main.view.Gamewindow.ArcanashopWindow;
 import main.view.Gamewindow.Shopwindow;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ShopController implements WindowFocusListener {
@@ -21,10 +26,12 @@ public class ShopController implements WindowFocusListener {
     private List<Tree> treeList;
     private BuybuttonPanel buybuttonPanel;
     private Shopwindow view;
+    private ArcanashopWindow arcanashopWindow;
 
-    public ShopController(Player player) {
+    public ShopController(Player player, ArcanashopWindow arcanashopWindow) {
         this.player = player;
         this.treeList = new BaseCollectionTrees().getBaseTrees();
+        this.arcanashopWindow = arcanashopWindow;
 
         // Initialize with empty list if null
         if (this.treeList == null) {
@@ -62,6 +69,12 @@ public class ShopController implements WindowFocusListener {
             public void actionPerformed(ActionEvent e) {
                 if (canBuy[currentDay - 1][index] && player.getCoins() >= tree.getPrice()) {
                     player.setCoins((int)(player.getCoins() - tree.getPrice()));
+                    player.getObtainTrees().addTree(tree);
+                    System.out.println(player.getObtainTrees().getObtainedTree().size());
+                    arcanashopWindow.loadtreeholders(player.getObtainTrees().getObtainedTree().size()-1);
+                    arcanashopWindow.getLayeredPane().revalidate();
+                    arcanashopWindow.getLayeredPane().repaint();
+                    System.out.println("In");
                     canBuy[currentDay - 1][index] = false;
 
                     if (index == 1) {
@@ -103,9 +116,9 @@ public class ShopController implements WindowFocusListener {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         new ShopController(new Player());
-    }
+    }*/
 
     @Override
     public void windowGainedFocus(WindowEvent e) {

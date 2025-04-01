@@ -264,6 +264,13 @@ public class ArcanashopWindow extends JFrame {
         return layeredPane;
     }
 
+    public void loadtreeholders(int index){
+        treeholders[index].add(player.getObtainTrees().getObtainedTree().get(index).getImage());
+        treeholders[index].setLayout(new GridLayout(1,1));
+        layeredPane.revalidate();
+        layeredPane.repaint();
+    }
+
     public SubQuestTextPanel getsuSubQuestTextPanel1(){
         return subQuestTextPanel1;
     } 
