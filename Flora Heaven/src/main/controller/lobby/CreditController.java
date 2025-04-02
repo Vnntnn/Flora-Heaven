@@ -18,31 +18,32 @@ public class CreditController {
 
     public void show() {
         try {
-            Font customFont = loadFont("/assets/Font/Pixelpoint.ttf");
+            Font customFont = loadFontWithFallback();
             Image background = loadBackgroundImage("/assets/img/bg1.png");
             
             view = new CreditView(customFont, lobbyController);
             view.setBackgroundImage(background);
             view.setNames(getCreditNames());
 
-            view.show();
-        } catch (IOException | FontFormatException e) {
+            SwingUtilities.invokeLater(() -> {
+                view.show();
+                view.toFront();
+            });
+        } catch (IOException e) {
             handleResourceError(e);
         }
-        EventQueue.invokeLater(() -> {
-            if (view != null) {
-                view.setVisible(true);
-                view.toFront();
-            }
-        });
     }
 
-    private Font loadFont(String path) throws IOException, FontFormatException {
-        try (InputStream fontStream = getClass().getResourceAsStream(path)) {
+    private Font loadFontWithFallback() {
+        try {
+            InputStream fontStream = getClass().getResourceAsStream("/assets/Font/Pixelpoint.ttf");
             if (fontStream == null) {
-                throw new FileNotFoundException("Font file not found: " + path);
+                throw new FileNotFoundException("Font file not found in resources");
             }
-            return Font.createFont(Font.TRUETYPE_FONT, fontStream);
+            return Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(12f);
+        } catch (Exception e) {
+            System.err.println("Using fallback font: " + e.getMessage());
+            return new Font("SansSerif", Font.PLAIN, 12);
         }
     }
 
@@ -71,11 +72,14 @@ public class CreditController {
 
     private void handleResourceError(Exception e) {
         System.err.println("Error loading resources: " + e.getMessage());
-        e.printStackTrace();
         JOptionPane.showMessageDialog(null,
             "Failed to load resources: " + e.getMessage(),
             "Error",
             JOptionPane.ERROR_MESSAGE);
-        System.exit(1);
+        
+
+        if (lobbyController != null) {
+            lobbyController.getView().setVisible(true);
+        }
     }
 }
