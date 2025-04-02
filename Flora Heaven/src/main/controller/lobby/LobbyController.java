@@ -65,28 +65,22 @@ public class LobbyController {
     }
 
     private void addEventListeners() {
-        JButton startButton = view.getStartButton();
-        JButton creditsButton = view.getCreditsButton();
-        JButton quitButton = view.getQuitButton();
-
-        if (startButton != null) {
-            startButton.addActionListener(e -> {
+        if (view.getStartButton() != null) {
+            view.getStartButton().addActionListener(e -> {
                 view.setVisible(false);
                 new OpenStoryController();
             });
         }
 
-        if (creditsButton != null) {
-            creditsButton.addActionListener(e -> {
+        if (view.getCreditsButton() != null) {
+            view.getCreditsButton().addActionListener(e -> {
                 view.setVisible(false);
-                new creditPage(new LobbyController());
+                new CreditController(this).show();
             });
         }
 
-        if (quitButton != null) {
-            quitButton.addActionListener(e -> {
-                System.exit(0);
-            });
+        if (view.getQuitButton() != null) {
+            view.getQuitButton().addActionListener(e -> System.exit(0));
         }
     }
 

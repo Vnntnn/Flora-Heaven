@@ -41,12 +41,12 @@ public class AssetsLoaderBook {
                 combinedTrees[i] = ImageIO.read(AssetsLoaderBook.class.getResourceAsStream("/assets/Book/combine/book_page" + (4 + i) + ".png"));
             }
 
-            navleft = new ImageIcon(AssetsLoaderBook.class.getResource("/Book/Animation/ArrowsPage/prev_arrow.GIF"));
-            navright = new ImageIcon(AssetsLoaderBook.class.getResource("/Book/Animation/ArrowsPage/next_arrow.GIF"));
+            navleft = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/Animation/ArrowsPage/prev_arrow.GIF"));
+            navright = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/Animation/ArrowsPage/next_arrow.GIF"));
 
             swaping = new ImageIcon[2];
-            swaping[0] = new ImageIcon(AssetsLoaderBook.class.getResource("/Book/Animation/Swaping/Next_page.GIF"));
-            swaping[1] = new ImageIcon(AssetsLoaderBook.class.getResource("/Book/Animation/Swaping/prev_page.GIF"));
+            swaping[0] = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/Animation/Swaping/Next_page.GIF"));
+            swaping[1] = new ImageIcon(AssetsLoaderBook.class.getResource("/assets/Book/Animation/Swaping/prev_page.GIF"));
         } catch (IOException e) {
             e.printStackTrace();
         }

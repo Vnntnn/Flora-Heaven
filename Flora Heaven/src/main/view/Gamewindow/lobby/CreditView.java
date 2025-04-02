@@ -13,7 +13,6 @@ public class CreditView {
     private Image backgroundImage;
     private List<String> names;
     private Font customFont;
-    private boolean isVisible = false;
     private LobbyController lobbyController;
 
     public CreditView(Font customFont, LobbyController lobbyController) {
@@ -40,79 +39,74 @@ public class CreditView {
                     g2d.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
                 }
                 
-                // วาดข้อความ Title
-                g2d.setFont(customFont.deriveFont(100f));
-                g2d.setColor(Color.YELLOW);
-                drawCenteredString(g2d, "Credits", getWidth(), 5);
-                
-                // วาดรายชื่อ
-                if (names != null) {
-                    g2d.setFont(customFont.deriveFont(18f));
-                    g2d.setColor(Color.WHITE);
-                    drawNames(g2d);
-                }
-                
-                // วาดปุ่ม Back
-                drawButton(g2d);
+                // วาดส่วนประกอบอื่นๆ
+                drawTitle(g2d);
+                drawNames(g2d);
+                drawBackButton(g2d);
                 
                 g2d.dispose();
             }
 
-            private void drawCenteredString(Graphics2D g2d, String text, int width, int y) {
-                FontMetrics fm = g2d.getFontMetrics();
-                int x = (width - fm.stringWidth(text)) / 2;
-                g2d.drawString(text, x, y + fm.getAscent());
+            private void drawTitle(Graphics2D g2d) {
+                g2d.setFont(customFont.deriveFont(100f));
+                g2d.setColor(Color.YELLOW);
+                String text = "Credits";
+                int x = (getWidth() - g2d.getFontMetrics().stringWidth(text)) / 2;
+                g2d.drawString(text, x, 100);
             }
 
             private void drawNames(Graphics2D g2d) {
-                FontMetrics fm = g2d.getFontMetrics();
-                int startY = 195;
-                int lineHeight = fm.getHeight() + 18;
-                
-                for (int i = 0; i < names.size(); i++) {
-                    String name = names.get(i);
-                    int x = (getWidth() - fm.stringWidth(name)) / 2;
-                    int y = startY + (i * lineHeight);
-                    g2d.drawString(name, x, y);
+                if (names != null && !names.isEmpty()) {
+                    g2d.setFont(customFont.deriveFont(18f));
+                    g2d.setColor(Color.WHITE);
+                    
+                    int startY = 200;
+                    int lineHeight = g2d.getFontMetrics().getHeight() + 10;
+                    
+                    for (int i = 0; i < names.size(); i++) {
+                        String name = names.get(i);
+                        int x = (getWidth() - g2d.getFontMetrics().stringWidth(name)) / 2;
+                        int y = startY + (i * lineHeight);
+                        g2d.drawString(name, x, y);
+                    }
                 }
             }
 
-            private void drawButton(Graphics2D g2d) {
-                int buttonWidth = 100;
+            private void drawBackButton(Graphics2D g2d) {
+                int buttonWidth = 150;
                 int buttonHeight = 50;
                 int buttonX = 50;
-                int buttonY = 40;
+                int buttonY = 50;
                 
-                // วาดพื้นหลังปุ่ม
+                // วาดปุ่ม
                 g2d.setColor(Color.YELLOW);
-                g2d.fillRect(buttonX, buttonY, buttonWidth, buttonHeight);
+                g2d.fillRoundRect(buttonX, buttonY, buttonWidth, buttonHeight, 10, 10);
                 
-                // วาดข้อความปุ่ม
+                // วาดข้อความ
                 g2d.setFont(customFont.deriveFont(30f));
                 g2d.setColor(Color.BLACK);
-                FontMetrics fm = g2d.getFontMetrics();
-                int textX = buttonX + (buttonWidth - fm.stringWidth("Back")) / 2;
-                int textY = buttonY + ((buttonHeight - fm.getHeight()) / 2) + fm.getAscent();
-                g2d.drawString("Back", textX, textY);
+                String text = "Back";
+                int textX = buttonX + (buttonWidth - g2d.getFontMetrics().stringWidth(text)) / 2;
+                int textY = buttonY + (buttonHeight / 2) + (g2d.getFontMetrics().getAscent() / 3);
+                g2d.drawString(text, textX, textY);
+                
+                // กำหนดพื้นที่คลิก
+                mainPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getX() >= buttonX && e.getX() <= buttonX + buttonWidth &&
+                            e.getY() >= buttonY && e.getY() <= buttonY + buttonHeight) {
+                            close();
+                            if (lobbyController != null) {
+                                lobbyController.getView().setVisible(true);
+                            }
+                        }
+                    }
+                });
             }
         };
 
-        mainPanel.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                checkButtonClick(evt.getX(), evt.getY());
-            }
-        });
         frame.setContentPane(mainPanel);
-    }
-
-    private void checkButtonClick(int x, int y) {
-        // ตรวจสอบว่าคลิกในพื้นที่ปุ่มหรือไม่
-        if (x >= 50 && x <= 200 && y >= 20 && y <= 70) {
-            close();
-            if (lobbyController != null) {
-                EventQueue.invokeLater(() -> new LobbyController());
-            }
-        }
     }
 
     public void setBackgroundImage(Image background) {
@@ -126,26 +120,14 @@ public class CreditView {
     }
 
     public void show() {
-        isVisible = true;
         frame.setVisible(true);
     }
 
     public void close() {
-        isVisible = false;
         frame.dispose();
     }
 
-    public boolean isVisible() {
-        return isVisible;
-    }
-
-    public void setVisible(boolean b) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setVisible'");
-    }
-
     public void toFront() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toFront'");
+        frame.toFront();
     }
 }
