@@ -23,16 +23,12 @@ import main.model.Threads.Timer;
 import main.model.Player.EndingDay;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.*;
 
-public class ArcanashopController implements MouseMotionListener,MouseListener,ActionListener {
+public class ArcanashopController implements MouseMotionListener,MouseListener,ActionListener , WindowListener {
     // Panel initializing
     private ArcanashopWindow arcanashopWindow;
     private MainQuestPanel mainQuestPanel;
@@ -133,12 +129,19 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
         arcanashopWindow.getsuSubQuestTextPanel1().addMouseListener(this);
         arcanashopWindow.getsuSubQuestTextPanel2().addMouseListener(this);
         arcanashopWindow.getsuSubQuestTextPanel3().addMouseListener(this);
+        arcanashopWindow.addWindowListener(this);
     }
 
     public void updatetreeMap(){
         treeMap.clear();
         for (int i = 0;i<player.getObtainTrees().getObtainedTree().size(); i++){
             treeMap.put(player.getObtainTrees().getObtainedTree().get(i).getImage(),player.getObtainTrees().getObtainedTree().get(i));
+        }
+    }
+
+    private void stopAllThreads() {
+        if (timer != null) {
+            timer.stopTimer(); // หยุด Timer
         }
     }
 
@@ -160,6 +163,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                     e.printStackTrace();
                 }
             }
@@ -375,6 +379,7 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                 switch (player.getDay()) {
                     case 1:
                         arcanashopWindow.dispose();
+                        treeResultMain = null;
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         player.addCoins(100);
                         new EndingDay(player).dayEnd();
@@ -382,18 +387,21 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
                     case 2:
                         player.addCoins(300);
                         arcanashopWindow.dispose();
+                        treeResultMain = null;
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
                         break;
                     case 3:
                         player.addCoins(500);
                         arcanashopWindow.dispose();
+                        treeResultMain = null;
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
                         break;
                     case 4:
                         player.addCoins(888.0);
                         arcanashopWindow.dispose();
+                        treeResultMain = null;
                         showdayending = new ShowDayEnding(player.getDay(),player);
                         new EndingDay(player).dayEnd();
                         break;
@@ -447,4 +455,39 @@ public class ArcanashopController implements MouseMotionListener,MouseListener,A
 
     @Override
     public void mouseMoved(MouseEvent e) {}
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        stopAllThreads();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        stopAllThreads();
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }

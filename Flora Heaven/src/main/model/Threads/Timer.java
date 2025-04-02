@@ -15,6 +15,7 @@ public class Timer extends Thread {
 
     public void stopTimer() {
         this.running = false;
+        this.interrupt();
     }
 
     @Override
@@ -25,6 +26,7 @@ public class Timer extends Thread {
                 sec--;
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }

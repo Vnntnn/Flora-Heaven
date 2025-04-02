@@ -43,14 +43,12 @@ public class SubQuestGenerator {
         day2.add(new Everguard());
         day2.add(new Chandra());
         day2.add(new Huolu()); // buy form mainquest d1
-        day2.add(new Mindspire()); // อยากให้ซื้อ
 
         day3.add(new Luckybloom());
         day3.add(new bloodvalorTree());
         day3.add(new Everguard());
         day3.add(new Chandra());
         day3.add(new Huolu()); // buy form mainquest d1
-        day3.add(new Mindspire()); // อยากให้ซื้อ
         day3.add(new SilentisShade()); // buy form mainquest d2
 
         day4.add(new Luckybloom());
@@ -61,7 +59,6 @@ public class SubQuestGenerator {
         day4.add(new SilentisShade()); // buy form mainquest d2
         day4.add(new Mindspire()); // buy form mainquest d3
         day4.add(new IllumisSprout()); //buy form mainquest d3
-        day4.add(new Voxspire()); //อยากให้ซื้อ
 
         day5.add(new Luckybloom());
         day5.add(new bloodvalorTree());
